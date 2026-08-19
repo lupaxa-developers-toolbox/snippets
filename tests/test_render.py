@@ -230,7 +230,7 @@ def test_languages_index_includes_unknown_scanned_language() -> None:
 def test_filter_panel_embeds_language_labels() -> None:
     md = render_catalogue([_snip("python", "retry")], _catalogue())
     match = re.search(
-        r'<script type="application/json" id="language-labels">(.*?)</script>',
+        r'<template id="language-labels">(.*?)</template>',
         md,
         re.S,
     )
@@ -244,7 +244,7 @@ def test_filter_panel_embeds_language_labels() -> None:
 def test_filter_panel_lists_visible_languages_without_snippets() -> None:
     md = render_catalogue([_snip("python", "retry")], _catalogue())
     match = re.search(
-        r'<script type="application/json" id="listed-languages">(.*?)</script>',
+        r'<template id="listed-languages">(.*?)</template>',
         md,
         re.S,
     )
@@ -253,6 +253,20 @@ def test_filter_panel_lists_visible_languages_without_snippets() -> None:
     assert listed == ["go", "markdown", "php", "python", "shell"]
     assert "kotlin" not in listed
     assert "objc" not in listed
+
+
+def test_filter_panel_select_lists_visible_and_used_languages() -> None:
+    md = render_catalogue(
+        [_snip("python", "retry"), _snip("kotlin", "flow")],
+        _catalogue(),
+    )
+    assert 'value="go">Go</option>' in md
+    assert 'value="markdown">Markdown</option>' in md
+    assert 'value="php">PHP</option>' in md
+    assert 'value="python">Python</option>' in md
+    assert 'value="shell">Shell</option>' in md
+    assert 'value="kotlin">Kotlin</option>' in md
+    assert 'value="objc"' not in md
 
 
 def test_home_empty_catalogue() -> None:

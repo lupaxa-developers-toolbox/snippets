@@ -46,8 +46,12 @@ def test_built_snippets_page_has_filter_panel() -> None:
     assert "filter-panel.css" in listing
     assert "<title>Catalogue - Snippets</title>" in listing
     assert 'id="listed-languages"' in listing
-    assert '"php"' in listing.split('id="listed-languages"')[1].split("</script>")[0]
-    assert '"kotlin"' not in listing.split('id="listed-languages"')[1].split("</script>")[0]
+    listed = listing.split('id="listed-languages"')[1].split("</template>")[0]
+    assert '"php"' in listed
+    assert '"kotlin"' not in listed
+    assert 'value="php">PHP</option>' in listing
+    assert 'value="sql">SQL</option>' in listing
+    assert 'value="kotlin"' not in listing
 
 
 def test_built_header_and_body_chrome() -> None:

@@ -116,26 +116,43 @@
   }
 
   /**
+   * Parse JSON embedded in a template (survives Material instant navigation).
+   *
+   * @param {string} id
+   * @returns {unknown}
+   */
+  function parseEmbeddedJson(id) {
+    const node = document.getElementById(id);
+
+    if (!node) {
+      return null;
+    }
+
+    const text = (node.textContent || "").trim();
+
+    if (!text) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(text);
+    } catch {
+      return null;
+    }
+  }
+
+  /**
    * Display names from the generated catalogue JSON.
    *
    * @returns {Record<string, string>}
    */
   function languageLabelMap() {
-    const node = document.getElementById("language-labels");
+    const parsed = parseEmbeddedJson("language-labels");
 
-    if (!(node instanceof HTMLScriptElement) || !node.textContent) {
-      return {};
-    }
-
-    try {
-      const parsed = JSON.parse(node.textContent);
-      return parsed && typeof parsed === "object" ? parsed : {};
-    } catch {
-      return {};
-    }
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? parsed
+      : {};
   }
-
-  const LANGUAGE_LABELS = languageLabelMap();
 
   /**
    * Languages shown on the Languages page (visible or already have snippets).
@@ -143,18 +160,9 @@
    * @returns {string[]}
    */
   function listedLanguageSlugs() {
-    const node = document.getElementById("listed-languages");
+    const parsed = parseEmbeddedJson("listed-languages");
 
-    if (!(node instanceof HTMLScriptElement) || !node.textContent) {
-      return [];
-    }
-
-    try {
-      const parsed = JSON.parse(node.textContent);
-      return Array.isArray(parsed) ? parsed.map(String) : [];
-    } catch {
-      return [];
-    }
+    return Array.isArray(parsed) ? parsed.map(String) : [];
   }
 
   /**
@@ -163,12 +171,12 @@
    * @param {string} value
    * @returns {string}
    */
-  function languageLabel(value) {
+  function languageLabel(value, labels) {
     if (!value) {
       return value;
     }
 
-    const mapped = LANGUAGE_LABELS[normaliseCatalogueValue(value)];
+    const mapped = (labels ?? languageLabelMap())[normaliseCatalogueValue(value)];
 
     if (mapped) {
       return mapped;
@@ -286,6 +294,24 @@
 
     const tagOptions = new Map();
     const languageOptions = new Map();
+    const labels = languageLabelMap();
+
+    Array.from(languageSelect.options).forEach((option) => {
+      if (option.value) {
+        languageOptions.set(
+          option.value,
+          option.textContent?.trim() || languageLabel(option.value, labels),
+        );
+      }
+    });
+
+    listedLanguageSlugs().forEach((slug) => {
+      const value = normaliseCatalogueValue(slug);
+
+      if (value) {
+        languageOptions.set(value, languageLabel(slug, labels));
+      }
+    });
 
     const cardData = cards.map((card) => {
       const tags = getCatalogueTags(card);
@@ -300,7 +326,7 @@
       if (languageValue) {
         languageOptions.set(
           languageValue,
-          languageLabel(languageLabelText),
+          languageLabel(languageLabelText, labels),
         );
       }
 
@@ -325,13 +351,9 @@
       };
     });
 
-    listedLanguageSlugs().forEach((slug) => {
-      const value = normaliseCatalogueValue(slug);
-
-      if (value) {
-        languageOptions.set(value, languageLabel(slug));
-      }
-    });
+    while (languageSelect.options.length > 1) {
+      languageSelect.remove(1);
+    }
 
     addCatalogueOptions(tagSelect, tagOptions);
     addCatalogueOptions(languageSelect, languageOptions);
@@ -438,7 +460,7 @@
 
         option.value = normalisedValue;
         option.textContent =
-          select === languageSelect ? languageLabel(value) : value.trim();
+          select === languageSelect ? languageLabel(value, labels) : value.trim();
         option.dataset.urlFilterOption = "";
 
         select.append(option);
@@ -700,7 +722,7 @@
           control.append(logo);
         }
 
-        const languageName = languageLabel(language);
+        const languageName = languageLabel(language, labels);
 
         control.setAttribute("aria-label", `Filter by ${languageName}`);
         control.title = logo.getAttribute("title") || languageName;

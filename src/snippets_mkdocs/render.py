@@ -219,14 +219,27 @@ M6 13h7.07c.14-.71.4-1.38.76-2H6m-3-5v2h18V6H3Z"/>
         </span>"""
 
 
+def _language_select_options(catalogue: Catalogue, snippets: list[Snippet]) -> str:
+    """All Languages plus every visible catalogue language and any in use."""
+    labels = language_labels(catalogue)
+    lines = ['            <option value="">All Languages</option>']
+    for slug in listed_slugs(catalogue, snippets):
+        name = labels.get(slug) or language_profile(catalogue, slug)[0]
+        lines.append(
+            f'            <option value="{escape(slug, quote=True)}">{escape(name)}</option>'
+        )
+    return "\n".join(lines)
+
+
 def render_filter_panel(catalogue: Catalogue, snippets: list[Snippet]) -> str:
     """Projects-page filter box: search, language, tag, A–Z/Newest, clear."""
     labels = json.dumps(language_labels(catalogue), separators=(",", ":"))
     listed = json.dumps(listed_slugs(catalogue, snippets), separators=(",", ":"))
+    language_options = _language_select_options(catalogue, snippets)
     return f"""
 <div class="filter-panel filter-panel--with-sort" data-snippet-filters>
-    <script type="application/json" id="language-labels">{labels}</script>
-    <script type="application/json" id="listed-languages">{listed}</script>
+    <template id="language-labels">{labels}</template>
+    <template id="listed-languages">{listed}</template>
     <div class="filter-panel-toolbar">
         <button
             type="button"
@@ -258,7 +271,7 @@ def render_filter_panel(catalogue: Catalogue, snippets: list[Snippet]) -> str:
     <div class="filter-panel-select">
         <label for="snippet-language">Language</label>
         <select id="snippet-language" data-snippet-language>
-            <option value="">All Languages</option>
+{language_options}
         </select>
     </div>
     <div class="filter-panel-select">
