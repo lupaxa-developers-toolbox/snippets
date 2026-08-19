@@ -1,0 +1,275 @@
+/* =============================================================================
+ * Snippet catalogue cards (projects-page layout, no banners or footer links)
+ * ============================================================================= */
+
+.md-typeset .grid.cards.catalogue-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+/* Include .grid.cards so this beats Material's `display: block` on card li. */
+.md-typeset .grid.cards.catalogue-grid > ul > li,
+.md-typeset .grid.cards.catalogue-grid > li {
+  --catalogue-card-inset: 0.7rem;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  /* Extra bottom pad matches the title line-box leading so the
+   * visual gap above the title equals the gap below the pills. */
+  padding: var(--catalogue-card-inset) 0.95rem
+    calc(var(--catalogue-card-inset) + (0.98rem * 0.15));
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child a,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child a::after,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child a::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child a:hover,
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child a:focus-visible,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child a:hover,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child a:focus-visible {
+  color: var(--lupaxa-light-blue);
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages
+  > ul
+  > li
+  > p:first-child,
+.md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages
+  > li
+  > p:first-child {
+  text-align: center;
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child strong,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child strong,
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:first-child a,
+.md-typeset .grid.cards.catalogue-grid > li > p:first-child a {
+  display: block;
+  overflow: hidden;
+  font-size: 0.98rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > hr:first-of-type,
+.md-typeset .grid.cards.catalogue-grid > li > hr:first-of-type {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 var(--catalogue-card-inset);
+  padding: 0;
+  text-align: center;
+}
+
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  appearance: none;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  transition:
+    filter var(--lupaxa-transition-fast),
+    box-shadow var(--lupaxa-transition-fast);
+}
+
+.md-typeset .catalogue-grid img.catalogue-logo {
+  display: block;
+  width: auto;
+  max-width: min(100%, 72px);
+  height: auto;
+  max-height: 72px;
+  margin: 0;
+  object-fit: contain;
+}
+
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a:hover,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a:focus-visible,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:hover,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:focus-visible,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:hover,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:focus-visible {
+  filter: brightness(1.08);
+  box-shadow:
+    0 0 0 2px
+    color-mix(in srgb, var(--lupaxa-light-blue) 35%, transparent);
+}
+
+.md-typeset .catalogue-grid .catalogue-category {
+  position: relative;
+  z-index: 2;
+}
+
+.md-typeset .catalogue-grid
+  p:has(img.catalogue-logo)
+  + p {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.md-typeset .catalogue-category {
+  display: inline-block;
+  margin: 0;
+  padding: 0.14rem 0.38rem;
+  color: var(--lupaxa-blue);
+  font: inherit;
+  font-size: 0.64rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  appearance: none;
+  cursor: pointer;
+  background:
+    color-mix(in srgb, var(--lupaxa-blue) 8%, transparent);
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--lupaxa-blue) 24%,
+      var(--md-default-fg-color--lightest)
+    );
+  border-radius: var(--lupaxa-radius-pill);
+  transition:
+    color var(--lupaxa-transition-fast),
+    background-color var(--lupaxa-transition-fast),
+    border-color var(--lupaxa-transition-fast);
+}
+
+.md-typeset .catalogue-category:hover {
+  color: var(--lupaxa-white);
+  background: var(--lupaxa-blue);
+  border-color: var(--lupaxa-blue);
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:has(> .catalogue-category),
+.md-typeset .grid.cards.catalogue-grid > li > p:has(> .catalogue-category) {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: stretch;
+  justify-content: flex-start;
+  gap: var(--lupaxa-spacing-xs);
+  width: 100%;
+  margin-top: auto;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-top: var(--catalogue-card-inset);
+  text-align: left;
+  hyphens: manual;
+  -webkit-hyphens: manual;
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li > p:has(> .catalogue-category) > .catalogue-category,
+.md-typeset .grid.cards.catalogue-grid > li > p:has(> .catalogue-category) > .catalogue-category {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .catalogue-category {
+  color: var(--lupaxa-light-blue);
+  background:
+    color-mix(in srgb, var(--lupaxa-light-blue) 12%, transparent);
+  border-color:
+    color-mix(
+      in srgb,
+      var(--lupaxa-light-blue) 30%,
+      var(--md-default-fg-color--lightest)
+    );
+}
+
+[data-md-color-scheme="slate"] .md-typeset .catalogue-category:hover {
+  color: var(--lupaxa-dark-blue);
+  background: var(--lupaxa-light-blue);
+  border-color: var(--lupaxa-light-blue);
+}
+
+.catalogue-empty-state {
+  margin: 1.5rem 0;
+  padding: 2rem 1.25rem;
+  color: var(--md-default-fg-color--light);
+  text-align: center;
+  border: 1px dashed var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+}
+
+.md-typeset .grid.cards.catalogue-grid > ul > li[hidden],
+.catalogue-empty-state[hidden] {
+  display: none !important;
+}
+
+@media screen and (max-width: 76.234375em) {
+  .md-typeset .grid.cards.catalogue-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > ul > li:nth-child(n + 7),
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > li:nth-child(n + 7) {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 44.984375em) {
+  .md-typeset .grid.cards.catalogue-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > ul > li:nth-child(n + 5),
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > li:nth-child(n + 5) {
+    display: none !important;
+  }
+}

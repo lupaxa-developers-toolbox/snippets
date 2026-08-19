@@ -1,0 +1,480 @@
+/* =============================================================================
+ * Snippets catalogue filters (ported from thelupaxaproject.org/projects/)
+ * ============================================================================= */
+
+/*
+ * Expanded layout:
+ *   search (full width)
+ *   language | tag | sort | clear
+ */
+.filter-panel {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.2fr)
+    minmax(10rem, 1fr)
+    auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 1rem;
+  background:
+    color-mix(
+      in srgb,
+      var(--md-default-bg-color) 96%,
+      var(--lupaxa-blue)
+    );
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  box-shadow: var(--md-shadow-z1);
+}
+
+.filter-panel[data-snippet-filters] {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(8rem, 1fr)
+    minmax(8rem, 1fr)
+    auto;
+  column-gap: 1rem;
+  row-gap: 0.9rem;
+}
+
+.filter-panel[data-snippet-filters] > .filter-panel-toolbar,
+.filter-panel[data-snippet-filters] > .filter-panel-search {
+  grid-column: 1 / -1;
+}
+
+.filter-panel[data-snippet-filters] > .filter-panel-select,
+.filter-panel[data-snippet-filters] > .filter-panel-toggle,
+.filter-panel[data-snippet-filters] > .filter-panel-actions {
+  grid-column: auto;
+}
+
+.filter-panel[data-snippet-filters] > .filter-panel-actions {
+  justify-self: stretch;
+  justify-content: flex-start;
+}
+
+.filter-panel[data-snippet-filters] .filter-panel-clear {
+  width: 100%;
+  min-width: 0;
+}
+
+.filter-panel-toolbar {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+}
+
+.filter-panel-toolbar .filter-panel-summary,
+.md-typeset .filter-panel-toolbar .filter-panel-summary {
+  grid-column: auto;
+  flex: 1 1 auto;
+  justify-self: unset;
+  width: auto;
+  min-width: 0;
+  margin-top: 0;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+ * Beat Material `.md-typeset .md-button { display: inline-block }` so the
+ * icon + label flex row can vertically center.
+ */
+.md-typeset .md-button.filter-panel-expand,
+.filter-panel-expand {
+  display: inline-flex;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  gap: 0.4rem;
+  min-width: 9.5rem;
+  min-height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.filter-panel-expand__icon {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: 1em;
+  height: 1em;
+  line-height: 0;
+}
+
+.filter-panel-expand__icon--show {
+  display: inline-flex;
+}
+
+.filter-panel--expanded .filter-panel-expand__icon--show {
+  display: none;
+}
+
+.filter-panel--expanded .filter-panel-expand__icon--hide {
+  display: inline-flex;
+}
+
+.filter-panel-expand__icon svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.filter-panel-expand__label {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.filter-panel:not(.filter-panel--expanded) > .filter-panel-search,
+.filter-panel:not(.filter-panel--expanded) > .filter-panel-select,
+.filter-panel:not(.filter-panel--expanded) > .filter-panel-toggle,
+.filter-panel:not(.filter-panel--expanded) > .filter-panel-actions {
+  display: none;
+}
+
+/* Collapsed: only the toolbar row (Filters + Showing X) */
+.filter-panel:not(.filter-panel--expanded),
+.filter-panel[data-snippet-filters]:not(.filter-panel--expanded) {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+article.md-content__inner:has(> .filter-panel)::before {
+  content: "";
+  display: block;
+  height: 1.5rem;
+}
+
+.filter-panel-search,
+.filter-panel-select,
+.filter-panel-toggle {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.filter-panel-toggle__options {
+  display: flex;
+  width: 100%;
+  min-height: 2.25rem;
+}
+
+.filter-panel-toggle__option {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.45rem;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1;
+  white-space: nowrap;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  cursor: pointer;
+  appearance: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.filter-panel-toggle__option:first-child {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+
+.filter-panel-toggle__option + .filter-panel-toggle__option {
+  margin-left: -1px;
+}
+
+.filter-panel-toggle__option:last-child {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+.filter-panel-toggle__option:hover {
+  z-index: 1;
+  border-color: var(--lupaxa-light-blue);
+}
+
+.filter-panel-toggle__option:focus-visible {
+  z-index: 1;
+  border-color: var(--lupaxa-light-blue);
+  outline: none;
+  box-shadow:
+    0 0 0 0.12rem
+    color-mix(
+      in srgb,
+      var(--lupaxa-light-blue) 24%,
+      transparent
+    );
+}
+
+.filter-panel-toggle__option[aria-pressed="true"] {
+  z-index: 1;
+  color: var(--lupaxa-white);
+  background: var(--lupaxa-blue);
+  border-color: var(--lupaxa-blue);
+}
+
+.md-typeset .filter-panel-toggle__option {
+  margin: 0;
+  max-height: 2.25rem;
+  text-align: center;
+}
+
+.filter-panel label {
+  color: var(--md-default-fg-color);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.filter-panel input,
+.filter-panel select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.25rem;
+  padding: 0.42rem 0.65rem;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.3rem;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.filter-panel input::placeholder {
+  color: var(--md-default-fg-color--light);
+  opacity: 0.75;
+}
+
+.filter-panel input:hover,
+.filter-panel select:hover {
+  border-color: var(--lupaxa-light-blue);
+}
+
+.filter-panel input:focus,
+.filter-panel select:focus {
+  border-color: var(--lupaxa-light-blue);
+  outline: none;
+  box-shadow:
+    0 0 0 0.12rem
+    color-mix(
+      in srgb,
+      var(--lupaxa-light-blue) 24%,
+      transparent
+    );
+}
+
+.filter-panel-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+/*
+ * Visual styles (colour, hover, active, disabled) are shared with
+ * .md-button.lupaxa-button in buttons.css. Layout-specific sizing stays here.
+ */
+.filter-panel-clear {
+  display: inline-flex;
+  box-sizing: border-box;
+  min-width: 8.5rem;
+  min-height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    color var(--lupaxa-transition-fast),
+    background-color var(--lupaxa-transition-fast),
+    border-color var(--lupaxa-transition-fast),
+    transform var(--lupaxa-transition-fast);
+}
+
+.filter-panel-summary {
+  box-sizing: border-box;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.74rem;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.md-typeset .filter-panel .filter-panel-toolbar .filter-panel-summary,
+.filter-panel-toolbar .filter-panel-summary {
+  grid-column: auto;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  margin-top: 0;
+  text-align: right;
+}
+
+[data-md-color-scheme="slate"] .filter-panel {
+  background:
+    color-mix(
+      in srgb,
+      var(--md-default-bg-color) 94%,
+      var(--lupaxa-light-blue)
+    );
+}
+
+/* =============================================================================
+ * Responsive — aligned with site breakpoints in 90-responsive.css
+ *
+ * Breakpoints (16px root):
+ *   ≤76.234375em (~1220px)  tablet / laptop narrow — keep desktop row plans
+ *   ≤59.984375em (~960px)   tablet portrait — tighten crowded rows
+ *   ≤44.984375em (~720px)   mobile — full stack
+ * ============================================================================= */
+
+.filter-panel[data-snippet-filters] .filter-panel-clear {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+@media screen and (max-width: 76.234375em) {
+  .filter-panel-summary {
+    text-align: right;
+  }
+
+  .filter-panel:not(.filter-panel--expanded),
+  .filter-panel[data-snippet-filters]:not(.filter-panel--expanded) {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+/*
+ * Tablet portrait (~960px):
+ *   search (full width)
+ *   language | tag
+ *   sort | clear
+ */
+@media screen and (max-width: 59.984375em) {
+  .filter-panel[data-snippet-filters] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 0.85rem;
+    row-gap: 0.85rem;
+  }
+
+  .filter-panel[data-snippet-filters] > .filter-panel-toolbar,
+  .filter-panel[data-snippet-filters] > .filter-panel-search {
+    grid-column: 1 / -1;
+  }
+
+  .filter-panel[data-snippet-filters] > .filter-panel-select,
+  .filter-panel[data-snippet-filters] > .filter-panel-toggle {
+    grid-column: auto;
+  }
+
+  .filter-panel[data-snippet-filters] > .filter-panel-actions {
+    grid-column: auto;
+    justify-self: stretch;
+    justify-content: flex-start;
+  }
+
+  .filter-panel:not(.filter-panel--expanded),
+  .filter-panel[data-snippet-filters]:not(.filter-panel--expanded) {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+/*
+ * Mobile (~720px): stack — one control per row.
+ * Toolbar keeps Filters + Showing X on one row.
+ */
+@media screen and (max-width: 44.984375em) {
+  .filter-panel,
+  .filter-panel[data-snippet-filters] {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0.7rem;
+    row-gap: 0.7rem;
+    gap: 0.7rem;
+    padding: 0.85rem;
+  }
+
+  .filter-panel > .filter-panel-toolbar,
+  .filter-panel > .filter-panel-search,
+  .filter-panel > .filter-panel-select,
+  .filter-panel > .filter-panel-toggle,
+  .filter-panel > .filter-panel-actions,
+  .filter-panel[data-snippet-filters] > .filter-panel-select,
+  .filter-panel[data-snippet-filters] > .filter-panel-toggle,
+  .filter-panel[data-snippet-filters] > .filter-panel-actions {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-panel-expand {
+    width: auto;
+    min-width: 9.5rem;
+  }
+
+  .filter-panel > .filter-panel-actions {
+    justify-content: flex-start;
+    padding-top: calc(0.68rem * 1.2 + 0.3rem);
+  }
+
+  .md-typeset .filter-panel .md-button.filter-panel-clear,
+  .md-typeset .filter-panel .filter-panel-clear,
+  .filter-panel-clear {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-panel-toolbar .filter-panel-summary,
+  .md-typeset .filter-panel-toolbar .filter-panel-summary {
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .filter-panel:not(.filter-panel--expanded),
+  .filter-panel[data-snippet-filters]:not(.filter-panel--expanded) {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .filter-panel:not(.filter-panel--expanded) > .filter-panel-actions {
+    padding-top: 0;
+  }
+}

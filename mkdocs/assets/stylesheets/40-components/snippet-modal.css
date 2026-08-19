@@ -1,0 +1,201 @@
+/* =============================================================================
+ * Snippet card modal
+ * ============================================================================= */
+
+.snippet-modal {
+  --snippet-modal-gap: 1rem;
+  --snippet-modal-title-size: 1.25rem;
+  --snippet-modal-title-line: 1.25;
+
+  position: fixed;
+  inset: 0;
+  width: min(48rem, calc(100vw - 2rem));
+  max-width: 48rem;
+  height: fit-content;
+  max-height: min(42rem, calc(100vh - 2rem));
+  margin: auto;
+  padding: 0;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid
+    color-mix(in srgb, var(--lupaxa-light-blue) 28%, var(--md-default-fg-color--lightest));
+  border-radius: var(--lupaxa-radius-card);
+  box-shadow: var(--lupaxa-shadow-card-hover);
+}
+
+.snippet-modal::backdrop {
+  background: rgb(17 26 50 / 62%);
+}
+
+.snippet-modal__panel {
+  position: relative;
+  box-sizing: border-box;
+  max-height: min(42rem, calc(100vh - 2rem));
+  /* Subtract the title's half-leading so the visual gap above the
+   * glyphs matches the hard edge below the last block. */
+  padding:
+    calc(
+      var(--snippet-modal-gap)
+      - (
+        var(--snippet-modal-title-size)
+        * (var(--snippet-modal-title-line) - 1)
+        / 2
+      )
+    )
+    1.4rem
+    var(--snippet-modal-gap);
+  overflow: auto;
+}
+
+.snippet-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  color: var(--md-default-fg-color--light);
+  cursor: pointer;
+  background:
+    color-mix(in srgb, var(--md-default-fg-color) 7%, var(--md-default-bg-color));
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 50%;
+  transition:
+    color var(--lupaxa-transition-fast),
+    background-color var(--lupaxa-transition-fast),
+    border-color var(--lupaxa-transition-fast);
+}
+
+.snippet-modal__close svg {
+  display: block;
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentcolor;
+}
+
+.snippet-modal__close:hover,
+.snippet-modal__close:focus-visible {
+  color: var(--lupaxa-dark-blue);
+  background: var(--lupaxa-light-blue);
+  border-color: var(--lupaxa-light-blue);
+}
+
+.snippet-modal__body {
+  min-width: 0;
+}
+
+.snippet-modal .md-typeset h2.snippet-modal-title,
+.snippet-modal .md-typeset h2.snippet-modal-title:first-of-type {
+  margin: 0 2.75rem 0.12rem 0;
+  padding: 0;
+  color: var(--md-default-fg-color);
+  font-size: var(--snippet-modal-title-size);
+  font-weight: 650;
+  line-height: var(--snippet-modal-title-line);
+  letter-spacing: -0.02em;
+  border: 0;
+}
+
+.snippet-modal-meta,
+.snippet-modal .snippet-modal-meta {
+  margin: 0 2.75rem var(--snippet-modal-gap) 0;
+}
+
+.snippet-modal-date,
+.snippet-modal-submitted,
+.snippet-modal .snippet-modal-date,
+.snippet-modal .snippet-modal-submitted {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.snippet-modal-submitted,
+.snippet-modal .snippet-modal-submitted {
+  margin-top: 0.25rem;
+}
+
+.snippet-modal-submitted a,
+.snippet-modal .snippet-modal-submitted a {
+  color: var(--lupaxa-light-blue);
+  text-decoration: none;
+}
+
+.snippet-modal-submitted a:hover,
+.snippet-modal-submitted a:focus-visible,
+.snippet-modal .snippet-modal-submitted a:hover,
+.snippet-modal .snippet-modal-submitted a:focus-visible {
+  text-decoration: underline;
+}
+
+.snippet-modal-date sup,
+.snippet-modal .snippet-modal-date sup {
+  font-size: 0.62em;
+  font-weight: 700;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.snippet-modal-status {
+  margin: 1.5rem 0;
+  color: var(--md-default-fg-color--light);
+}
+
+.snippet-modal .highlight,
+.snippet-modal .md-typeset .highlight {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.snippet-modal .highlight > pre,
+.snippet-modal .md-typeset .highlight > pre {
+  margin: 0;
+  padding: 0;
+}
+
+.snippet-modal .highlight > pre > code,
+.snippet-modal .md-typeset .highlight > pre > code {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: var(--lupaxa-radius-sm);
+  box-shadow: var(--lupaxa-shadow-panel);
+  padding-right: 2.6em;
+}
+
+.snippet-modal .md-clipboard {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  z-index: 2;
+}
+
+.snippet-modal .md-clipboard[data-copied="true"] {
+  color: var(--lupaxa-light-blue);
+}
+
+.snippet-modal .md-clipboard[data-copied="true"]::after {
+  -webkit-mask-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+  mask-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
+}
+
+.snippet-modal .md-typeset .admonition {
+  margin: var(--snippet-modal-gap) 0 0;
+  border-radius: var(--lupaxa-radius-sm);
+}
+
+.md-typeset [data-snippet-article] {
+  margin-top: 1rem;
+}
+
+.md-typeset [data-snippet-article] .highlight > pre > code {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: var(--lupaxa-radius-sm);
+  box-shadow: var(--lupaxa-shadow-panel);
+}

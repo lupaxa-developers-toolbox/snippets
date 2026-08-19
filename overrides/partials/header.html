@@ -1,0 +1,108 @@
+<!--
+  Custom single-row header for Lupaxa-style documentation sites.
+
+  Retains Material's native logo and drawer while rendering the top-level
+  navigation directly in the header. Theme is locked to slate (no toggle).
+-->
+
+{% macro first_nav_url(item) -%}
+  {%- if item.url -%}
+    {{ item.url | url }}
+  {%- elif item.children -%}
+    {%- set ns = namespace(found="") -%}
+    {%- for child in item.children if not ns.found -%}
+      {%- set ns.found = first_nav_url(child) -%}
+    {%- endfor -%}
+    {{ ns.found }}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro descendant_nav_urls(item) -%}
+  {%- if item.url %}{{ item.url | url }} {% endif -%}
+  {%- if item.children -%}
+    {%- for child in item.children -%}
+      {{ descendant_nav_urls(child) }}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endmacro %}
+
+{% set class = "md-header md-header--shadow" %}
+
+<header class="{{ class }}" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid lupaxa-header__inner"
+    aria-label="{{ lang.t('header') }}"
+  >
+    <!-- Link to home -->
+    <a
+      href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}"
+      class="md-header__button md-logo lupaxa-header__logo"
+      aria-label="{{ config.site_name }}"
+      data-md-component="logo"
+    >
+      {% include "partials/logo.html" %}
+    </a>
+
+    <!-- Drawer toggle: hidden on desktop, shown on tablet/phone -->
+    <label
+      class="md-header__button md-icon lupaxa-header__drawer-button"
+      for="__drawer"
+      aria-label="{{ lang.t('drawer.title') }}"
+    >
+      {% set icon = config.theme.icon.menu or "material/menu" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </label>
+
+    <!-- Top-level desktop navigation -->
+    <nav class="lupaxa-header__nav" aria-label="Primary navigation">
+      <ul class="lupaxa-header__nav-list">
+        {% for nav_item in nav %}
+          {# Sections have url=None; walk to the first descendant page. #}
+          {% set nav_href = first_nav_url(nav_item) %}
+          {% set prefix_ns = namespace(paths=[]) %}
+          {% set active_ns = namespace(on=nav_item.active) %}
+          {% if nav_item.title == "Snippets" %}
+            {% if nav_href %}
+              {% set _ = prefix_ns.paths.append(nav_href) %}
+            {% endif %}
+            {% for lang in config.extra.snippet_language_prefixes | default([], true) %}
+              {% set _ = prefix_ns.paths.append((lang ~ '/') | url) %}
+              {% if page and page.url and page.url.startswith(lang ~ "/") %}
+                {% set active_ns.on = true %}
+              {% endif %}
+            {% endfor %}
+            {% set prefix_attr = prefix_ns.paths | join(" ") %}
+          {% else %}
+            {% set prefix_attr = descendant_nav_urls(nav_item) | trim %}
+          {% endif %}
+          <li
+            class="lupaxa-header__nav-item{% if active_ns.on %} lupaxa-header__nav-item--active{% endif %}"
+          >
+            <a
+              class="lupaxa-header__nav-link"
+              href="{% if nav_href %}{{ nav_href }}{% else %}{{ '' | url }}{% endif %}"
+              data-nav-prefixes="{{ prefix_attr }}"
+              {% if active_ns.on %}aria-current="page"{% endif %}
+            >
+              {{ nav_item.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="lupaxa-header__tools">
+      <!-- Repository link -->
+      {% if config.repo_url %}
+        <div class="md-header__source">
+          {% include "partials/source.html" %}
+        </div>
+      {% endif %}
+
+      <!-- Site language selector -->
+      {% if config.extra.alternate %}
+        {% include "partials/alternate.html" %}
+      {% endif %}
+    </div>
+  </nav>
+</header>
