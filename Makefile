@@ -158,8 +158,7 @@ _makefiles-checkout:
 	mf_git_quiet git -C "$(MAKEFILES_DIR)" sparse-checkout set --no-cone \
 		'/skills/**' '/templates/Makefile' '/templates/makefiles.config'; \
 	if [ "$(MAKEFILES_REF)" = "head" ]; then \
-		mf_git_quiet git -C "$(MAKEFILES_DIR)" checkout -q -f master; \
-		mf_git_quiet git -C "$(MAKEFILES_DIR)" pull -q --ff-only origin master; \
+		mf_git_quiet git -C "$(MAKEFILES_DIR)" checkout -q -B master origin/master; \
 	else \
 		mf_git_quiet git -C "$(MAKEFILES_DIR)" checkout -q -f "$(MAKEFILES_REF)"; \
 	fi; \
@@ -277,37 +276,3 @@ mf_color_init; \
 mf_title "$(1)"
 endef
 endif
-# CI-friendly aliases (reusable-python-makefile-ci expects these names)
-# -----------------------------------------------------------------------------
-# .makefiles/ is gitignored, so CI (and fresh clones) must init before the
-# python-* targets from makefile-skills exist. Each alias re-invokes $(MAKE)
-# so includes are re-read after init.
-
-.PHONY: ensure-skills install-dev install-test lint check format test
-
-ensure-skills:
-	@if [ ! -f "$(MAKEFILES_DIR)/skills/versioning.mk" ]; then \
-		if [ -e "$(MAKEFILES_DIR)" ]; then \
-			echo "==> Removing incomplete $(MAKEFILES_DIR) before init" >&2; \
-			rm -rf "$(MAKEFILES_DIR)"; \
-		fi; \
-		$(MAKE) --no-print-directory init; \
-	fi
-
-install-dev: ensure-skills
-	@$(MAKE) --no-print-directory python-install-dev
-
-install-test: ensure-skills
-	@$(MAKE) --no-print-directory python-install-test
-
-lint: ensure-skills
-	@$(MAKE) --no-print-directory python-lint
-
-check: ensure-skills
-	@$(MAKE) --no-print-directory python-check
-
-format: ensure-skills
-	@$(MAKE) --no-print-directory python-format
-
-test: ensure-skills
-	@$(MAKE) --no-print-directory python-test
