@@ -1,100 +1,75 @@
 - slug: c
   name: C
-  visible: true
   summary: A systems language used for operating systems, embedded work, and libraries.
 - slug: cpp
   name: C++
-  visible: true
   summary: C with classes and generic programming, used for systems and applications.
 - slug: csharp
   name: C#
-  visible: true
   summary: A typed language on the .NET platform for applications and services.
 - slug: dart
   name: Dart
-  visible: false
   summary: A language used for Flutter apps and client or server Dart programs.
 - slug: erlang
   name: Erlang
-  visible: false
   summary: A concurrent functional language used for telecom and distributed systems.
 - slug: go
   name: Go
-  visible: true
   summary: A compiled language used for services, CLIs, and tooling.
 - slug: haskell
   name: Haskell
-  visible: false
   summary: A purely functional language with strong static types.
 - slug: java
   name: Java
-  visible: true
   summary: A statically typed language that runs on the JVM, widely used for applications and services.
 - slug: javascript
   name: JavaScript
-  visible: true
   summary: The language of the web, used in browsers and, with Node.js, on the server.
 - slug: kotlin
   name: Kotlin
-  visible: false
   summary: A JVM language used for Android, services, and multiplatform apps.
 - slug: markdown
   name: Markdown
-  visible: true
   summary: A lightweight markup language for notes, docs, and AI skill files.
 - slug: nodejs
   name: Node.js
-  visible: true
   summary: JavaScript on the server, for CLIs, services, and tooling.
 - slug: objc
   name: Objective-C
-  visible: false
   summary: The older Apple language for macOS and iOS applications.
 - slug: perl
   name: Perl
-  visible: true
   summary: A text-processing language with regular expressions at its core.
 - slug: php
   name: PHP
-  visible: true
   summary: A server-side language widely used for web applications.
 - slug: powershell
   name: PowerShell
-  visible: false
   summary: Microsoft's shell and scripting language for Windows and cross-platform automation.
 - slug: python
   name: Python
-  visible: true
   summary: A readable general-purpose language used for scripts, tooling, and applications.
 - slug: r
   name: R
-  visible: false
   summary: A language for statistics, data analysis, and visualisation.
 - slug: ruby
   name: Ruby
-  visible: true
   summary: An expressive object-oriented language, known for concise scripts and developer-friendly syntax.
 - slug: rust
   name: Rust
-  visible: true
   summary: A systems language focused on memory safety and reliable concurrency.
 - slug: scala
   name: Scala
-  visible: false
   summary: A JVM language that mixes object-oriented and functional styles.
 - slug: shell
   name: Shell
-  visible: true
   summary: POSIX and Bourne-family shell snippets for Linux, macOS, and scripts.
 - slug: sql
   name: SQL
-  visible: true
   summary: The standard language for querying and shaping relational data.
 - slug: swift
   name: Swift
-  visible: false
   summary: Apple's language for apps on iOS, macOS, and related platforms.
 - slug: typescript
   name: TypeScript
-  visible: true
   summary: JavaScript with static types, used for large front-end and Node apps.

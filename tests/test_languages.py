@@ -24,13 +24,12 @@ def _write(path: Path, text: str) -> Path:
 def test_load_languages_reads_rows(tmp_path: Path) -> None:
     path = _write(
         tmp_path / "languages.yml",
-        "- slug: shell\n  name: Shell\n  visible: true\n  summary: POSIX shells.\n"
-        "- slug: kotlin\n  name: Kotlin\n  visible: false\n  summary: JVM.\n",
+        "- slug: shell\n  name: Shell\n  summary: POSIX shells.\n"
+        "- slug: kotlin\n  name: Kotlin\n  summary: JVM.\n",
     )
     rows = load_languages(path)
     assert [row.slug for row in rows] == ["shell", "kotlin"]
-    assert rows[0].visible is True
-    assert rows[1].visible is False
+    assert rows[0].name == "Shell"
     assert rows[1].name == "Kotlin"
 
 
@@ -48,17 +47,17 @@ def test_load_languages_missing_file(tmp_path: Path) -> None:
         ("slug: shell\n", "must be a non-empty list"),
         ("[]\n", "must be a non-empty list"),
         (
-            "- slug: shell\n  name: Shell\n  visible: true\n  summary: x\n  extra: 1\n",
+            "- slug: shell\n  name: Shell\n  summary: x\n  extra: 1\n",
             "unknown key",
         ),
-        ("- slug: Shell\n  name: Shell\n  visible: true\n  summary: x\n", "invalid slug"),
-        ("- slug: code\n  name: Code\n  visible: true\n  summary: x\n", "reserved slug"),
+        ("- slug: Shell\n  name: Shell\n  summary: x\n", "invalid slug"),
+        ("- slug: code\n  name: Code\n  summary: x\n", "reserved slug"),
         (
-            "- slug: shell\n  name: Shell\n  visible: true\n  summary: x\n"
-            "- slug: shell\n  name: Other\n  visible: false\n  summary: y\n",
+            "- slug: shell\n  name: Shell\n  summary: x\n"
+            "- slug: shell\n  name: Other\n  summary: y\n",
             "duplicate slug",
         ),
-        ("- slug: shell\n  name: Shell\n  visible: 1\n  summary: x\n", "visible"),
+        ("- slug: shell\n  name: Shell\n  summary: x\n  visible: true\n", "unknown key"),
     ],
 )
 def test_load_languages_rejects_bad_yaml(tmp_path: Path, body: str, match: str) -> None:
@@ -89,20 +88,21 @@ def _cat(*rows: Language, marks_dir: Path | None = None) -> Catalogue:
     return Catalogue(languages=rows, marks_dir=marks_dir)
 
 
-SHELL = Language("shell", "Shell", "POSIX shells.", True)
-KOTLIN = Language("kotlin", "Kotlin", "JVM.", False)
+SHELL = Language("shell", "Shell", "POSIX shells.")
+KOTLIN = Language("kotlin", "Kotlin", "JVM.")
 
 
-def test_listed_slugs_visible_even_when_empty() -> None:
-    assert listed_slugs(_cat(SHELL, KOTLIN), []) == ["shell"]
+def test_listed_slugs_empty_when_no_snippets() -> None:
+    assert listed_slugs(_cat(SHELL, KOTLIN), []) == []
 
 
 def test_listed_slugs_are_alphabetical_by_display_name() -> None:
     """Languages page order follows A–Z names, not YAML row order."""
-    python = Language("python", "Python", "Scripts.", True)
-    rust = Language("rust", "Rust", "Systems.", True)
-    c_lang = Language("c", "C", "Systems.", True)
-    assert listed_slugs(_cat(python, rust, c_lang, SHELL), []) == [
+    python = Language("python", "Python", "Scripts.")
+    rust = Language("rust", "Rust", "Systems.")
+    c_lang = Language("c", "C", "Systems.")
+    snippets = [_snip("python"), _snip("rust"), _snip("c"), _snip("shell")]
+    assert listed_slugs(_cat(python, rust, c_lang, SHELL), snippets) == [
         "c",
         "python",
         "rust",
@@ -110,12 +110,12 @@ def test_listed_slugs_are_alphabetical_by_display_name() -> None:
     ]
 
 
-def test_listed_slugs_includes_hidden_when_it_has_snippets() -> None:
-    assert listed_slugs(_cat(SHELL, KOTLIN), [_snip("kotlin")]) == ["kotlin", "shell"]
+def test_listed_slugs_includes_language_when_it_has_snippets() -> None:
+    assert listed_slugs(_cat(SHELL, KOTLIN), [_snip("kotlin")]) == ["kotlin"]
 
 
 def test_listed_slugs_includes_unknown_scanned_language() -> None:
-    assert listed_slugs(_cat(SHELL), [_snip("elixir")]) == ["elixir", "shell"]
+    assert listed_slugs(_cat(SHELL), [_snip("elixir")]) == ["elixir"]
 
 
 def test_language_profile_unknown_capitalises() -> None:
@@ -142,5 +142,5 @@ def test_language_mark_slug_yaml_with_file(tmp_path: Path) -> None:
     assert language_mark_slug(_cat(SHELL, marks_dir=marks), "shell") == "shell"
 
 
-def test_language_labels_include_hidden() -> None:
+def test_language_labels_include_every_yaml_row() -> None:
     assert language_labels(_cat(SHELL, KOTLIN)) == {"shell": "Shell", "kotlin": "Kotlin"}

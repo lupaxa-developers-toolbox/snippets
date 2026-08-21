@@ -40,23 +40,82 @@
     dialog.innerHTML = `
       <button
         type="button"
-        class="snippet-modal__close"
-        data-snippet-modal-close
-        aria-label="Close"
+        class="snippet-modal__nav snippet-modal__nav--prev"
+        data-snippet-modal-prev
+        aria-label="Previous snippet"
+        hidden
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
         </svg>
       </button>
-      <div class="snippet-modal__panel md-typeset">
-        <div class="snippet-modal__body" data-snippet-modal-body></div>
+      <div class="snippet-modal__frame">
+        <button
+          type="button"
+          class="snippet-modal__close"
+          data-snippet-modal-close
+          aria-label="Close"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+        <div class="snippet-modal__panel md-typeset">
+          <div class="snippet-modal__body" data-snippet-modal-body></div>
+        </div>
       </div>
+      <button
+        type="button"
+        class="snippet-modal__nav snippet-modal__nav--next"
+        data-snippet-modal-next
+        aria-label="Next snippet"
+        hidden
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+        </svg>
+      </button>
     `;
 
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
         dialog.close();
+        return;
       }
+
+      const languageLink = event.target.closest(
+        "[data-snippet-language-meta] a",
+      );
+
+      if (!(languageLink instanceof HTMLAnchorElement)) {
+        return;
+      }
+
+      dialog.close();
+
+      const languageSelect = document.querySelector(
+        "[data-snippet-filters] [data-snippet-language]",
+      );
+
+      if (!(languageSelect instanceof HTMLSelectElement)) {
+        return;
+      }
+
+      const language = new URL(
+        languageLink.getAttribute("href") || "",
+        window.location.origin,
+      ).searchParams.get("language");
+
+      if (
+        !language ||
+        ![...languageSelect.options].some((option) => option.value === language)
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+      languageSelect.value = language;
+      languageSelect.dispatchEvent(new Event("change", { bubbles: true }));
     });
 
     dialog.addEventListener("close", () => {
@@ -69,6 +128,28 @@
       ?.addEventListener("click", () => {
         dialog.close();
       });
+
+    dialog
+      .querySelector("[data-snippet-modal-prev]")
+      ?.addEventListener("click", () => {
+        navigateModal(dialog, -1);
+      });
+
+    dialog
+      .querySelector("[data-snippet-modal-next]")
+      ?.addEventListener("click", () => {
+        navigateModal(dialog, 1);
+      });
+
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        navigateModal(dialog, -1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        navigateModal(dialog, 1);
+      }
+    });
 
     document.body.append(dialog);
 
@@ -83,6 +164,94 @@
     if (dialog instanceof HTMLDialogElement && dialog.open) {
       dialog.close();
     }
+  }
+
+  /**
+   * Visible snippet cards in current catalogue order (filters + sort).
+   *
+   * @returns {HTMLAnchorElement[]}
+   */
+  function visibleSnippetLinks() {
+    const links = [];
+
+    document
+      .querySelectorAll(
+        ".catalogue-grid:not(.catalogue-grid--languages) a[data-snippet-card]",
+      )
+      .forEach((node) => {
+        if (!(node instanceof HTMLAnchorElement) || !node.href) {
+          return;
+        }
+
+        const card = node.closest("li");
+
+        if (card?.hidden) {
+          return;
+        }
+
+        links.push(node);
+      });
+
+    return links;
+  }
+
+  /**
+   * @param {string} left
+   * @param {string} right
+   * @returns {boolean}
+   */
+  function sameSnippetHref(left, right) {
+    try {
+      return new URL(left, window.location.href).pathname
+        === new URL(right, window.location.href).pathname;
+    } catch {
+      return left === right;
+    }
+  }
+
+  /**
+   * @param {HTMLDialogElement} dialog
+   */
+  function syncNavButtons(dialog) {
+    const prev = dialog.querySelector("[data-snippet-modal-prev]");
+    const next = dialog.querySelector("[data-snippet-modal-next]");
+    const cards = visibleSnippetLinks();
+    const show = cards.length > 1;
+
+    if (prev instanceof HTMLButtonElement) {
+      prev.hidden = !show;
+    }
+
+    if (next instanceof HTMLButtonElement) {
+      next.hidden = !show;
+    }
+
+    dialog.classList.toggle("snippet-modal--loop", show);
+  }
+
+  /**
+   * @param {HTMLDialogElement} dialog
+   * @param {number} offset
+   */
+  function navigateModal(dialog, offset) {
+    const cards = visibleSnippetLinks();
+
+    if (cards.length < 2) {
+      return;
+    }
+
+    const current = dialog.dataset.snippetHref || "";
+    const index = cards.findIndex((link) => sameSnippetHref(link.href, current));
+
+    if (index < 0) {
+      return;
+    }
+
+    const target = cards[(index + offset + cards.length) % cards.length];
+    const title =
+      target.dataset.fullTitle?.trim() || target.textContent?.trim() || "";
+
+    void openSnippetModal(target.href, title);
   }
 
   /**
@@ -157,13 +326,19 @@
     }
 
     const generation = (fetchGeneration += 1);
+    const alreadyOpen = dialog.open;
 
     dialog.setAttribute("aria-label", title || "Snippet");
+    dialog.dataset.snippetHref = href;
     body.innerHTML = '<p class="snippet-modal-status">Loading snippet…</p>';
-    rememberScroll();
-    dialog.showModal();
-    restoreScroll();
-    requestAnimationFrame(restoreScroll);
+    syncNavButtons(dialog);
+
+    if (!alreadyOpen) {
+      rememberScroll();
+      dialog.showModal();
+      restoreScroll();
+      requestAnimationFrame(restoreScroll);
+    }
 
     let response;
 

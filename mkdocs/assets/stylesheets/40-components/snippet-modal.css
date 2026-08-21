@@ -16,15 +16,36 @@
   margin: auto;
   padding: 0;
   color: var(--md-default-fg-color);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.snippet-modal[open] {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.snippet-modal--loop[open] {
+  width: min(54rem, calc(100vw - 2rem));
+  max-width: 54rem;
+}
+
+.snippet-modal::backdrop {
+  background: rgb(17 26 50 / 62%);
+}
+
+.snippet-modal__frame {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--md-default-fg-color);
   background: var(--md-default-bg-color);
   border: 1px solid
     color-mix(in srgb, var(--lupaxa-light-blue) 28%, var(--md-default-fg-color--lightest));
   border-radius: var(--lupaxa-radius-card);
   box-shadow: var(--lupaxa-shadow-card-hover);
-}
-
-.snippet-modal::backdrop {
-  background: rgb(17 26 50 / 62%);
 }
 
 .snippet-modal__panel {
@@ -78,10 +99,45 @@
 }
 
 .snippet-modal__close:hover,
-.snippet-modal__close:focus-visible {
+.snippet-modal__close:focus-visible,
+.snippet-modal__nav:hover,
+.snippet-modal__nav:focus-visible {
   color: var(--lupaxa-dark-blue);
   background: var(--lupaxa-light-blue);
   border-color: var(--lupaxa-light-blue);
+}
+
+.snippet-modal__nav {
+  flex: 0 0 auto;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+  background:
+    color-mix(in srgb, var(--md-default-fg-color) 10%, var(--md-default-bg-color));
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 50%;
+  box-shadow: var(--lupaxa-shadow-card-hover);
+  transition:
+    color var(--lupaxa-transition-fast),
+    background-color var(--lupaxa-transition-fast),
+    border-color var(--lupaxa-transition-fast);
+}
+
+.snippet-modal__nav[hidden] {
+  display: none;
+}
+
+.snippet-modal__nav svg {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentcolor;
 }
 
 .snippet-modal__body {
@@ -105,8 +161,10 @@
   margin: 0 2.75rem var(--snippet-modal-gap) 0;
 }
 
+.snippet-modal-language,
 .snippet-modal-date,
 .snippet-modal-submitted,
+.snippet-modal .snippet-modal-language,
 .snippet-modal .snippet-modal-date,
 .snippet-modal .snippet-modal-submitted {
   margin: 0;
@@ -117,19 +175,27 @@
   letter-spacing: 0.01em;
 }
 
+.snippet-modal-date,
 .snippet-modal-submitted,
+.snippet-modal .snippet-modal-date,
 .snippet-modal .snippet-modal-submitted {
   margin-top: 0.25rem;
 }
 
+.snippet-modal-language a,
 .snippet-modal-submitted a,
+.snippet-modal .snippet-modal-language a,
 .snippet-modal .snippet-modal-submitted a {
   color: var(--lupaxa-light-blue);
   text-decoration: none;
 }
 
+.snippet-modal-language a:hover,
+.snippet-modal-language a:focus-visible,
 .snippet-modal-submitted a:hover,
 .snippet-modal-submitted a:focus-visible,
+.snippet-modal .snippet-modal-language a:hover,
+.snippet-modal .snippet-modal-language a:focus-visible,
 .snippet-modal .snippet-modal-submitted a:hover,
 .snippet-modal .snippet-modal-submitted a:focus-visible {
   text-decoration: underline;

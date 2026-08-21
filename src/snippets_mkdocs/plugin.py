@@ -54,7 +54,7 @@ class SnippetsPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
         generated: list[tuple[str, str]] = [
             (
                 f"{item.language}/{item.slug}.md",
-                render_snippet_page(item),
+                render_snippet_page(item, catalogue),
             )
             for item in self._snippets
         ]

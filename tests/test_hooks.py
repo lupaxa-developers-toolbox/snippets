@@ -31,7 +31,7 @@ def test_load_plugin_after_mkdocs_restores_sys_path(tmp_path: Path) -> None:
         data = tmp_path / "data"
         data.mkdir()
         (data / "languages.yml").write_text(
-            "- slug: shell\n  name: Shell\n  visible: true\n  summary: POSIX.\n",
+            "- slug: shell\n  name: Shell\n  summary: POSIX.\n",
             encoding="utf-8",
         )
         cfg_path = tmp_path / "mkdocs.yml"

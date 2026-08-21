@@ -12,7 +12,7 @@ from snippets_mkdocs.errors import SnippetError
 from snippets_mkdocs.models import Snippet
 
 _SLUG = re.compile(r"^[a-z][a-z0-9]*$")
-_KEYS = frozenset({"slug", "name", "visible", "summary"})
+_KEYS = frozenset({"slug", "name", "summary"})
 _RESERVED = frozenset({"code"})
 
 
@@ -23,7 +23,6 @@ class Language:
     slug: str
     name: str
     summary: str
-    visible: bool
 
 
 @dataclass(frozen=True)
@@ -58,7 +57,6 @@ def load_languages(path: Path) -> tuple[Language, ...]:
         slug = item.get("slug")
         name = item.get("name")
         summary = item.get("summary")
-        visible = item.get("visible")
         if not isinstance(slug, str) or not _SLUG.match(slug):
             raise SnippetError("invalid slug", path=str(path), field="slug")
         if slug in _RESERVED:
@@ -69,10 +67,8 @@ def load_languages(path: Path) -> tuple[Language, ...]:
             raise SnippetError("invalid name", path=str(path), field="name")
         if not isinstance(summary, str) or not summary.strip():
             raise SnippetError("invalid summary", path=str(path), field="summary")
-        if not isinstance(visible, bool):
-            raise SnippetError("visible must be a boolean", path=str(path), field="visible")
         seen.add(slug)
-        rows.append(Language(slug=slug, name=name, summary=summary, visible=visible))
+        rows.append(Language(slug=slug, name=name, summary=summary))
     return tuple(rows)
 
 
@@ -86,9 +82,8 @@ def language_profile(catalogue: Catalogue, slug: str) -> tuple[str, str]:
 
 
 def listed_slugs(catalogue: Catalogue, snippets: list[Snippet]) -> list[str]:
-    """Visible catalogue slugs plus any language that already has snippets."""
-    listed = {row.slug for row in catalogue.languages if row.visible}
-    listed.update(item.language for item in snippets)
+    """Language slugs that currently have at least one snippet."""
+    listed = {item.language for item in snippets}
     return sorted(listed, key=lambda slug: language_profile(catalogue, slug)[0].casefold())
 
 
@@ -105,5 +100,5 @@ def language_mark_slug(catalogue: Catalogue, slug: str) -> str:
 
 
 def language_labels(catalogue: Catalogue) -> dict[str, str]:
-    """Slug to display name for every YAML row, including hidden ones."""
+    """Slug to display name for every YAML row."""
     return {row.slug: row.name for row in catalogue.languages}

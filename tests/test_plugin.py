@@ -10,7 +10,6 @@ from snippets_mkdocs.plugin import SnippetsPlugin
 _MINIMAL_LANGUAGES = """\
 - slug: shell
   name: Shell
-  visible: true
   summary: POSIX shells.
 """
 

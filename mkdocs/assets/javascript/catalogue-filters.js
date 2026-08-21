@@ -155,7 +155,7 @@
   }
 
   /**
-   * Languages shown on the Languages page (visible or already have snippets).
+   * Languages that currently have snippets.
    *
    * @returns {string[]}
    */

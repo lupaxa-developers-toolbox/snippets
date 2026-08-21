@@ -48,9 +48,14 @@ def test_built_snippets_page_has_filter_panel() -> None:
     assert 'id="listed-languages"' in listing
     listed = listing.split('id="listed-languages"')[1].split("</template>")[0]
     assert '"php"' in listed
+    assert '"sql"' in listed
+    assert '"nodejs"' in listed
+    assert '"rust"' in listed
     assert '"kotlin"' not in listed
     assert 'value="php">PHP</option>' in listing
     assert 'value="sql">SQL</option>' in listing
+    assert 'value="nodejs">Node.js</option>' in listing
+    assert 'value="rust">Rust</option>' in listing
     assert 'value="kotlin"' not in listing
 
 
@@ -85,6 +90,8 @@ def test_built_header_and_body_chrome() -> None:
     snippets_pause = _header_link(pause, "Snippets")
     assert snippets_pause.group(1) == "../../snippets/"
     assert "data-snippet-article" in pause
+    assert "data-snippet-language-meta" in pause
+    assert 'Language: <a href="/snippets/?language=shell">Shell</a>' in pause
     assert "data-snippet-added" in pause
     assert "data-snippet-submitted" in pause
     assert "Submitted by:" in pause
@@ -99,7 +106,10 @@ def test_built_header_and_body_chrome() -> None:
     languages_page = (REPO / "site" / "languages" / "index.html").read_text(encoding="utf-8")
     assert 'href="../snippets/?language=shell"' in languages_page
     assert 'href="../snippets/?language=php"' in languages_page
-    assert 'href="../snippets/?language=markdown"' in languages_page
+    assert 'href="../snippets/?language=sql"' in languages_page
+    assert 'href="../snippets/?language=nodejs"' in languages_page
+    assert 'href="../snippets/?language=rust"' in languages_page
+    assert 'href="../snippets/?language=markdown"' not in languages_page
     assert 'src="../assets/images/languages/shell.png"' in languages_page
     assert 'src="../assets/images/languages/php.png"' in languages_page
     assert 'title="Shell"' not in languages_page

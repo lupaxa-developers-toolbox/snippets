@@ -14,10 +14,14 @@ from snippets_mkdocs.languages import (
 )
 from snippets_mkdocs.models import Snippet
 
+_FENCE_ALIASES = {
+    "nodejs": "javascript",
+}
+
 
 def fence_language(language: str) -> str:
-    """Pygments hint is the language folder name."""
-    return language
+    """Pygments lexer name for a language folder."""
+    return _FENCE_ALIASES.get(language, language)
 
 
 def _fence_ticks(body: str) -> str:
@@ -47,7 +51,7 @@ def _info_admonition(title: str, text: str) -> list[str]:
     return lines
 
 
-def render_snippet_page(snippet: Snippet) -> str:
+def render_snippet_page(snippet: Snippet, catalogue: Catalogue | None = None) -> str:
     """Markdown for `/<language>/<slug>/` (also the modal source)."""
     lines = [
         f"# {snippet.title}",
@@ -57,6 +61,7 @@ def render_snippet_page(snippet: Snippet) -> str:
         '<div data-snippet-article markdown="1">',
         "",
         '<div class="snippet-modal-meta" data-snippet-meta>',
+        _format_language(snippet, catalogue),
         f'<p class="snippet-modal-date" data-snippet-added>Added on: {_format_added(snippet)}</p>',
         _format_submitted_by(snippet),
         "</div>",
@@ -128,6 +133,20 @@ def _format_added(snippet: Snippet) -> str:
 def github_profile_url(userid: str) -> str:
     """Public GitHub profile for a userid."""
     return f"https://github.com/{userid}"
+
+
+def _format_language(snippet: Snippet, catalogue: Catalogue | None) -> str:
+    """Modal/page line linking the language to the filtered catalogue."""
+    cat = catalogue if catalogue is not None else Catalogue(languages=())
+    name, _ = language_profile(cat, snippet.language)
+    slug = escape(snippet.language, quote=True)
+    label = escape(name)
+    href = escape(f"/snippets/?language={snippet.language}", quote=True)
+    return (
+        f'<p class="snippet-modal-language" data-snippet-language-meta="{slug}">'
+        f'Language: <a href="{href}">{label}</a>'
+        f"</p>"
+    )
 
 
 def _format_submitted_by(snippet: Snippet) -> str:
@@ -220,7 +239,7 @@ M6 13h7.07c.14-.71.4-1.38.76-2H6m-3-5v2h18V6H3Z"/>
 
 
 def _language_select_options(catalogue: Catalogue, snippets: list[Snippet]) -> str:
-    """All Languages plus every visible catalogue language and any in use."""
+    """All Languages plus every language that currently has snippets."""
     labels = language_labels(catalogue)
     lines = ['            <option value="">All Languages</option>']
     for slug in listed_slugs(catalogue, snippets):
@@ -421,13 +440,15 @@ def render_language_card(language: str, catalogue: Catalogue) -> str:
 
 
 def catalogue_languages(snippets: list[Snippet], catalogue: Catalogue) -> list[str]:
-    """Visible catalogue languages plus any extra folders that already have snippets."""
+    """Languages that currently have at least one snippet."""
     return listed_slugs(catalogue, snippets)
 
 
 def render_languages_index(snippets: list[Snippet], catalogue: Catalogue) -> str:
     """Markdown for the Languages page."""
     languages = catalogue_languages(snippets, catalogue)
+    if not languages:
+        return "No languages yet.\n"
     cards = "\n\n".join(render_language_card(language, catalogue) for language in languages)
     return "\n".join(
         [
