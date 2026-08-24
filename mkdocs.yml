@@ -25,8 +25,7 @@ extra:
   # Optional short label for the header GitHub link.
   # If omitted, uses the repo segment of repo_name (org/repo → repo).
   repo_display_name: snippets
-  # Footer (rendered by overrides/partials/copyright.html; year set in-browser).
-  start_year: 2025
+  # Footer (rendered by overrides/partials/copyright.html).
   footer_name: The Lupaxa Project
   footer_taglines:
     - Where exploration meets precision.
@@ -170,5 +169,5 @@ extra_javascript:
   - assets/javascript/snippet-modal.js
 
 # =============================================================================
-# Copyright (rendered by overrides/partials/copyright.html; year set in-browser)
+# Copyright (rendered by overrides/partials/copyright.html)
 # =============================================================================
