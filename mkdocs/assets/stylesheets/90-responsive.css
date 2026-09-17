@@ -47,6 +47,11 @@
     object-fit: contain;
   }
 
+  .lupaxa-lang-picker {
+    display: flex;
+    margin-right: var(--lupaxa-spacing-md);
+  }
+
   .md-sidebar--primary {
     z-index: 30;
   }

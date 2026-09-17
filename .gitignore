@@ -5,6 +5,11 @@
 .superpowers/
 cursor-docs
 
+# Editors
+.idea/
+.vscode/*
+!.vscode/settings.json
+
 # Make
 .makefiles/
 

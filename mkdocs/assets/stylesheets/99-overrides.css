@@ -22,7 +22,8 @@
 .md-header .lupaxa-header__drawer-button,
 .md-header .md-header__button.md-logo.lupaxa-header__logo,
 .md-header .lupaxa-header__tools,
-.md-header .lupaxa-header__tools > .md-header__source {
+.md-header .lupaxa-header__tools > .md-header__source,
+.md-header .lupaxa-lang-picker {
   position: relative;
   z-index: 50;
   pointer-events: auto;

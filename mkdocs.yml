@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 # =============================================================================
 # Site Information
 # =============================================================================
@@ -25,6 +26,9 @@ extra:
   # Optional short label for the header GitHub link.
   # If omitted, uses the repo segment of repo_name (org/repo → repo).
   repo_display_name: snippets
+  # Viewer language picker (client-side translation; English URLs).
+  # Default when omitted: false (picker hidden).
+  language_picker: true
   # Footer (rendered by overrides/partials/copyright.html).
   footer_name: The Lupaxa Project
   footer_taglines:
@@ -77,7 +81,7 @@ theme:
   palette:
     scheme: slate
     primary: blue
-    accent: light-blue
+    accent: light blue
 
   icon:
     repo: fontawesome/brands/github
@@ -164,6 +168,7 @@ extra_css:
 
 extra_javascript:
   - assets/javascript/page-lifecycle.js
+  - assets/javascript/language-preference.js
   - assets/javascript/header-active-nav.js
   - assets/javascript/catalogue-filters.js
   - assets/javascript/snippet-modal.js

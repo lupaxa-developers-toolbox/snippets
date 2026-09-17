@@ -26,6 +26,16 @@ make mkdocs-serve
 
 `make check` runs lint, type checks, and tests.
 
+The header can include a viewer language picker (`language-preference.js`)
+when `extra.language_picker` is `true`. English stays the source language
+and the URL does not change. Desktop Chromium translates the page on-device;
+the first choice of a language may download a language pack (the banner
+shows progress). Other browsers and phones use the same picker and cache
+with an in-page network fallback. Later visits reuse Chrome’s pack (when
+present) and a per-locale string cache in `localStorage`
+(`lupaxa-lang-strings`). The footer, brand names, and repo label stay English
+(`translate="no"` / `.notranslate`). Code blocks are not translated.
+
 ## Add a snippet
 
 Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
