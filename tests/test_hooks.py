@@ -83,10 +83,13 @@ def test_mkdocs_loads_catalogue_via_hook_not_plugin_entry() -> None:
         elif isinstance(item, dict):
             names.extend(item.keys())
     assert "snippets" not in names
-    assert "mkdocs_hooks.py" in (config.get("hooks") or [])
+    hooks = config.get("hooks") or []
+    assert "mkdocs_hooks.py" in hooks
+    assert "hooks/asset_cache_bust.py" in hooks
     assert {
         "data",
         "mkdocs_hooks.py",
+        "hooks",
         "overrides",
         "snippets",
         "src/snippets_mkdocs",

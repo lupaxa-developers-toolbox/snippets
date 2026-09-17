@@ -96,10 +96,12 @@ plugins: []
 
 hooks:
   - mkdocs_hooks.py
+  - hooks/asset_cache_bust.py
 
 watch:
   - data
   - mkdocs_hooks.py
+  - hooks
   - overrides
   - snippets
   - src/snippets_mkdocs

@@ -35,7 +35,7 @@ where = ["src"]
 [tool.ruff]
 line-length = 100
 target-version = "py313"
-src = ["src", "tests"]
+src = ["src", "hooks", "tests"]
 exclude = ["snippets", "site", ".makefiles", ".venv"]
 
 [tool.ruff.lint]
@@ -46,11 +46,11 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 
 [tool.mypy]
 python_version = "3.13"
-files = ["src", "tests"]
+files = ["src", "hooks", "tests"]
 strict = true
 warn_unused_configs = true
 
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = ["tests"]
-pythonpath = ["."]
+pythonpath = [".", "hooks"]
