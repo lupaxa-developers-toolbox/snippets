@@ -29,6 +29,11 @@
   pointer-events: auto;
 }
 
+/* Material's .md-header__button:not([hidden]) beats a single-class hide below 76.25em. */
+.md-header .md-header__button.lupaxa-header__drawer-button:not([hidden]) {
+  display: none;
+}
+
 .md-header .md-header__button.md-logo.lupaxa-header__logo {
   width: 4rem !important;
   height: 4rem !important;
@@ -42,6 +47,12 @@
   max-height: none !important;
 }
 
+@media screen and (max-width: 44.984375em) {
+  .md-header .md-header__button.lupaxa-header__drawer-button:not([hidden]) {
+    display: inline-flex;
+  }
+}
+
 @media screen and (max-width: 76.234375em) {
   .md-header .md-header__button.md-logo.lupaxa-header__logo {
     width: 3.25rem !important;
@@ -52,5 +63,18 @@
   .md-header .md-header__button.md-logo.lupaxa-header__logo svg {
     width: 3.25rem !important;
     height: 3.25rem !important;
+  }
+}
+
+@media screen and (max-width: 44.984375em) and (orientation: portrait) {
+  .md-header .lupaxa-header__tools {
+    position: static;
+  }
+
+  .md-header .lupaxa-header__tools > .md-header__source {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

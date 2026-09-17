@@ -8,8 +8,8 @@
   {% endif %}
 {% endblock %}
 
-{# Primary sidebar stays in the DOM so the tablet/phone drawer has a tree.
-   extra.hide_primary_sidebar hides the left column on desktop only.
+{# Primary sidebar stays in the DOM so the phone drawer has a tree.
+   extra.hide_primary_sidebar hides the left column on desktop/tablet.
    extra.hide_secondary_sidebar omits the TOC sidebar. #}
 {% block site_nav %}
   {% set features = config.theme.features or [] %}

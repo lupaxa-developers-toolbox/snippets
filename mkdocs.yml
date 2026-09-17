@@ -18,8 +18,8 @@ repo_url: https://github.com/lupaxa-developers-toolbox/snippets
 
 extra:
   generator: false
-  # Desktop: no left column (header lists Home | Snippets | Languages).
-  # Tablet/phone: primary sidebar stays in the DOM as Material's drawer.
+  # Desktop/tablet: no left column (header lists Home | Snippets | Languages).
+  # Phone: primary sidebar stays in the DOM as Material's drawer.
   # Default when omitted: false (left nav visible on desktop).
   hide_primary_sidebar: true
   hide_secondary_sidebar: true

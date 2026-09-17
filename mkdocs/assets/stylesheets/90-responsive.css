@@ -17,21 +17,6 @@
     min-height: var(--lupaxa-header-height);
   }
 
-  /* Desktop flushes GitHub to the content column; inset it on narrow viewports. */
-  .md-header__inner.lupaxa-header__inner {
-    padding-right: 0.625rem;
-  }
-
-  .lupaxa-header__drawer-button {
-    display: inline-flex;
-    order: -1;
-    margin-right: var(--lupaxa-spacing-xs);
-  }
-
-  .lupaxa-header__nav {
-    display: none;
-  }
-
   .md-header__button.md-logo.lupaxa-header__logo {
     width: 3.25rem;
     height: 3.25rem;
@@ -47,9 +32,14 @@
     object-fit: contain;
   }
 
+  /* Tablet / landscape: full GitHub chip + picker, inset from the screen edge. */
+  .lupaxa-header__tools {
+    margin-right: max(var(--lupaxa-spacing-md), env(safe-area-inset-right, 0px));
+  }
+
   .lupaxa-lang-picker {
     display: flex;
-    margin-right: var(--lupaxa-spacing-md);
+    margin-right: 0;
   }
 
   .md-sidebar--primary {
@@ -144,6 +134,17 @@
 }
 
 @media screen and (max-width: 44.984375em) {
+  /* Three header links still fit a tablet; drawer is phone-only. */
+  .lupaxa-header__drawer-button {
+    display: inline-flex;
+    order: -1;
+    margin-right: var(--lupaxa-spacing-xs);
+  }
+
+  .lupaxa-header__nav {
+    display: none;
+  }
+
   .lupaxa-hero,
   .lupaxa-error-hero {
     margin-bottom: var(--lupaxa-spacing-lg);
@@ -187,5 +188,22 @@
 
   .about-introduction {
     padding: 1.2rem;
+  }
+}
+
+/* Portrait phone only (~720px). Tablets and landscape keep the full GitHub chip. */
+@media screen and (max-width: 44.984375em) and (orientation: portrait) {
+  .lupaxa-header__tools .md-source__repository {
+    display: none;
+  }
+
+  .lupaxa-header__tools .md-source {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lupaxa-lang-picker {
+    margin-left: 0;
   }
 }

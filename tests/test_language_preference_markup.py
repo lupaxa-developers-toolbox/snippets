@@ -4,7 +4,12 @@ ROOT = Path(__file__).resolve().parent.parent
 HEADER = (ROOT / "overrides/partials/header.html").read_text(encoding="utf-8")
 MKDOCS = (ROOT / "mkdocs.yml").read_text(encoding="utf-8")
 NAV_CSS = (ROOT / "mkdocs/assets/stylesheets/30-navigation.css").read_text(encoding="utf-8")
+RESPONSIVE_CSS = (ROOT / "mkdocs/assets/stylesheets/90-responsive.css").read_text(encoding="utf-8")
 FOOTER = (ROOT / "overrides/partials/copyright.html").read_text(encoding="utf-8")
+HIDE_SIDEBAR = (ROOT / "mkdocs/assets/stylesheets/hide-primary-sidebar.css").read_text(
+    encoding="utf-8"
+)
+OVERRIDES_CSS = (ROOT / "mkdocs/assets/stylesheets/99-overrides.css").read_text(encoding="utf-8")
 
 
 def test_header_has_custom_picker_not_alternate():
@@ -78,3 +83,20 @@ def test_footer_and_source_opt_out_of_translate():
     assert picker_at != -1
     assert source_at != -1
     assert source_at < picker_at
+    assert "(max-width: 44.984375em) and (orientation: portrait)" in RESPONSIVE_CSS
+    assert ".lupaxa-header__tools .md-source__repository" in RESPONSIVE_CSS
+
+
+def test_header_nav_stays_visible_on_tablet():
+    tablet = RESPONSIVE_CSS.split("@media screen and (max-width: 76.234375em)")[1].split("@media")[
+        0
+    ]
+    phone = RESPONSIVE_CSS.split("@media screen and (max-width: 44.984375em) {")[1].split("@media")[
+        0
+    ]
+    assert ".lupaxa-header__nav" not in tablet
+    assert ".lupaxa-header__nav" in phone
+    assert ".lupaxa-header__drawer-button" in phone
+    assert "max-width: 44.984375em" in HIDE_SIDEBAR
+    assert "max-width: 76.234375em" not in HIDE_SIDEBAR
+    assert ".md-header__button.lupaxa-header__drawer-button:not([hidden])" in OVERRIDES_CSS
