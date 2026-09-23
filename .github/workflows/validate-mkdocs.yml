@@ -10,14 +10,9 @@ on:
       - "mkdocs/**"
       - "mkdocs.yml"
       - "overrides/**"
-      - "pyproject.toml"
       - "requirements.txt"
-      - "snippets/**"
-      - "src/snippets_mkdocs/**"
 
   pull_request:
-    branches:
-      - "master"
     paths:
       - ".github/workflows/validate-mkdocs.yml"
       - ".markdownlint.yml"
@@ -26,10 +21,9 @@ on:
       - "mkdocs/**"
       - "mkdocs.yml"
       - "overrides/**"
-      - "pyproject.toml"
       - "requirements.txt"
-      - "snippets/**"
-      - "src/snippets_mkdocs/**"
+
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
