@@ -1,6 +1,6 @@
 # snippet:
-# title: "Set terminal colour variables"
-# card_title: "Terminal colour vars"
+# title: "Set Terminal Colour Variables"
+# card_title: "Terminal Colour Vars"
 # summary: "Populate tput colour variables when stdout is a colour-capable terminal, and leave them empty so scripts stay readable in pipes."
 # tags: [terminal, colour]
 # added: "2026-08-18T19:55:21+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Array contains a value"
-# card_title: "Array contains a value"
+# title: "Array Contains a Value"
+# card_title: "Array Contains a Value"
 # summary: "Return success if a Bash nameref array contains a given value, or failure if the value is missing, without expanding the array yourself."
 # tags: [array]
 # added: "2026-08-18T19:55:01+01:00"

@@ -1,6 +1,6 @@
 // snippet:
-// title: "FizzBuzz by matching remainders"
-// card_title: "FizzBuzz with tuples"
+// title: "FizzBuzz by Matching Remainders"
+// card_title: "FizzBuzz With Tuples"
 // summary: "Print Fizz, Buzz, or FizzBuzz by matching the pair of remainders modulo 3 and 5, and print the number when neither divides it."
 // tags: [puzzle]
 // added: "2026-08-21T13:28:00+01:00"

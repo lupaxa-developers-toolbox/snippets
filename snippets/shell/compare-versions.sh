@@ -1,6 +1,6 @@
 # snippet:
-# title: "Compare version strings"
-# card_title: "Compare versions"
+# title: "Compare Version Strings"
+# card_title: "Compare Versions"
 # summary: "Compare two numeric version strings and return 0 if they are equal, 1 if the first is greater, or 2 if it is less."
 # tags: [version]
 # added: "2026-08-18T19:55:05+01:00"

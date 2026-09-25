@@ -1,6 +1,6 @@
 // snippet:
-// title: "Weekday name for a calendar date"
-// card_title: "Weekday name"
+// title: "Weekday Name for a Calendar Date"
+// card_title: "Weekday Name"
 // summary: "Return the weekday as a 0-Sunday index or as a short or long English name for a day, month, and year."
 // tags: [date]
 // added: "2026-08-21T13:19:00+01:00"

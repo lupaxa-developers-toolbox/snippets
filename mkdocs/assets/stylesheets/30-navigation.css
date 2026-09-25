@@ -15,14 +15,9 @@
   position: relative;
 }
 
-.md-header__inner.lupaxa-header__inner {
-  padding-right: 0;
-}
-
 .lupaxa-header__inner {
   display: flex;
   width: 100%;
-  max-width: var(--lupaxa-content-width);
   min-height: var(--lupaxa-header-height);
   align-items: center;
   gap: 0;
@@ -58,7 +53,7 @@
   position: relative;
   z-index: 2;
   min-width: 0;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   align-self: stretch;
   pointer-events: auto;
 }
@@ -120,17 +115,16 @@
   box-shadow: none;
 }
 
-.lupaxa-header__nav-item--active .lupaxa-header__nav-link::after {
-  position: absolute;
-  right: 1rem;
-  bottom: auto;
-  left: 1rem;
-  top: calc(50% + 0.7rem);
-  height: 2px;
-  content: "";
-  background-color: var(--lupaxa-light-blue);
-  border-radius: var(--lupaxa-radius-pill);
-  pointer-events: none;
+.lupaxa-header__nav-label {
+  text-decoration: none;
+}
+
+.lupaxa-header__nav-item--active .lupaxa-header__nav-label {
+  text-decoration: underline;
+  text-decoration-color: var(--lupaxa-light-blue);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: auto;
 }
 
 /* Material controls — flush to the same right edge as the body */

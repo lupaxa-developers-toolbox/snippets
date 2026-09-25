@@ -1,6 +1,6 @@
 # snippet:
-# title: Pause until Enter
-# card_title: "Pause until Enter"
+# title: Pause Until Enter
+# card_title: "Pause Until Enter"
 # summary: "Block until the user presses Enter, then continue; treat end-of-file as a clean exit so piped input does not hang."
 # tags: [interactive]
 # added: "2026-08-18T19:16:01+01:00"

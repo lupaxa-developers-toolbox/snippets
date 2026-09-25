@@ -1,6 +1,6 @@
 # snippet:
-# title: "Find the git work-tree root"
-# card_title: "Find the git root"
+# title: "Find the Git Work-Tree Root"
+# card_title: "Find the Git Root"
 # summary: "Print the top-level directory of a git work tree for the current or given path, or an error if that path is not a repository."
 # tags: [git]
 # added: "2026-08-18T19:55:10+01:00"

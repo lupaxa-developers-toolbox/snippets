@@ -1,6 +1,6 @@
 // snippet:
-// title: "Get the real client IP address"
-// card_title: "Get the real client IP"
+// title: "Get the Real Client IP Address"
+// card_title: "Get the Real Client IP"
 // summary: "Walk common proxy headers and REMOTE_ADDR, then return the first public IP that is not private or reserved, or Unknown if none validate."
 // tags: [ip]
 // added: "2026-08-19T11:16:00+01:00"

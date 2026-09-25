@@ -1,6 +1,6 @@
 # snippet:
-# title: "Ordinal suffix for a number"
-# card_title: "Ordinal suffix"
+# title: "Ordinal Suffix for a Number"
+# card_title: "Ordinal Suffix"
 # summary: "Return the English ordinal form of an integer, including the special cases 11th, 12th, and 13th as well as 1st, 2nd, and 3rd."
 # tags: [text]
 # added: "2026-08-18T19:55:36+01:00"

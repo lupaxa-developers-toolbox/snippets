@@ -1,6 +1,6 @@
 # snippet:
-# title: "Convert a netmask to a CIDR prefix"
-# card_title: "Netmask to CIDR prefix"
+# title: "Convert a Netmask to a CIDR Prefix"
+# card_title: "Netmask to CIDR Prefix"
 # summary: "Return /N for a dotted IPv4 netmask, and reject masks whose 1-bits are not a contiguous prefix."
 # tags: [network, cidr]
 # added: "2026-09-09T16:42:00+01:00"

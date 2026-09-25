@@ -1,6 +1,6 @@
 // snippet:
-// title: "Strip a character from the end of a string"
-// card_title: "Strip from the end"
+// title: "Strip a Character from the End of a String"
+// card_title: "Strip from the End"
 // summary: "Overwrite trailing CR, LF, and a chosen character with NULs so the string no longer ends on those bytes."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

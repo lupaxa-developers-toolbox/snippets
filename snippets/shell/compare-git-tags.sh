@@ -1,6 +1,6 @@
 # snippet:
-# title: "Compare local and remote git tags"
-# card_title: "Compare local remote tags"
+# title: "Compare Local and Remote Git Tags"
+# card_title: "Compare Local Remote Tags"
 # summary: "List tags that exist only locally or only on a remote after confirming the current directory is a git work tree."
 # tags: [git]
 # added: "2026-08-21T12:52:00+01:00"

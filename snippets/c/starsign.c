@@ -1,6 +1,6 @@
 // snippet:
-// title: "Star sign for a date, including cusps"
-// card_title: "Star sign including cusps"
+// title: "Star Sign for a Date, Including Cusps"
+// card_title: "Star Sign Including Cusps"
 // summary: "Return an English star-sign name for a birthday, using a 24-name table that includes the cusp between neighbouring signs."
 // tags: [date]
 // added: "2026-08-21T13:18:00+01:00"

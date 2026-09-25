@@ -1,6 +1,6 @@
 # snippet:
-# title: "Check a named path has given mode bits"
-# card_title: "Check file permissions"
+# title: "Check a Named Path Has Given Mode Bits"
+# card_title: "Check File Permissions"
 # summary: "Return success if the named path exists and its mode bits match the expected octal permissions, using GNU or BSD stat."
 # tags: [config]
 # added: "2026-08-19T16:19:00+01:00"

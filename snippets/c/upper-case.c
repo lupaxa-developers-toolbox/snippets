@@ -1,6 +1,6 @@
 // snippet:
-// title: "Copy a string in uppercase"
-// card_title: "Uppercase a string"
+// title: "Copy a String in Uppercase"
+// card_title: "Uppercase a String"
 // summary: "Allocate an uppercase copy of a C string with toupper and return it, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

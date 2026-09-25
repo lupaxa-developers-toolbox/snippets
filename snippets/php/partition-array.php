@@ -1,6 +1,6 @@
 // snippet:
-// title: "Partition an array into N groups"
-// card_title: "Partition an array"
+// title: "Partition an Array Into N Groups"
+// card_title: "Partition an Array"
 // summary: "Split a list into p slices of roughly equal size, spreading any remainder across the first groups so lengths differ by at most one."
 // tags: [array]
 // added: "2026-08-18T19:55:30+01:00"

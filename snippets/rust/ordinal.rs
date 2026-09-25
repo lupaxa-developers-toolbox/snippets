@@ -1,6 +1,6 @@
 // snippet:
-// title: "English ordinal form of a number"
-// card_title: "Ordinal suffix"
+// title: "English Ordinal Form of a Number"
+// card_title: "Ordinal Suffix"
 // summary: "Return an integer with its English ordinal suffix, treating 11, 12, 13 and other teens as th, and 1, 2, 3 as st, nd, rd."
 // tags: [text]
 // added: "2026-08-21T13:27:00+01:00"

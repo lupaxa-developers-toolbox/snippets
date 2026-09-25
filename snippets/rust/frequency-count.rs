@@ -1,6 +1,6 @@
 // snippet:
-// title: "Count how often each item appears"
-// card_title: "Count frequencies"
+// title: "Count How Often Each Item Appears"
+// card_title: "Count Frequencies"
 // summary: "Fold a slice into a HashMap that maps each value to how many times it occurs, incrementing the entry on each pass."
 // tags: [count]
 // added: "2026-08-21T13:29:00+01:00"

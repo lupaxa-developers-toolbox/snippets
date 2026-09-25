@@ -1,6 +1,6 @@
 # snippet:
-# title: "Join an array to a string"
-# card_title: "Join an array"
+# title: "Join an Array to a String"
+# card_title: "Join an Array"
 # summary: "Join nameref array values with a separator, and optionally use a different separator before the last item for natural-language lists."
 # tags: [array, text]
 # added: "2026-08-18T19:55:02+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Replace placeholders from an associative array"
-# card_title: "Replace placeholders"
+# title: "Replace Placeholders from an Associative Array"
+# card_title: "Replace Placeholders"
 # summary: "Substitute each key from a nameref associative array with its value inside a file, using in-place sed for the replacements."
 # tags: [text]
 # added: "2026-08-18T19:55:23+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Print a Bash stack trace"
-# card_title: "Print a stack trace"
+# title: "Print a Bash Stack Trace"
+# card_title: "Print a Stack Trace"
 # summary: "Walk Bash caller frames from the current function back toward main and print each frame as a compact stack trace."
 # tags: [debugging]
 # added: "2026-08-18T19:55:16+01:00"

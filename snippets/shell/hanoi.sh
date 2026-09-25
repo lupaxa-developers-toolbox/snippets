@@ -1,6 +1,6 @@
 # snippet:
 # title: "Solve the Tower of Hanoi"
-# card_title: "Tower of Hanoi solver"
+# card_title: "Tower of Hanoi Solver"
 # summary: "Print the moves that transfer n discs from peg 1 to peg 2 using peg 3 as spare, for n from 1 to 9."
 # tags: [puzzle]
 # added: "2026-08-19T16:06:00+01:00"

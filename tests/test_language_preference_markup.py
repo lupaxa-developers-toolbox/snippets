@@ -75,16 +75,13 @@ def test_header_css_keeps_picker_out_of_nav_flex():
     assert "flex: 0 0 auto" in NAV_CSS
 
 
-def test_footer_and_source_opt_out_of_translate():
+def test_footer_opts_out_of_translate():
     assert 'class="md-copyright notranslate" translate="no"' in FOOTER
-    assert 'class="md-header__source" translate="no"' in HEADER
-    picker_at = HEADER.find("lupaxa-lang-picker")
-    source_at = HEADER.find("partials/source.html")
-    assert picker_at != -1
-    assert source_at != -1
-    assert source_at < picker_at
-    assert "(max-width: 44.984375em) and (orientation: portrait)" in RESPONSIVE_CSS
-    assert ".lupaxa-header__tools .md-source__repository" in RESPONSIVE_CSS
+    assert "partials/source.html" not in HEADER
+    assert "repo_url:" not in MKDOCS
+    assert "lupaxa-header__nav-label" in HEADER
+    assert "text-decoration: underline" in NAV_CSS
+    assert "lupaxa-header__nav-link::after" not in NAV_CSS
 
 
 def test_header_nav_stays_visible_on_tablet():

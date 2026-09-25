@@ -1,6 +1,6 @@
 // snippet:
-// title: "Pointer one past a C string"
-// card_title: "End of a string"
+// title: "Pointer One Past a C String"
+// card_title: "End of a String"
 // summary: "Return a pointer to the byte after the terminating NUL of a C string, the one-past-end position."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

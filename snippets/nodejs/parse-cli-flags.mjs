@@ -1,6 +1,6 @@
 // snippet:
-// title: "Create a simple CLI argument parser"
-// card_title: "Simple CLI flag parser"
+// title: "Create a Simple CLI Argument Parser"
+// card_title: "Simple CLI Flag Parser"
 // summary: "Turn process.argv flags of the form --key=value into an object, treating a bare --key as true."
 // tags: [cli]
 // added: "2026-08-21T13:42:00+01:00"

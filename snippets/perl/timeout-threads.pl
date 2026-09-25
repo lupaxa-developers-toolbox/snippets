@@ -1,6 +1,6 @@
 # snippet:
-# title: "Forked workers with a timeout"
-# card_title: "Forked workers timeout"
+# title: "Forked Workers With a Timeout"
+# card_title: "Forked Workers Timeout"
 # summary: "Run Parallel::ForkManager jobs and kill any child whose runtime exceeds PATIENCE seconds so hung workers cannot stall the pool."
 # tags: [concurrency, timeout]
 # added: "2026-08-18T19:55:28+01:00"

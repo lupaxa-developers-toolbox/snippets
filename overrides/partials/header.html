@@ -84,7 +84,7 @@
               data-nav-prefixes="{{ prefix_attr }}"
               {% if active_ns.on %}aria-current="page"{% endif %}
             >
-              {{ nav_item.title }}
+              <span class="lupaxa-header__nav-label">{{ nav_item.title }}</span>
             </a>
           </li>
         {% endfor %}
@@ -92,12 +92,6 @@
     </nav>
 
     <div class="lupaxa-header__tools">
-      {% if config.repo_url %}
-        <div class="md-header__source" translate="no">
-          {% include "partials/source.html" %}
-        </div>
-      {% endif %}
-
       {% if config.extra.language_picker %}
       <div class="lupaxa-lang-picker" translate="no">
         <select

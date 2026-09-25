@@ -18,6 +18,14 @@
   padding-bottom: var(--lupaxa-spacing-xl);
 }
 
+/* Sidebar stays in the DOM for the phone drawer. Material then sets a
+   fixed left margin, which pins the column left of the centred header. */
+[dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner,
+[dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .md-content__inner::before {
   display: none;
 }

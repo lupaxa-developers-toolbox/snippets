@@ -1,6 +1,6 @@
 -- snippet:
--- title: "Find repeated values in a column"
--- card_title: "Find duplicate column values"
+-- title: "Find Repeated Values in a Column"
+-- card_title: "Find Duplicate Column Values"
 -- summary: "Group by a column and return each value that appears more than once, together with how many times it is duplicated."
 -- tags: [duplicates]
 -- added: "2026-08-19T16:35:00+01:00"

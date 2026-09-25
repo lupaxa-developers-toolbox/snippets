@@ -34,7 +34,8 @@
 
   .md-typeset .grid.cards > ul > li,
   .md-typeset .grid.cards > li,
-  .about-introduction {
+  .about-introduction,
+  .about-name {
     break-inside: avoid;
     box-shadow: none;
   }

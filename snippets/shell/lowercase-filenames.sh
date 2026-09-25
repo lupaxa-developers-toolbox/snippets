@@ -1,6 +1,6 @@
 # snippet:
-# title: "Lowercase filenames in the current directory"
-# card_title: "Lowercase filenames"
+# title: "Lowercase Filenames in the Current Directory"
+# card_title: "Lowercase Filenames"
 # summary: "Rename each regular file in the current directory to lowercase and append the reverse mv to restore.sh so the original names can be put back."
 # tags: [files]
 # added: "2026-08-19T16:09:00+01:00"

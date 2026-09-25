@@ -1,6 +1,6 @@
 # snippet:
-# title: "Simple ForkManager worker pool"
-# card_title: "ForkManager worker pool"
+# title: "Simple ForkManager Worker Pool"
+# card_title: "ForkManager Worker Pool"
 # summary: "Fork a fixed-size Parallel::ForkManager worker pool, start each job in a child process, and wait until every worker has finished."
 # tags: [concurrency]
 # added: "2026-08-18T19:55:26+01:00"

@@ -1,6 +1,6 @@
 // snippet:
-// title: "Simple logger middleware pattern"
-// card_title: "Logger middleware"
+// title: "Simple Logger Middleware Pattern"
+// card_title: "Logger Middleware"
 // summary: "Wrap a Node.js request handler so each response logs method, URL, status, and elapsed milliseconds when the response finishes."
 // tags: [http, logging]
 // added: "2026-08-21T13:41:00+01:00"

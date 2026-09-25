@@ -1,6 +1,6 @@
 # snippet:
-# title: "Bash strict mode"
-# card_title: "Bash strict mode"
+# title: "Bash Strict Mode"
+# card_title: "Bash Strict Mode"
 # summary: "Enable errexit, nounset, pipefail, and a safer IFS, and turn on xtrace when DEBUG is set so failures stop the script early."
 # tags: [robustness]
 # added: "2026-08-18T19:55:17+01:00"

@@ -1,6 +1,6 @@
 // snippet:
-// title: "English ordinal suffix for an integer"
-// card_title: "Ordinal suffix"
+// title: "English Ordinal Suffix for an Integer"
+// card_title: "Ordinal Suffix"
 // summary: "Return st, nd, rd, or th for an integer, treating 11, 12, and 13 as th."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

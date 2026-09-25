@@ -1,6 +1,6 @@
 // snippet:
-// title: "Find the first duplicate value"
-// card_title: "First duplicate"
+// title: "Find the First Duplicate Value"
+// card_title: "First Duplicate"
 // summary: "Walk a slice and return the first value that is already in a HashSet, using insert's false-on-duplicate result inside find."
 // tags: [duplicates]
 // added: "2026-08-21T13:29:00+01:00"

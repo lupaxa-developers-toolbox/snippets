@@ -1,6 +1,6 @@
 # snippet:
-# title: "Allow only one running instance"
-# card_title: "Single-instance lock"
+# title: "Allow Only One Running Instance"
+# card_title: "Single-Instance Lock"
 # summary: "Take an exclusive flock on a /tmp lock file so a cron job or script exits instead of overlapping a previous run, with a noclobber fallback when flock is missing."
 # tags: [lock, cron]
 # added: "2026-08-19T11:10:00+01:00"

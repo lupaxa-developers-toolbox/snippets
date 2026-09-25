@@ -1,6 +1,6 @@
 # snippet:
-# title: "Extract a numeric version from text"
-# card_title: "Extract a version"
+# title: "Extract a Numeric Version from Text"
+# card_title: "Extract a Version"
 # summary: "Pull the first run of digits and dots out of a string so a human version line becomes a comparable numeric version."
 # tags: [version, text]
 # added: "2026-08-18T19:55:13+01:00"

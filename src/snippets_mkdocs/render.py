@@ -106,6 +106,9 @@ def _render_home_hero(*, actions: bool) -> list[str]:
                 '        <a class="md-button lupaxa-button" href="languages/">',
                 "            Browse Languages",
                 "        </a>",
+                '        <a class="md-button lupaxa-button" href="sponsor/">',
+                "            Become a Sponsor",
+                "        </a>",
                 "    </div>",
             ]
         )

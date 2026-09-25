@@ -152,6 +152,8 @@ def test_home_lists_snippets_not_repo_docs() -> None:
     assert "Browse Snippets" in md
     assert 'href="languages/"' in md
     assert "Browse Languages" in md
+    assert 'href="sponsor/"' in md
+    assert "Become a Sponsor" in md
     assert "reusable code snippets and helpers" in md
     assert 'href="tags/"' not in md
     assert "## Latest snippets" in md

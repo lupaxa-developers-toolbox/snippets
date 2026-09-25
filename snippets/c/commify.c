@@ -1,6 +1,6 @@
 // snippet:
-// title: "Insert thousands separators in a number"
-// card_title: "Comma-separate a number"
+// title: "Insert Thousands Separators in a Number"
+// card_title: "Comma-Separate a Number"
 // summary: "Allocate a decimal string for an integer with commas every three digits, keeping a leading minus when the value is negative."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

@@ -1,6 +1,6 @@
 // snippet:
-// title: "Look up an array key"
-// card_title: "Look up an array key"
+// title: "Look Up an Array Key"
+// card_title: "Look Up an Array Key"
 // summary: "Look up a value by array key, with an optional case-insensitive search that still returns the original stored value."
 // tags: [array]
 // added: "2026-08-18T19:55:29+01:00"

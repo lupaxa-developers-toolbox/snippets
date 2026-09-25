@@ -1,6 +1,6 @@
 // snippet:
-// title: "Capitalise the first letter of each word"
-// card_title: "Capitalise each word"
+// title: "Capitalise the First Letter of Each Word"
+// card_title: "Capitalise Each Word"
 // summary: "Allocate a copy that uppercases the first letter after each space and lowercases the rest, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

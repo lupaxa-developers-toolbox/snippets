@@ -1,6 +1,6 @@
 # snippet:
-# title: "Ensure GNU getopt is on PATH"
-# card_title: "Require GNU getopt"
+# title: "Ensure GNU Getopt is on PATH"
+# card_title: "Require GNU Getopt"
 # summary: "Fail unless getopt --test exits 4, which only util-linux GNU getopt does, and point macOS users at brew gnu-getopt instead of BSD getopt."
 # tags: [getopt]
 # added: "2026-08-19T16:16:00+01:00"

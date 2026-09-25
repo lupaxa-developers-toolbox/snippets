@@ -1,6 +1,6 @@
 // snippet:
-// title: "Minimal HTTP server with routing"
-// card_title: "Minimal HTTP router"
+// title: "Minimal HTTP Server With Routing"
+// card_title: "Minimal HTTP Router"
 // summary: "Start a Node.js HTTP server with no framework: exact-path routes for / and /health, and a 404 for everything else."
 // tags: [http, server]
 // added: "2026-08-21T13:38:00+01:00"

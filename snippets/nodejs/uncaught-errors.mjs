@@ -1,6 +1,6 @@
 // snippet:
-// title: "Handle uncaught errors safely"
-// card_title: "Uncaught error handlers"
+// title: "Handle Uncaught Errors Safely"
+// card_title: "Uncaught Error Handlers"
 // summary: "Log unhandled promise rejections and uncaught exceptions so a process does not fail silently, then exit after an uncaught exception."
 // tags: [process, errors]
 // added: "2026-08-21T13:41:30+01:00"

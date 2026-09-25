@@ -1,6 +1,6 @@
 # snippet:
-# title: "Post a message to Slack"
-# card_title: "Post a Slack message"
+# title: "Post a Message to Slack"
+# card_title: "Post a Slack Message"
 # summary: "Post a text message to a Slack incoming webhook, optionally setting the channel and username on the JSON payload."
 # tags: [slack, communication]
 # added: "2026-08-18T19:55:27+01:00"

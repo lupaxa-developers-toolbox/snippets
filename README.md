@@ -1,7 +1,7 @@
 <p align="center">
-    <a href="https://github.com/lupaxa-developers-toolbox">
-        <img src="https://raw.githubusercontent.com/the-lupaxa-project/brand-assets/master/logos/organisations/developers-toolbox/readme-logo.png" alt="Organisation Logo" />
-    </a>
+  <a href="https://github.com/lupaxa-developers-toolbox">
+    <img src="https://raw.githubusercontent.com/the-lupaxa-project/brand-assets/master/logos/organisations/developers-toolbox/readme-logo.png" alt="Developers Toolbox" />
+  </a>
 </p>
 
 <h1 align="center">Snippets</h1>
@@ -10,33 +10,7 @@ A curated collection of reusable code snippets for Shell, Python, Ruby, and
 other languages. Browse by language or tag, open a snippet in place, and copy
 highlighted examples with caveats when they matter.
 
-<p align="center">
-    <a href="https://snippets.thelupaxaproject.org/">Catalogue</a>
-    ·
-    <a href="https://github.com/lupaxa-developers-toolbox/snippets">GitHub</a>
-</p>
-
-## Preview locally
-
-```bash
-make init
-make install-dev
-make mkdocs-serve
-```
-
-`make check` runs lint, type checks, and tests.
-
-The header can include a viewer language picker (`language-preference.js`)
-when `extra.language_picker` is `true`. English stays the source language
-and the URL does not change. Desktop Chromium translates the page on-device;
-the first choice of a language may download a language pack (the banner
-shows progress). Other browsers and phones use the same picker and cache
-with an in-page network fallback. Later visits reuse Chrome’s pack (when
-present) and a per-locale string cache in `localStorage`
-(`lupaxa-lang-strings`). The footer, brand names, and repo label stay English
-(`translate="no"` / `.notranslate`). Code blocks are not translated.
-
-## Add a snippet
+## Add a Snippet
 
 Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
 `end-snippet` comment fence. Required fields are `title` (modal heading),
@@ -46,8 +20,8 @@ Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
 
 ```bash
 # snippet:
-# title: Retry a command
-# card_title: Retry a command
+# title: Retry a Command
+# card_title: Retry a Command
 # summary: Re-run a command with exponential backoff until it succeeds or hits a retry limit.
 # tags: [retry]
 # added: "2026-08-18T18:03:18+01:00"
@@ -59,6 +33,17 @@ Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
 
 Use `#` for shell and Python, `//` for C-family languages, or `--` for SQL.
 Rebuild or refresh the MkDocs preview to see the card on Home and Snippets.
+
+## Documentation
+
+Site pages live in `mkdocs/` and publish to
+<https://snippets.thelupaxaproject.org/>.
+
+```bash
+make init
+make python-install-dev
+make mkdocs-serve
+```
 
 <a href="https://github.com/the-lupaxa-project">
     <img src="https://raw.githubusercontent.com/the-lupaxa-project/brand-assets/master/logos/components/footer-for-child-orgs.svg" alt="The Lupaxa Project Footer" width="100%" />

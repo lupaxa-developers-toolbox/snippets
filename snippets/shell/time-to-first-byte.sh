@@ -1,6 +1,6 @@
 # snippet:
-# title: "Measure time to first byte"
-# card_title: "Time to first byte"
+# title: "Measure Time to First Byte"
+# card_title: "Time to First Byte"
 # summary: "Call curl on a URL and print namelookup, connect, TTFB (time_starttransfer), and total time, optionally repeating the request."
 # tags: [curl, http]
 # added: "2026-09-22T09:45:00+01:00"

@@ -1,6 +1,6 @@
 // snippet:
-// title: "Approximate moon phase for a date"
-// card_title: "Moon phase name"
+// title: "Approximate Moon Phase for a Date"
+// card_title: "Moon Phase Name"
 // summary: "Return an English moon-phase name for a calendar date using a 19-year cycle approximation, not a full astronomical ephemeris."
 // tags: [date]
 // added: "2026-08-21T13:17:00+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Expand a network address to IPs"
-# card_title: "Expand network to IPs"
+# title: "Expand a Network Address to IPs"
+# card_title: "Expand Network to IPs"
 # summary: "Print every IPv4 address in a CIDR or dotted-mask network, including the network and broadcast addresses."
 # tags: [network, cidr]
 # added: "2026-09-09T16:41:00+01:00"

@@ -13,9 +13,6 @@ site_author: The Lupaxa Project
 
 site_url: https://snippets.thelupaxaproject.org/
 
-repo_name: lupaxa-developers-toolbox/snippets
-repo_url: https://github.com/lupaxa-developers-toolbox/snippets
-
 extra:
   generator: false
   # Desktop/tablet: no left column (header lists Home | Snippets | Languages).
@@ -23,9 +20,6 @@ extra:
   # Default when omitted: false (left nav visible on desktop).
   hide_primary_sidebar: true
   hide_secondary_sidebar: true
-  # Optional short label for the header GitHub link.
-  # If omitted, uses the repo segment of repo_name (org/repo → repo).
-  repo_display_name: snippets
   # Viewer language picker (client-side translation; English URLs).
   # Default when omitted: false (picker hidden).
   language_picker: true
@@ -65,6 +59,9 @@ validation:
 theme:
   name: material
   custom_dir: overrides
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
   language: en
   logo: assets/images/logo.png
   favicon: assets/images/favicon.png
@@ -165,6 +162,7 @@ extra_css:
   - assets/stylesheets/40-components/snippet-modal.css
   - assets/stylesheets/40-components/tables.css
   - assets/stylesheets/50-pages/about.css
+  - assets/stylesheets/50-pages/sponsor.css
   - assets/stylesheets/90-responsive.css
   - assets/stylesheets/95-print.css
   - assets/stylesheets/99-overrides.css

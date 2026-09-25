@@ -1,6 +1,6 @@
 // snippet:
-// title: "Capitalise the first letter of a string"
-// card_title: "Capitalise a string"
+// title: "Capitalise the First Letter of a String"
+// card_title: "Capitalise a String"
 // summary: "Allocate a copy with the first character uppercased and the rest lowercased, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

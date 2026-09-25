@@ -1,6 +1,6 @@
 # snippet:
-# title: "Ask until yes or no"
-# card_title: "Ask until yes or no"
+# title: "Ask Until Yes or No"
+# card_title: "Ask Until Yes or No"
 # summary: "Prompt until the user types y/yes or n/no, then echo 1 or 0 so the answer can be captured instead of using the exit status."
 # tags: [interactive]
 # added: "2026-08-18T19:55:09+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Check required commands exist"
-# card_title: "Check required commands"
+# title: "Check Required Commands Exist"
+# card_title: "Check Required Commands"
 # summary: "Walk a COMMANDS list and exit with an error as soon as any required program name is missing from PATH."
 # tags: [path]
 # added: "2026-08-18T19:55:04+01:00"

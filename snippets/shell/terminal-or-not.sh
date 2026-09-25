@@ -1,6 +1,6 @@
 # snippet:
-# title: "Detect TTY, pipe, or redirect"
-# card_title: "Detect TTY or redirect"
+# title: "Detect TTY, Pipe, or Redirect"
+# card_title: "Detect TTY or Redirect"
 # summary: "Report whether stdout is attached to a terminal, a pipe, or a redirection so scripts can choose human or machine output."
 # tags: [terminal]
 # added: "2026-08-18T19:55:19+01:00"

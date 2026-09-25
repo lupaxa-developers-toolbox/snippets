@@ -1,6 +1,6 @@
 # snippet:
-# title: "Check a named array is non-empty"
-# card_title: "Check an array is set"
+# title: "Check a Named Array is Non-Empty"
+# card_title: "Check an Array is Set"
 # summary: "Return success if the named array exists and contains at least one element, using a nameref so callers pass the array name."
 # tags: [config]
 # added: "2026-08-19T16:19:00+01:00"

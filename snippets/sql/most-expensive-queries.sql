@@ -1,6 +1,6 @@
 -- snippet:
--- title: "Show the N most expensive queries"
--- card_title: "N most expensive queries"
+-- title: "Show the N Most Expensive Queries"
+-- card_title: "N Most Expensive Queries"
 -- summary: "Return the SQL Server plans that have used the most CPU, with execution count, total and average worker time, query text, and the XML plan for review."
 -- tags: [performance, sql-server]
 -- added: "2026-08-19T16:36:00+01:00"

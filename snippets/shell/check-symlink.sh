@@ -1,6 +1,6 @@
 # snippet:
-# title: "Check a named path is a live symlink"
-# card_title: "Check a symlink exists"
+# title: "Check a Named Path is a Live Symlink"
+# card_title: "Check a Symlink Exists"
 # summary: "Return success if the named variable holds a path that is a symlink and whose target exists."
 # tags: [config]
 # added: "2026-08-19T16:19:00+01:00"

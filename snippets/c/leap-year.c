@@ -1,6 +1,6 @@
 // snippet:
-// title: "Test a Gregorian leap year"
-// card_title: "Gregorian leap year"
+// title: "Test a Gregorian Leap Year"
+// card_title: "Gregorian Leap Year"
 // summary: "Return true when a year is a Gregorian leap year: divisible by 4, but not by 100 unless also divisible by 400."
 // tags: [date]
 // added: "2026-08-21T13:19:00+01:00"

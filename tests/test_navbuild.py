@@ -27,6 +27,7 @@ def test_extra_nav_empty() -> None:
     assert extra_nav([]) == [
         {"Snippets": "snippets.md"},
         {"Languages": "languages.md"},
+        {"Sponsor": "sponsor.md"},
     ]
 
 
@@ -35,6 +36,7 @@ def test_extra_nav_snippets_then_languages() -> None:
     assert nav == [
         {"Snippets": "snippets.md"},
         {"Languages": "languages.md"},
+        {"Sponsor": "sponsor.md"},
     ]
 
 

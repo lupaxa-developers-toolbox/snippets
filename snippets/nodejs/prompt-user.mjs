@@ -1,6 +1,6 @@
 // snippet:
-// title: "Prompt the user in the terminal"
-// card_title: "Terminal prompt"
+// title: "Prompt the User in the Terminal"
+// card_title: "Terminal Prompt"
 // summary: "Ask a question on stdin with node:readline, wait for the answer as a promise, then close the interface."
 // tags: [cli, readline]
 // added: "2026-08-21T13:42:30+01:00"

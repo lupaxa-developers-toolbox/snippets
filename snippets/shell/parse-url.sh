@@ -1,5 +1,5 @@
 # snippet:
-# title: "Parse a URL into its parts"
+# title: "Parse a URL Into Its Parts"
 # card_title: "Parse a URL"
 # summary: "Split a URL into protocol, user, password, host, port, path, query, and fragment using bash parameter expansion, including user:password@ and host:port."
 # tags: [url]

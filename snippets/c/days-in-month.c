@@ -1,6 +1,6 @@
 // snippet:
-// title: "Days in a calendar month"
-// card_title: "Days in a month"
+// title: "Days in a Calendar Month"
+// card_title: "Days in a Month"
 // summary: "Return how many days a month has, using 29 for February in a Gregorian leap year and 0 when the month is out of range."
 // tags: [date]
 // added: "2026-08-21T13:16:00+01:00"

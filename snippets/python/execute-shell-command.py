@@ -1,6 +1,6 @@
 # snippet:
-# title: "Run a command and capture output"
-# card_title: "Capture command output"
+# title: "Run a Command and Capture Output"
+# card_title: "Capture Command Output"
 # summary: "Run an argv list as a subprocess and return the exit status together with captured stdout and stderr as strings."
 # tags: [shell]
 # added: "2026-08-18T19:55:34+01:00"

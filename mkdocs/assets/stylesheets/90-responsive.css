@@ -21,6 +21,7 @@
     width: 3.25rem;
     height: 3.25rem;
     margin-right: var(--lupaxa-spacing-sm);
+    margin-left: var(--lupaxa-spacing-sm);
   }
 
   .md-header__button.md-logo.lupaxa-header__logo img,
@@ -109,15 +110,17 @@
     font-weight: 700;
   }
 
+  [dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner,
+  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner,
   .md-content__inner {
-    margin-right: 0.625rem;
-    margin-left: 0.625rem;
+    margin-right: calc(0.2rem + var(--lupaxa-spacing-sm));
+    margin-left: calc(0.2rem + var(--lupaxa-spacing-sm));
   }
 
   .lupaxa-hero,
   .lupaxa-error-hero {
-    margin-right: -0.625rem;
-    margin-left: -0.625rem;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   .md-typeset .grid.cards.about-principles,
@@ -128,8 +131,8 @@
 
 @media screen and (max-width: 59.984375em) {
   .lupaxa-hero-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: min(100%, 28rem);
+    grid-template-columns: minmax(0, 1fr);
+    max-width: none;
   }
 }
 
@@ -153,12 +156,10 @@
 
   .lupaxa-hero-logo,
   .lupaxa-hero > img {
-    width: min(90%, 256px);
+    width: min(90%, 320px);
   }
 
-  .lupaxa-hero-actions,
-  .lupaxa-hero-actions:has(.md-button:only-child),
-  .lupaxa-hero-actions:has(.md-button:first-child:nth-last-child(2)) {
+  .lupaxa-hero-actions {
     grid-template-columns: minmax(0, 1fr);
     max-width: none;
   }
@@ -178,7 +179,8 @@
   .md-typeset .grid.cards,
   .md-typeset .grid.cards.about-summary,
   .md-typeset .grid.cards.about-principles,
-  .md-typeset .grid.cards.about-build {
+  .md-typeset .grid.cards.about-build,
+  .md-typeset .grid.cards.sponsor-reasons {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -188,6 +190,15 @@
 
   .about-introduction {
     padding: 1.2rem;
+  }
+
+  .about-name {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-name-mark {
+    padding-bottom: var(--lupaxa-spacing-md);
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
   }
 }
 

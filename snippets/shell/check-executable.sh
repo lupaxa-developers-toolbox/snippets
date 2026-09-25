@@ -1,6 +1,6 @@
 # snippet:
-# title: "Check a named command is on PATH"
-# card_title: "Check a command exists"
+# title: "Check a Named Command is on PATH"
+# card_title: "Check a Command Exists"
 # summary: "Return success if the named variable holds a command that command -v can find on PATH."
 # tags: [config]
 # added: "2026-08-19T16:19:00+01:00"

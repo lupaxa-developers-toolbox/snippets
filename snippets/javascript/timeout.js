@@ -1,6 +1,6 @@
 // snippet:
-// title: "Warn before a session timeout"
-// card_title: "Session timeout modal"
+// title: "Warn Before a Session Timeout"
+// card_title: "Session Timeout Modal"
 // summary: "A jQuery plugin that starts a session timer, shows a stay-signed-in modal after inactivity, and redirects to a logout URL if the user does not respond."
 // tags: [timeout, session]
 // added: "2026-08-19T09:20:00+01:00"

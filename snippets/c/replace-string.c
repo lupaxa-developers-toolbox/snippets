@@ -1,6 +1,6 @@
 // snippet:
-// title: "Replace one substring with another"
-// card_title: "Replace a substring"
+// title: "Replace One Substring With Another"
+// card_title: "Replace a Substring"
 // summary: "Allocate a copy of a string with each case-insensitive match of from replaced by to, or only the first match when single is set."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Center text on the terminal"
-# card_title: "Center terminal text"
+# title: "Center Text on the Terminal"
+# card_title: "Center Terminal Text"
 # summary: "Print a line padded with spaces so the text sits in the middle of the current terminal width, using tput for the column count."
 # tags: [terminal, text]
 # added: "2026-08-18T19:55:03+01:00"

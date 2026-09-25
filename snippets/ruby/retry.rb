@@ -1,6 +1,6 @@
 # snippet:
-# title: Retry a block
-# card_title: "Retry a block"
+# title: Retry a Block
+# card_title: "Retry a Block"
 # summary: "Re-run a block with exponential backoff until it succeeds or hits a retry limit, sleeping longer after each failed attempt."
 # tags: [retry]
 # added: "2026-08-18T18:03:19+01:00"

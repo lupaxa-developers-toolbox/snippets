@@ -146,7 +146,7 @@
 
 .snippet-modal .md-typeset h2.snippet-modal-title,
 .snippet-modal .md-typeset h2.snippet-modal-title:first-of-type {
-  margin: 0 2.75rem 0.12rem 0;
+  margin: 0 2.75rem 0.65rem 0;
   padding: 0;
   color: var(--md-default-fg-color);
   font-size: var(--snippet-modal-title-size);

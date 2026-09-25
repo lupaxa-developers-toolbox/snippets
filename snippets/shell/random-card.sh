@@ -1,6 +1,6 @@
 # snippet:
-# title: "Draw a random card from a 52-card deck"
-# card_title: "Random playing card"
+# title: "Draw a Random Card from a 52-Card Deck"
+# card_title: "Random Playing Card"
 # summary: "Build a 52-card deck of ranks and suits, then print one card at random. The deck array is meant to sit beside other small game helpers."
 # tags: [games]
 # added: "2026-08-19T16:12:00+01:00"

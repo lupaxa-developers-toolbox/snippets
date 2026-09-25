@@ -1,6 +1,6 @@
 # snippet:
-# title: "Record how a script was invoked"
-# card_title: "Record script invocation"
+# title: "Record How a Script Was Invoked"
+# card_title: "Record Script Invocation"
 # summary: "Record the current script's path, name, sourced-or-executed status, and arguments in variables for later logging or usage text."
 # tags: [scripting]
 # added: "2026-08-18T19:55:11+01:00"

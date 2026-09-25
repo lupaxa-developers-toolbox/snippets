@@ -1,6 +1,6 @@
 # snippet:
-# title: "Clean up unused Docker leftovers"
-# card_title: "Clean up Docker leftovers"
+# title: "Clean Up Unused Docker Leftovers"
+# card_title: "Clean Up Docker Leftovers"
 # summary: "Remove exited and dead containers, containers stuck on untagged images, dangling images, and dangling volumes, or list them with -n."
 # tags: [docker]
 # added: "2026-08-21T12:50:00+01:00"

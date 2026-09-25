@@ -1,6 +1,6 @@
 # snippet:
-# title: "Coloured error, warning, and success lines"
-# card_title: "Coloured messages"
+# title: "Coloured Error, Warning, and Success Lines"
+# card_title: "Coloured Messages"
 # summary: "Print error, warning, and success lines in red, yellow, or green when the terminal supports colour, after get_colours has run."
 # tags: [terminal, text]
 # added: "2026-08-18T19:55:08+01:00"

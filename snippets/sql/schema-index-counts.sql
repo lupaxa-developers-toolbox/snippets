@@ -1,6 +1,6 @@
 -- snippet:
--- title: "Count indexes per table in a schema"
--- card_title: "Count indexes per table"
+-- title: "Count Indexes Per Table in a Schema"
+-- card_title: "Count Indexes Per Table"
 -- summary: "List each table in an Oracle schema with how many indexes it has, using ALL_INDEXES grouped and ordered by table name."
 -- tags: [indexes, oracle]
 -- added: "2026-08-19T16:36:00+01:00"

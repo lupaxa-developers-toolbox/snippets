@@ -1,6 +1,6 @@
 # snippet:
-# title: "Locate a command on PATH"
-# card_title: "Locate a command"
+# title: "Locate a Command on PATH"
+# card_title: "Locate a Command"
 # summary: "Search PATH for an executable name and return its expanded filesystem path, or a not-installed marker when nothing matches."
 # tags: [path]
 # added: "2026-08-18T19:55:39+01:00"

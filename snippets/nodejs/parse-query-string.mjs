@@ -1,6 +1,6 @@
 // snippet:
-// title: "Parse query string parameters"
-// card_title: "Parse query string"
+// title: "Parse Query String Parameters"
+// card_title: "Parse Query String"
 // summary: "Read query parameters from an incoming request with WHATWG URL and searchParams, using a fallback when the key is missing."
 // tags: [http, query]
 // added: "2026-08-21T13:40:00+01:00"

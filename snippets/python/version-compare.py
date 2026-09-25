@@ -1,6 +1,6 @@
 # snippet:
-# title: "Compare dotted version strings"
-# card_title: "Compare versions"
+# title: "Compare Dotted Version Strings"
+# card_title: "Compare Versions"
 # summary: "Compare two dotted numeric version strings and return a negative number, zero, or a positive number for less, equal, or greater."
 # tags: [version]
 # added: "2026-08-18T19:55:38+01:00"

@@ -1,6 +1,6 @@
 # snippet:
-# title: "Rollback stack on interrupt or error"
-# card_title: "Rollback on error"
+# title: "Rollback Stack on Interrupt or Error"
+# card_title: "Rollback on Error"
 # summary: "Push cleanup functions onto a LIFO stack and run them if INT, TERM, or EXIT fires, so partial work can be undone."
 # tags: [cleanup]
 # added: "2026-08-18T19:55:15+01:00"

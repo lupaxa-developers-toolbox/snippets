@@ -6,8 +6,12 @@ from snippets_mkdocs.models import Snippet
 
 
 def extra_nav(_snippets: list[Snippet]) -> list[dict[str, object]]:
-    """Top-level Snippets (catalogue) and Languages. No per-snippet children."""
-    return [{"Snippets": "snippets.md"}, {"Languages": "languages.md"}]
+    """Top-level Snippets, Languages, and Sponsor. No per-snippet children."""
+    return [
+        {"Snippets": "snippets.md"},
+        {"Languages": "languages.md"},
+        {"Sponsor": "sponsor.md"},
+    ]
 
 
 def snippet_language_prefixes(snippets: list[Snippet]) -> list[str]:

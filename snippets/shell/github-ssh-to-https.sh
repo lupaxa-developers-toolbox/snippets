@@ -1,6 +1,6 @@
 # snippet:
-# title: "Switch a GitHub SSH remote to HTTPS"
-# card_title: "SSH remote to HTTPS"
+# title: "Switch a GitHub SSH Remote to HTTPS"
+# card_title: "SSH Remote to HTTPS"
 # summary: "Rewrite a GitHub git@ or ssh:// remote to an HTTPS GitHub URL after checking the current directory is a git work tree."
 # tags: [git]
 # added: "2026-08-21T12:53:00+01:00"

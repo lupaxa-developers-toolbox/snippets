@@ -19,7 +19,8 @@ def test_mkdocs_build_strict() -> None:
 def _header_link(html: str, title: str) -> re.Match[str]:
     match = re.search(
         rf'class="lupaxa-header__nav-link"\s+href="([^"]+)"\s+'
-        rf'data-nav-prefixes="([^"]*)"[^>]*>\s*{re.escape(title)}\s*<',
+        rf'data-nav-prefixes="([^"]*)"[^>]*>\s*'
+        rf'(?:<span[^>]*>\s*)?{re.escape(title)}\s*(?:</span>)?\s*<',
         html,
     )
     assert match is not None, f"missing header link {title}"
@@ -100,7 +101,7 @@ def test_built_header_and_body_chrome() -> None:
     languages_pause = _header_link(pause, "Languages")
     assert languages_pause.group(1) == "../../languages/"
     assert re.search(
-        r"lupaxa-header__nav-item--active[\s\S]*?>\s*Snippets\s*<",
+        r"lupaxa-header__nav-item--active[\s\S]*?>\s*(?:<span[^>]*>\s*)?Snippets\s*(?:</span>)?\s*<",
         pause,
     )
     languages_page = (REPO / "site" / "languages" / "index.html").read_text(encoding="utf-8")

@@ -23,7 +23,7 @@
 .lupaxa-hero-logo,
 .lupaxa-hero > img {
   display: block;
-  width: min(100%, 256px);
+  width: min(100%, 320px);
   height: auto;
   margin: 0 auto 1.5rem;
 }
@@ -37,6 +37,11 @@
   line-height: 1.05;
   letter-spacing: -0.035em;
   text-decoration: none;
+}
+
+.md-typeset .lupaxa-hero .lupaxa-hero-title {
+  color: var(--lupaxa-light-blue);
+  font-weight: 500;
 }
 
 .md-typeset .lupaxa-hero-subtitle,
@@ -57,18 +62,6 @@
   margin-top: var(--lupaxa-spacing-lg);
   margin-right: auto;
   margin-left: auto;
-}
-
-/* Desktop only. :has() is more specific than the phone stack rule. */
-@media screen and (min-width: 60em) {
-  .lupaxa-hero-actions:has(.md-button:only-child) {
-    grid-template-columns: minmax(0, 16rem);
-  }
-
-  .lupaxa-hero-actions:has(.md-button:first-child:nth-last-child(2)) {
-    grid-template-columns: repeat(2, minmax(0, 16rem));
-    max-width: min(100%, 34rem);
-  }
 }
 
 .lupaxa-hero-actions .md-button {
