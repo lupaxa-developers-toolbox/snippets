@@ -20,7 +20,7 @@ def _header_link(html: str, title: str) -> re.Match[str]:
     match = re.search(
         rf'class="lupaxa-header__nav-link"\s+href="([^"]+)"\s+'
         rf'data-nav-prefixes="([^"]*)"[^>]*>\s*'
-        rf'(?:<span[^>]*>\s*)?{re.escape(title)}\s*(?:</span>)?\s*<',
+        rf"(?:<span[^>]*>\s*)?{re.escape(title)}\s*(?:</span>)?\s*<",
         html,
     )
     assert match is not None, f"missing header link {title}"
