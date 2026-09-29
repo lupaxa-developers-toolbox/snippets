@@ -148,15 +148,13 @@ def test_home_lists_snippets_not_repo_docs() -> None:
     assert 'class="lupaxa-hero"' in md
     assert 'class="lupaxa-hero-title"' in md
     assert 'src="assets/images/logo.png"' in md
-    assert 'href="snippets/"' in md
-    assert "Browse Snippets" in md
-    assert 'href="languages/"' in md
-    assert "Browse Languages" in md
-    assert 'href="sponsor/"' in md
-    assert "Become a Sponsor" in md
+    assert "Browse Snippets" not in md
+    assert "Browse Languages" not in md
+    assert "Become a Sponsor" not in md
+    assert "lupaxa-hero-actions" not in md
     assert "reusable code snippets and helpers" in md
     assert 'href="tags/"' not in md
-    assert "## Latest snippets" in md
+    assert "## Latest Snippets" in md
     assert 'class="grid cards catalogue-grid catalogue-grid--latest"' in md
     assert 'href="shell/retry/" data-snippet-card' in md
     assert 'src="assets/images/languages/shell.png"' in md
@@ -296,7 +294,7 @@ def test_home_empty_catalogue() -> None:
     md = render_home([], _catalogue())
     assert 'class="lupaxa-hero"' in md
     assert "No snippets yet." in md
-    assert "## Latest snippets" not in md
+    assert "## Latest Snippets" not in md
     assert 'href="snippets/"' not in md
     assert 'href="languages/"' not in md
     assert 'class="about-introduction"' not in md

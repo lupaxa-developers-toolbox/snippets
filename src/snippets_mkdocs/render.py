@@ -75,9 +75,9 @@ def render_snippet_page(snippet: Snippet, catalogue: Catalogue | None = None) ->
     return "\n".join(lines)
 
 
-def _render_home_hero(*, actions: bool) -> list[str]:
+def _render_home_hero() -> list[str]:
     """Lupaxa hero block used on the catalogue home page."""
-    lines = [
+    return [
         '<div class="lupaxa-hero">',
         "    <img",
         '        class="lupaxa-hero-logo"',
@@ -94,26 +94,9 @@ def _render_home_hero(*, actions: bool) -> list[str]:
         "        and ready-to-use solutions for common programming tasks and",
         "        everyday development workflows.",
         "    </p>",
+        "</div>",
+        "",
     ]
-    if actions:
-        lines.extend(
-            [
-                "",
-                '    <div class="lupaxa-hero-actions">',
-                '        <a class="md-button lupaxa-button" href="snippets/">',
-                "            Browse Snippets",
-                "        </a>",
-                '        <a class="md-button lupaxa-button" href="languages/">',
-                "            Browse Languages",
-                "        </a>",
-                '        <a class="md-button lupaxa-button" href="sponsor/">',
-                "            Become a Sponsor",
-                "        </a>",
-                "    </div>",
-            ]
-        )
-    lines.extend(["</div>", ""])
-    return lines
 
 
 HOME_LATEST_LIMIT = 8
@@ -178,7 +161,7 @@ def latest_snippets(snippets: list[Snippet], *, limit: int = HOME_LATEST_LIMIT) 
 
 def render_home(snippets: list[Snippet], catalogue: Catalogue) -> str:
     """Markdown for the catalogue home page."""
-    lines = _render_home_hero(actions=bool(snippets))
+    lines = _render_home_hero()
     if not snippets:
         lines.append("No snippets yet.")
         lines.append("")
@@ -195,7 +178,7 @@ def render_home(snippets: list[Snippet], catalogue: Catalogue) -> str:
     )
     lines.extend(
         [
-            "## Latest snippets",
+            "## Latest Snippets",
             "",
             '<div class="grid cards catalogue-grid catalogue-grid--latest" markdown>',
             "",

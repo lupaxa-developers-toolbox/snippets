@@ -3,9 +3,15 @@
  * ============================================================================= */
 
 .md-typeset .grid.cards.catalogue-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: stretch;
   align-items: stretch;
+}
+
+@media screen {
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 /* Include .grid.cards so this beats Material's `display: block` on card li. */
@@ -253,8 +259,9 @@
 }
 
 @media screen and (max-width: 76.234375em) {
-  .md-typeset .grid.cards.catalogue-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .md-typeset .grid.cards.catalogue-grid,
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > ul > li:nth-child(n + 7),
@@ -264,7 +271,8 @@
 }
 
 @media screen and (max-width: 44.984375em) {
-  .md-typeset .grid.cards.catalogue-grid {
+  .md-typeset .grid.cards.catalogue-grid,
+  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages {
     grid-template-columns: minmax(0, 1fr);
   }
 
