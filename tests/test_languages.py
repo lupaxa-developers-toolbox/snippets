@@ -25,12 +25,12 @@ def test_load_languages_reads_rows(tmp_path: Path) -> None:
     path = _write(
         tmp_path / "languages.yml",
         "- slug: shell\n  name: Shell\n  summary: POSIX shells.\n"
-        "- slug: kotlin\n  name: Kotlin\n  summary: JVM.\n",
+        "- slug: rust\n  name: Rust\n  summary: Systems.\n",
     )
     rows = load_languages(path)
-    assert [row.slug for row in rows] == ["shell", "kotlin"]
+    assert [row.slug for row in rows] == ["shell", "rust"]
     assert rows[0].name == "Shell"
-    assert rows[1].name == "Kotlin"
+    assert rows[1].name == "Rust"
 
 
 def test_load_languages_missing_file(tmp_path: Path) -> None:
@@ -89,11 +89,11 @@ def _cat(*rows: Language, marks_dir: Path | None = None) -> Catalogue:
 
 
 SHELL = Language("shell", "Shell", "POSIX shells.")
-KOTLIN = Language("kotlin", "Kotlin", "JVM.")
+RUST = Language("rust", "Rust", "Systems.")
 
 
 def test_listed_slugs_empty_when_no_snippets() -> None:
-    assert listed_slugs(_cat(SHELL, KOTLIN), []) == []
+    assert listed_slugs(_cat(SHELL, RUST), []) == []
 
 
 def test_listed_slugs_are_alphabetical_by_display_name() -> None:
@@ -111,7 +111,7 @@ def test_listed_slugs_are_alphabetical_by_display_name() -> None:
 
 
 def test_listed_slugs_includes_language_when_it_has_snippets() -> None:
-    assert listed_slugs(_cat(SHELL, KOTLIN), [_snip("kotlin")]) == ["kotlin"]
+    assert listed_slugs(_cat(SHELL, RUST), [_snip("rust")]) == ["rust"]
 
 
 def test_listed_slugs_includes_unknown_scanned_language() -> None:
@@ -143,4 +143,4 @@ def test_language_mark_slug_yaml_with_file(tmp_path: Path) -> None:
 
 
 def test_language_labels_include_every_yaml_row() -> None:
-    assert language_labels(_cat(SHELL, KOTLIN)) == {"shell": "Shell", "kotlin": "Kotlin"}
+    assert language_labels(_cat(SHELL, RUST)) == {"shell": "Shell", "rust": "Rust"}

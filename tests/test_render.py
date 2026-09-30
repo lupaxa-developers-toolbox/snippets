@@ -25,8 +25,8 @@ def _catalogue(*extra: Language) -> Catalogue:
         Language("php", "PHP", "A server-side language."),
         Language("go", "Go", "A compiled language."),
         Language("markdown", "Markdown", "A lightweight markup language."),
-        Language("kotlin", "Kotlin", "A JVM language."),
-        Language("objc", "Objective-C", "The older Apple language."),
+        Language("rust", "Rust", "A systems language."),
+        Language("ruby", "Ruby", "An expressive object-oriented language."),
         *extra,
     )
     return Catalogue(languages=rows)
@@ -130,7 +130,7 @@ def test_indexes() -> None:
     assert "PHP" not in langs
     assert "Go" not in langs
     assert "Markdown" not in langs
-    assert "Kotlin" not in langs
+    assert "Rust" not in langs
     assert 'src="../assets/images/languages/shell.png"' in langs
     assert 'src="../assets/images/languages/php.png"' not in langs
     assert "Bourne-family" in langs
@@ -186,6 +186,8 @@ def test_catalogue_cards_have_title_mark_description_and_pills() -> None:
     assert f'href="../shell/retry/" {card}' in md
     assert 'src="../assets/images/languages/shell.png"' in md
     assert 'src="../assets/images/languages/python.png"' in md
+    assert 'width="100"' in md
+    assert 'height="100"' in md
     assert 'data-language="shell"' in md
     assert 'title="Shell"' in md
     assert 'title="Python"' in md
@@ -224,7 +226,7 @@ def test_languages_index_lists_only_languages_with_snippets() -> None:
     assert 'href="../snippets/?language=go"' not in md
     assert 'href="../snippets/?language=markdown"' not in md
     assert 'href="../snippets/?language=shell"' not in md
-    assert "Kotlin" not in md
+    assert "Rust" not in md
     assert "No languages yet." not in md
 
 
@@ -233,11 +235,13 @@ def test_languages_index_empty_when_no_snippets() -> None:
     assert md == "No languages yet.\n"
 
 
-def test_languages_index_includes_hidden_when_it_has_snippets() -> None:
-    md = render_languages_index([_snip("kotlin", "flow")], _catalogue())
-    assert 'href="../snippets/?language=kotlin"' in md
-    assert "Kotlin" in md
-    assert 'src="../assets/images/languages/kotlin.png"' in md
+def test_languages_index_includes_catalogue_language_when_it_has_snippets() -> None:
+    md = render_languages_index([_snip("rust", "flow")], _catalogue())
+    assert 'href="../snippets/?language=rust"' in md
+    assert "Rust" in md
+    assert 'src="../assets/images/languages/rust.png"' in md
+    assert 'width="128"' in md
+    assert 'height="128"' in md
 
 
 def test_languages_index_includes_unknown_scanned_language() -> None:
@@ -257,8 +261,8 @@ def test_filter_panel_embeds_language_labels() -> None:
     assert match is not None
     labels = json.loads(match.group(1))
     assert labels["shell"] == "Shell"
-    assert labels["kotlin"] == "Kotlin"
-    assert labels["objc"] == "Objective-C"
+    assert labels["rust"] == "Rust"
+    assert labels["ruby"] == "Ruby"
 
 
 def test_filter_panel_lists_only_languages_with_snippets() -> None:
@@ -273,22 +277,22 @@ def test_filter_panel_lists_only_languages_with_snippets() -> None:
     assert listed == ["python"]
     assert "go" not in listed
     assert "shell" not in listed
-    assert "kotlin" not in listed
-    assert "objc" not in listed
+    assert "rust" not in listed
+    assert "ruby" not in listed
 
 
 def test_filter_panel_select_lists_only_used_languages() -> None:
     md = render_catalogue(
-        [_snip("python", "retry"), _snip("kotlin", "flow")],
+        [_snip("python", "retry"), _snip("rust", "flow")],
         _catalogue(),
     )
     assert 'value="python">Python</option>' in md
-    assert 'value="kotlin">Kotlin</option>' in md
+    assert 'value="rust">Rust</option>' in md
     assert 'value="go">' not in md
     assert 'value="markdown">' not in md
     assert 'value="php">' not in md
     assert 'value="shell">' not in md
-    assert 'value="objc"' not in md
+    assert 'value="ruby"' not in md
 
 
 def test_home_empty_catalogue() -> None:

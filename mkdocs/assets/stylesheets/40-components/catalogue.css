@@ -95,12 +95,16 @@
   display: flex;
   flex-shrink: 0;
   width: 100%;
-  min-height: 4.5rem;
+  min-height: 100px;
   align-items: center;
   justify-content: center;
   margin: 0 0 var(--catalogue-card-inset);
   padding: 0;
   text-align: center;
+}
+
+.md-typeset .catalogue-grid.catalogue-grid--languages p:has(img.catalogue-logo) {
+  min-height: 128px;
 }
 
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) > a,
@@ -120,7 +124,7 @@
   cursor: pointer;
   background: transparent;
   border: 0;
-  border-radius: 50%;
+  border-radius: var(--lupaxa-radius-card);
   transition:
     filter var(--lupaxa-transition-fast),
     box-shadow var(--lupaxa-transition-fast);
@@ -128,12 +132,16 @@
 
 .md-typeset .catalogue-grid img.catalogue-logo {
   display: block;
-  width: auto;
-  max-width: min(100%, 72px);
-  height: auto;
-  max-height: 72px;
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
   margin: 0;
   object-fit: contain;
+}
+
+.md-typeset .catalogue-grid.catalogue-grid--languages img.catalogue-logo {
+  width: 128px;
+  height: 128px;
 }
 
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) > a:hover,

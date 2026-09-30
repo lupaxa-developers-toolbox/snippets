@@ -356,6 +356,8 @@ def render_catalogue_card(
         src="{mark}"
         alt="{language_name}"
         title="{language_name}"
+        width="100"
+        height="100"
         data-language="{language}"
         data-added="{escape(snippet.added.isoformat(), quote=True)}"
     />"""
@@ -418,6 +420,8 @@ def render_language_card(language: str, catalogue: Catalogue) -> str:
             class="catalogue-logo"
             src="{mark}"
             alt="{name_attr}"
+            width="128"
+            height="128"
         />
     </a>
 
