@@ -147,7 +147,8 @@ def test_home_lists_snippets_not_repo_docs() -> None:
     md = render_home(items, _catalogue())
     assert 'class="lupaxa-hero"' in md
     assert 'class="lupaxa-hero-title"' in md
-    assert 'src="assets/images/logo.png"' in md
+    assert 'src="assets/images/hero-logo.png"' in md
+    assert 'src="assets/images/logo.png"' not in md
     assert "Browse Snippets" not in md
     assert "Browse Languages" not in md
     assert "Become a Sponsor" not in md

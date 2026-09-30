@@ -81,7 +81,7 @@ def _render_home_hero() -> list[str]:
         '<div class="lupaxa-hero">',
         "    <img",
         '        class="lupaxa-hero-logo"',
-        '        src="assets/images/logo.png"',
+        '        src="assets/images/hero-logo.png"',
         '        alt="Snippets"/>',
         '    <h1 class="lupaxa-hero-title">',
         "        Snippets",
