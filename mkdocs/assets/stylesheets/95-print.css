@@ -27,7 +27,7 @@
   .lupaxa-hero,
   .lupaxa-error-hero {
     margin: 0 0 var(--lupaxa-spacing-lg);
-    padding: 0 0 var(--lupaxa-spacing-md);
+    padding: var(--lupaxa-spacing-lg) 0 var(--lupaxa-spacing-md);
     background: none;
     border-bottom: 1px solid #999999;
   }
