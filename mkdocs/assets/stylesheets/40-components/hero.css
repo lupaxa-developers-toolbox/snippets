@@ -23,7 +23,8 @@
 .lupaxa-hero-logo,
 .lupaxa-hero > img {
   display: block;
-  width: min(100%, 320px);
+  width: min(100%, 56vw, 400px);
+  max-width: 100%;
   height: auto;
   margin: 0 auto 1.5rem;
 }
