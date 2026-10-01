@@ -6,7 +6,8 @@
 :root {
   /* Layout */
 
-  --lupaxa-content-width: 60rem;
+  /* Same max-width as Material .md-grid, which is the header inner. */
+  --lupaxa-content-width: 61rem;
   --lupaxa-header-height: 5rem;
 
   /* Spacing */
@@ -66,4 +67,10 @@
   --md-primary-fg-color--light: var(--lupaxa-light-blue);
   --md-primary-fg-color--dark: var(--lupaxa-blue);
   --md-typeset-a-color: var(--lupaxa-light-blue);
+  --lupaxa-card-hover-border:
+    color-mix(
+      in srgb,
+      var(--lupaxa-light-blue) 45%,
+      var(--md-default-fg-color--lightest)
+    );
 }

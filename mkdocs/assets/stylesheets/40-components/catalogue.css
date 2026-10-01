@@ -86,7 +86,7 @@
 .md-typeset .grid.cards.catalogue-grid > ul > li > hr:first-of-type,
 .md-typeset .grid.cards.catalogue-grid > li > hr:first-of-type {
   width: 100%;
-  margin: 0.5rem 0;
+  margin: 0.8rem 0 0.95rem;
 }
 
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) {
@@ -98,7 +98,7 @@
   min-height: 100px;
   align-items: center;
   justify-content: center;
-  margin: 0 0 var(--catalogue-card-inset);
+  margin: 0 0 0.9rem;
   padding: 0;
   text-align: center;
 }
@@ -130,6 +130,14 @@
     box-shadow var(--lupaxa-transition-fast);
 }
 
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span > button,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) img.catalogue-logo {
+  cursor: pointer;
+}
+
 .md-typeset .catalogue-grid img.catalogue-logo {
   display: block;
   width: 100px;
@@ -137,6 +145,11 @@
   max-width: 100%;
   margin: 0;
   object-fit: contain;
+  transition: filter var(--lupaxa-transition-fast);
+}
+
+.lupaxa-logo-frame__flood {
+  flood-color: var(--lupaxa-card-hover-border);
 }
 
 .md-typeset .catalogue-grid.catalogue-grid--languages img.catalogue-logo {
@@ -149,11 +162,17 @@
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:hover,
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:focus-visible,
 .md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:hover,
-.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:focus-visible {
-  filter: brightness(1.08);
-  box-shadow:
-    0 0 0 2px
-    color-mix(in srgb, var(--lupaxa-light-blue) 35%, transparent);
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:focus-within {
+  box-shadow: none;
+}
+
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a:hover img.catalogue-logo,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > a:focus-visible img.catalogue-logo,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:hover img.catalogue-logo,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > button:focus-visible img.catalogue-logo,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:hover img.catalogue-logo,
+.md-typeset .catalogue-grid p:has(img.catalogue-logo) > span:focus-within img.catalogue-logo {
+  filter: url("#lupaxa-logo-frame");
 }
 
 .md-typeset .catalogue-grid .catalogue-category {

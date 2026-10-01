@@ -110,11 +110,16 @@
     font-weight: 700;
   }
 
+  /* Same inset as the header controls: 0.2rem header padding plus the control margin. */
+  .md-content__inner,
   [dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner,
-  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner,
-  .md-content__inner {
-    margin-right: calc(0.2rem + var(--lupaxa-spacing-sm));
-    margin-left: calc(0.2rem + var(--lupaxa-spacing-sm));
+  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
+    margin-right: calc(
+      max(var(--lupaxa-spacing-md), env(safe-area-inset-right, 0px)) + 0.2rem
+    );
+    margin-left: calc(
+      max(var(--lupaxa-spacing-sm), env(safe-area-inset-left, 0px)) + 0.2rem
+    );
   }
 
   .lupaxa-hero,

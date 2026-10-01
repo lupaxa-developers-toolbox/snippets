@@ -50,12 +50,7 @@
       ),
       var(--md-default-bg-color)
     );
-  border-color:
-    color-mix(
-      in srgb,
-      var(--lupaxa-light-blue) 45%,
-      var(--md-default-fg-color--lightest)
-    );
+  border-color: var(--lupaxa-card-hover-border);
   box-shadow: var(--lupaxa-shadow-card-hover);
 }
 
