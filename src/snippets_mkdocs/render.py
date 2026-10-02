@@ -99,7 +99,7 @@ def _render_home_hero() -> list[str]:
     ]
 
 
-HOME_LATEST_LIMIT = 8
+HOME_LATEST_LIMIT = 9
 
 
 def _day_ordinal_suffix(day: int) -> str:

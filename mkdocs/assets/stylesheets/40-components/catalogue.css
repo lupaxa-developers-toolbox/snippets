@@ -302,9 +302,4 @@
   .md-typeset .grid.cards.catalogue-grid.catalogue-grid--languages {
     grid-template-columns: minmax(0, 1fr);
   }
-
-  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > ul > li:nth-child(n + 5),
-  .md-typeset .grid.cards.catalogue-grid.catalogue-grid--latest > li:nth-child(n + 5) {
-    display: none !important;
-  }
 }

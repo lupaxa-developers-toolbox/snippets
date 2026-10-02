@@ -322,13 +322,15 @@ def test_home_latest_cards_are_newest_first() -> None:
     assert md.index("new in python") < md.index("old in shell")
 
 
-def test_latest_snippets_are_newest_eight() -> None:
+def test_latest_snippets_are_newest_nine() -> None:
     start = datetime(2026, 1, 1, tzinfo=UTC)
     items = [
-        _snip("shell", f"s{index:02d}", added=start + timedelta(days=index)) for index in range(10)
+        _snip("shell", f"s{index:02d}", added=start + timedelta(days=index)) for index in range(12)
     ]
     latest = latest_snippets(items)
     assert [item.slug for item in latest] == [
+        "s11",
+        "s10",
         "s09",
         "s08",
         "s07",
@@ -336,5 +338,4 @@ def test_latest_snippets_are_newest_eight() -> None:
         "s05",
         "s04",
         "s03",
-        "s02",
     ]
