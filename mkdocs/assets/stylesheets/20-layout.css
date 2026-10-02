@@ -15,7 +15,9 @@
   max-width: var(--lupaxa-content-width);
   margin: 0 auto;
   padding-top: 0;
+  padding-right: var(--lupaxa-gutter-right);
   padding-bottom: var(--lupaxa-spacing-xl);
+  padding-left: var(--lupaxa-gutter-left);
 }
 
 /* Sidebar stays in the DOM for the phone drawer. Material then sets a

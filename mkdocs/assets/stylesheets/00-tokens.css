@@ -9,6 +9,9 @@
   /* Same max-width as Material .md-grid, which is the header inner. */
   --lupaxa-content-width: 61rem;
   --lupaxa-header-height: 5rem;
+  /* Narrow screens inset the shared column. Desktop stays flush. */
+  --lupaxa-gutter-left: 0px;
+  --lupaxa-gutter-right: 0px;
 
   /* Spacing */
 
