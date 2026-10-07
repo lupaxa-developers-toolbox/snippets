@@ -15,6 +15,7 @@ from snippets_mkdocs.languages import (
 from snippets_mkdocs.models import Snippet
 
 _FENCE_ALIASES = {
+    "git": "shell",
     "nodejs": "javascript",
 }
 

@@ -4,6 +4,9 @@
 - slug: cpp
   name: C++
   summary: C with classes and generic programming, used for systems and applications.
+- slug: git
+  name: Git
+  summary: Command-line helpers for repositories, remotes, tags, and work trees.
 - slug: go
   name: Go
   summary: A compiled language used for services, CLIs, and tooling.

@@ -52,11 +52,13 @@ def test_built_snippets_page_has_filter_panel() -> None:
     assert '"sql"' in listed
     assert '"nodejs"' in listed
     assert '"rust"' in listed
+    assert '"git"' in listed
     assert '"kotlin"' not in listed
     assert 'value="php">PHP</option>' in listing
     assert 'value="sql">SQL</option>' in listing
     assert 'value="nodejs">Node.js</option>' in listing
     assert 'value="rust">Rust</option>' in listing
+    assert 'value="git">Git</option>' in listing
     assert 'value="kotlin"' not in listing
 
 
@@ -110,6 +112,7 @@ def test_built_header_and_body_chrome() -> None:
     assert 'href="../snippets/?language=sql"' in languages_page
     assert 'href="../snippets/?language=nodejs"' in languages_page
     assert 'href="../snippets/?language=rust"' in languages_page
+    assert 'href="../snippets/?language=git"' in languages_page
     assert 'href="../snippets/?language=markdown"' not in languages_page
     assert 'src="../assets/images/languages/shell.png"' in languages_page
     assert 'src="../assets/images/languages/php.png"' in languages_page

@@ -6,14 +6,9 @@
 # added: "2026-08-19T16:14:00+01:00"
 # submitted_by: Lupraxus
 # runnable: false
-# caveats: "Call as rename_git_tag old new. git push --tags publishes every local tag. Anyone who already fetched the old name must delete it locally too."
+# caveats: "Replace <OLD> and <NEW>. git push --tags publishes every local tag. Anyone who already fetched the old name must delete it locally too."
 # end-snippet
-rename_git_tag() {
-  local old=$1
-  local new=$2
-
-  git tag "$new" "$old"
-  git tag -d "$old"
-  git push origin ":refs/tags/${old}"
-  git push --tags
-}
+git tag <NEW> <OLD>
+git tag -d <OLD>
+git push origin ":refs/tags/<OLD>"
+git push --tags

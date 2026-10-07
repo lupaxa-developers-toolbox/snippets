@@ -60,6 +60,7 @@ def _snip(
 
 def test_fence_language_aliases_nodejs() -> None:
     assert fence_language("nodejs") == "javascript"
+    assert fence_language("git") == "shell"
     assert fence_language("shell") == "shell"
 
 

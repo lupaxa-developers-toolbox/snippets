@@ -10,6 +10,7 @@ from pathlib import Path
 from snippets_mkdocs.scan import scan_snippets
 
 TOOLS: dict[str, list[str]] = {
+    "git": ["shellcheck"],
     "shell": ["shellcheck"],
     "python": ["ruff", "check"],
     "ruby": ["ruby", "-c"],
