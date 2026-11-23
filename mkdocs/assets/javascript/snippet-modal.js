@@ -2,6 +2,8 @@
  * Open snippet cards in a dialog instead of navigating to the page.
  *
  * The built snippet page stays the source of highlighted code and caveats.
+ * An open snippet is also written to ?snippet=language/slug so the dialog
+ * can be shared the same way catalogue filters are.
  */
 
 (() => {
@@ -9,10 +11,14 @@
 
   const { onPageRender } = window.LupaxaPageLifecycle;
   const DIALOG_SELECTOR = "[data-snippet-modal]";
+  const URL_PARAM_SNIPPET = "snippet";
+  const SNIPPET_ID = /^[a-z0-9-]+\/[a-z0-9-]+$/;
 
   let fetchGeneration = 0;
   let savedScrollX = 0;
   let savedScrollY = 0;
+  let ownsHistoryEntry = false;
+  let suppressHistory = false;
 
   function rememberScroll() {
     savedScrollX = window.scrollX;
@@ -121,6 +127,18 @@
     dialog.addEventListener("close", () => {
       restoreScroll();
       requestAnimationFrame(restoreScroll);
+
+      if (suppressHistory || !readSnippetParam()) {
+        return;
+      }
+
+      if (ownsHistoryEntry) {
+        ownsHistoryEntry = false;
+        window.history.back();
+        return;
+      }
+
+      writeSnippetUrl("", "replace");
     });
 
     dialog
@@ -210,6 +228,145 @@
   }
 
   /**
+   * Catalogue identity for a snippet page, such as ``shell/abs``.
+   *
+   * @param {string} href
+   * @returns {string}
+   */
+  function snippetIdFromHref(href) {
+    try {
+      const parts = new URL(href, window.location.href).pathname
+        .split("/")
+        .filter(Boolean);
+
+      if (parts.length < 2) {
+        return "";
+      }
+
+      const id = `${parts.at(-2)}/${parts.at(-1)}`;
+
+      return SNIPPET_ID.test(id) ? id : "";
+    } catch {
+      return "";
+    }
+  }
+
+  /**
+   * @returns {string}
+   */
+  function readSnippetParam() {
+    const value = new URLSearchParams(window.location.search).get(URL_PARAM_SNIPPET) || "";
+
+    return SNIPPET_ID.test(value) ? value : "";
+  }
+
+  /**
+   * @param {string} id
+   * @param {"push" | "replace"} mode
+   */
+  function writeSnippetUrl(id, mode) {
+    const url = new URL(window.location.href);
+
+    if (id) {
+      url.searchParams.set(URL_PARAM_SNIPPET, id);
+    } else {
+      url.searchParams.delete(URL_PARAM_SNIPPET);
+    }
+
+    let search = url.searchParams.toString();
+
+    if (id) {
+      search = search.replace(
+        `${URL_PARAM_SNIPPET}=${encodeURIComponent(id)}`,
+        `${URL_PARAM_SNIPPET}=${id}`,
+      );
+    }
+
+    const next = `${url.pathname}${search ? `?${search}` : ""}${url.hash}`;
+    const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    if (next === current) {
+      return;
+    }
+
+    if (mode === "push") {
+      window.history.pushState({ snippet: id }, "", next);
+      ownsHistoryEntry = true;
+      return;
+    }
+
+    window.history.replaceState(
+      ownsHistoryEntry ? { snippet: id } : window.history.state,
+      "",
+      next,
+    );
+  }
+
+  /**
+   * @param {string} id
+   * @returns {HTMLAnchorElement | null}
+   */
+  function findSnippetLink(id) {
+    const links = document.querySelectorAll(
+      ".catalogue-grid:not(.catalogue-grid--languages) a[data-snippet-card]",
+    );
+
+    for (const node of links) {
+      if (node instanceof HTMLAnchorElement && snippetIdFromHref(node.href) === id) {
+        return node;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * @param {string} id
+   * @returns {string}
+   */
+  function hrefForSnippetId(id) {
+    const link = findSnippetLink(id);
+
+    if (link) {
+      return link.href;
+    }
+
+    if (!SNIPPET_ID.test(id)) {
+      return "";
+    }
+
+    return new URL(`${id}/`, window.location.origin).href;
+  }
+
+  function syncModalWithLocation() {
+    const id = readSnippetParam();
+
+    ownsHistoryEntry = Boolean(
+      window.history.state && window.history.state.snippet,
+    );
+
+    if (!id) {
+      suppressHistory = true;
+      closeDialog();
+      suppressHistory = false;
+      return;
+    }
+
+    const href = hrefForSnippetId(id);
+
+    if (!href) {
+      return;
+    }
+
+    const link = findSnippetLink(id);
+    const title = link?.dataset.fullTitle?.trim()
+      || link?.textContent?.trim()
+      || "";
+
+    void openSnippetModal(href, title, "none");
+  }
+
+  /**
    * @param {HTMLDialogElement} dialog
    */
   function syncNavButtons(dialog) {
@@ -251,7 +408,7 @@
     const title =
       target.dataset.fullTitle?.trim() || target.textContent?.trim() || "";
 
-    void openSnippetModal(target.href, title);
+    void openSnippetModal(target.href, title, "replace");
   }
 
   /**
@@ -267,14 +424,142 @@
   }
 
   /**
+   * @param {string} value
+   * @returns {string}
+   */
+  function escapeHtml(value) {
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+  }
+
+  /**
+   * Print the open snippet: title, details, code, and caveats.
+   *
+   * @param {HTMLElement} highlight
+   */
+  function printSnippet(highlight) {
+    const scope = highlight.closest("[data-snippet-modal]") || document;
+    const title = scope.querySelector(".snippet-modal-title")?.textContent?.trim()
+      || "Snippet";
+    const meta = [...scope.querySelectorAll("[data-snippet-meta] p")]
+      .map((line) => line.textContent?.trim() || "")
+      .filter(Boolean);
+    const code = highlight.querySelector("pre code, pre")?.textContent ?? "";
+    const caveats = scope.querySelector(".admonition");
+    const caveatTitle = caveats?.querySelector(".admonition-title")?.textContent?.trim()
+      || "";
+    const caveatBody = [...(caveats?.querySelectorAll("p:not(.admonition-title)") || [])]
+      .map((line) => line.textContent?.trim() || "")
+      .filter(Boolean);
+    const frame = document.createElement("iframe");
+
+    frame.setAttribute("aria-hidden", "true");
+    frame.style.cssText = "position:fixed;left:-10000px;top:0;width:800px;height:600px;border:0;";
+    document.body.append(frame);
+
+    const doc = frame.contentDocument;
+
+    if (!doc || !frame.contentWindow) {
+      frame.remove();
+      return;
+    }
+
+    const metaHtml = meta
+      .map((line) => `<p>${escapeHtml(line)}</p>`)
+      .join("");
+    const caveatHtml = caveatBody.length
+      ? `<section class="caveats"><h2>${escapeHtml(caveatTitle)}</h2>${
+        caveatBody.map((line) => `<p>${escapeHtml(line)}</p>`).join("")
+      }</section>`
+      : "";
+
+    doc.open();
+    doc.write(`<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>${escapeHtml(title)}</title>
+    <style>
+      body {
+        margin: 0;
+        color: #111a32;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+      h1 {
+        margin: 0 0 0.6rem;
+        font-size: 1.35rem;
+      }
+      .meta p,
+      .caveats p {
+        margin: 0.15rem 0;
+        font-size: 0.85rem;
+      }
+      pre {
+        margin: 1rem 0 0;
+        padding: 0.75rem 1rem;
+        overflow: auto;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 0.85rem;
+        white-space: pre-wrap;
+        border: 1px solid #111a32;
+        border-radius: 0.35rem;
+      }
+      .caveats {
+        margin-top: 1rem;
+        padding: 0.6rem 0.8rem;
+        border: 1px solid #111a32;
+        border-radius: 0.35rem;
+      }
+      .caveats h2 {
+        margin: 0 0 0.35rem;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>${escapeHtml(title)}</h1>
+    <div class="meta">${metaHtml}</div>
+    <pre>${escapeHtml(code.replace(/\n$/, ""))}</pre>
+    ${caveatHtml}
+  </body>
+</html>`);
+    doc.close();
+
+    const printWindow = frame.contentWindow;
+
+    printWindow.focus();
+    printWindow.print();
+    printWindow.addEventListener("afterprint", () => {
+      frame.remove();
+    }, { once: true });
+  }
+
+  /**
    * @param {HTMLElement} highlight
    */
   function attachClipboard(highlight) {
     const code = highlight.querySelector("pre code, pre");
 
-    if (!code) {
+    if (!code || highlight.querySelector(".snippet-code-action--print")) {
       return;
     }
+
+    const printButton = document.createElement("button");
+
+    printButton.type = "button";
+    printButton.className = "snippet-code-action snippet-code-action--print";
+    printButton.title = "Print snippet";
+    printButton.setAttribute("aria-label", "Print snippet");
+    printButton.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3m-3 11H8v-5h8zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1m-1-9H6v4h12z"/>
+      </svg>
+    `;
+    printButton.addEventListener("click", () => {
+      printSnippet(highlight);
+    });
 
     const button = document.createElement("button");
 
@@ -302,7 +587,7 @@
       }, 1600);
     });
 
-    highlight.append(button);
+    highlight.append(printButton, button);
   }
 
   /**
@@ -316,13 +601,33 @@
   /**
    * @param {string} href
    * @param {string} title
+   * @param {"push" | "replace" | "none"} historyMode
    */
-  async function openSnippetModal(href, title) {
+  async function openSnippetModal(href, title, historyMode = "push") {
     const dialog = ensureDialog();
     const body = dialog.querySelector("[data-snippet-modal-body]");
 
     if (!(body instanceof HTMLElement)) {
       return;
+    }
+
+    if (
+      historyMode === "none"
+      && dialog.open
+      && sameSnippetHref(dialog.dataset.snippetHref || "", href)
+    ) {
+      return;
+    }
+
+    const snippetId = snippetIdFromHref(href);
+    let mode = historyMode;
+
+    if (mode === "push" && dialog.open) {
+      mode = "replace";
+    }
+
+    if (snippetId && (mode === "push" || mode === "replace")) {
+      writeSnippetUrl(snippetId, mode);
     }
 
     const generation = (fetchGeneration += 1);
@@ -486,5 +791,9 @@
     true,
   );
 
-  onPageRender(closeDialog);
+  window.addEventListener("popstate", () => {
+    syncModalWithLocation();
+  });
+
+  onPageRender(syncModalWithLocation);
 })();

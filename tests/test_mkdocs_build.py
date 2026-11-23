@@ -94,7 +94,10 @@ def test_built_header_and_body_chrome() -> None:
     assert snippets_pause.group(1) == "../../snippets/"
     assert "data-snippet-article" in pause
     assert "data-snippet-language-meta" in pause
-    assert 'Language: <a href="/snippets/?language=shell">Shell</a>' in pause
+    assert re.search(
+        r'Language:\s*<a href="/snippets/\?language=shell">Shell</a>',
+        pause,
+    )
     assert "data-snippet-added" in pause
     assert "data-snippet-submitted" in pause
     assert "Submitted by:" in pause

@@ -86,6 +86,8 @@ def test_mkdocs_loads_catalogue_via_hook_not_plugin_entry() -> None:
     hooks = config.get("hooks") or []
     assert "mkdocs_hooks.py" in hooks
     assert "hooks/asset_cache_bust.py" in hooks
+    assert "hooks/template_whitespace.py" in hooks
+    assert hooks.index("hooks/asset_cache_bust.py") < hooks.index("hooks/template_whitespace.py")
     assert {
         "data",
         "mkdocs_hooks.py",

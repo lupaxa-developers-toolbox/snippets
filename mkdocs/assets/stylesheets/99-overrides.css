@@ -35,14 +35,14 @@
 }
 
 .md-header .md-header__button.md-logo.lupaxa-header__logo {
-  width: 4rem !important;
-  height: 4rem !important;
+  width: 64px !important;
+  height: 64px !important;
 }
 
 .md-header .md-header__button.md-logo.lupaxa-header__logo img,
 .md-header .md-header__button.md-logo.lupaxa-header__logo svg {
-  width: 4rem !important;
-  height: 4rem !important;
+  width: 64px !important;
+  height: 64px !important;
   max-width: none !important;
   max-height: none !important;
 }
@@ -55,14 +55,14 @@
 
 @media screen and (max-width: 76.234375em) {
   .md-header .md-header__button.md-logo.lupaxa-header__logo {
-    width: 3.25rem !important;
-    height: 3.25rem !important;
+    width: 64px !important;
+    height: 64px !important;
   }
 
   .md-header .md-header__button.md-logo.lupaxa-header__logo img,
   .md-header .md-header__button.md-logo.lupaxa-header__logo svg {
-    width: 3.25rem !important;
-    height: 3.25rem !important;
+    width: 64px !important;
+    height: 64px !important;
   }
 }
 

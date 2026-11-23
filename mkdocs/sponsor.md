@@ -4,25 +4,6 @@ hide:
   - toc
 ---
 
-<div class="print-page-notice">
-    <p class="print-page-notice__title">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 2 1 21h22L12 2zm0 3.84L19.53 19.5H4.47L12 5.84zM11 10h2v5h-2v-5zm0 6h2v2h-2v-2z"/>
-        </svg>
-        Printing Unavailable
-    </p>
-    <p>
-        This page is designed for online viewing and is not included in printed
-        output. Please refer to the online version for the complete content.
-    </p>
-    <p class="print-page-notice__online">
-        Online version:<br>
-        https://snippets.thelupaxaproject.org/sponsor/
-    </p>
-</div>
-
-<div class="no-print-page" markdown>
-
 <div class="about-introduction about-introduction-lead">
     <p>
         <strong translate="no">The Lupaxa Project</strong> is an informal collective, not a
@@ -38,8 +19,6 @@ hide:
 
 -   :material-clock-outline:{ .lg .middle } **Time**
 
-    ---
-
     Maintenance, reviews, documentation and the portal itself take unpaid
     hours. A small project stays healthy only while someone is still
     answering issues, cutting releases and keeping the docs honest. Support
@@ -48,16 +27,12 @@ hide:
 
 -   :material-server-outline:{ .lg .middle } **Running costs**
 
-    ---
-
     The ecosystem still has bills even when nobody is paid. Domain
     registration, hosting, CI minutes and the other small services that keep
     repositories and this site online add up. Sponsorship helps cover those
     so the work is not sitting on one person's card.
 
 -   :material-robot-outline:{ .lg .middle } **AI subscriptions**
-
-    ---
 
     Most Lupaxa Project work is built with AI-assisted editors and model
     subscriptions, not just this portal. Those tools make a volunteer team
@@ -93,5 +68,11 @@ hide:
     >Or open our Ko-fi page</a>
   </p>
 </div>
+
+<div class="about-introduction sponsor-print-card" markdown>
+
+:material-hand-heart-outline:{ .lg .middle } **Sponsor Link**
+
+[https://ko-fi.com/thelupaxaproject](https://ko-fi.com/thelupaxaproject)
 
 </div>

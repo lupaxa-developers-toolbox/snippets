@@ -110,11 +110,48 @@ def _day_ordinal_suffix(day: int) -> str:
     return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
 
 
+_RELEASE_MONTHS = (
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+)
+
+
 def _format_added(snippet: Snippet) -> str:
     """Human date for snippet metadata (day<sup>st</sup> Month year)."""
     added = snippet.added
     suffix = _day_ordinal_suffix(added.day)
     return f"{added.day}<sup>{suffix}</sup> {added.strftime('%B %Y')}"
+
+
+def _format_release_date(snippet: Snippet) -> str:
+    """Card-footer date, matching the portal sash (``1 Jan 2026``)."""
+    added = snippet.added
+    return f"{added.day} {_RELEASE_MONTHS[added.month - 1]} {added.year}"
+
+
+def _release_footer(snippet: Snippet) -> str:
+    """Centred added-date band along the bottom of a snippet card."""
+    shown = _format_release_date(snippet)
+    safe = escape(shown)
+    label = escape(f"Added: {shown}", quote=True)
+    return (
+        f'<span class="catalogue-banner catalogue-banner--blue" aria-label="{label}">'
+        f'<span class="catalogue-banner__band" aria-hidden="true">'
+        f'<span class="catalogue-banner__text">'
+        f'<span class="catalogue-banner__date">Added: '
+        f'<span translate="no">{safe}</span></span>'
+        f"</span></span></span>"
+    )
 
 
 def github_profile_url(userid: str) -> str:
@@ -357,8 +394,8 @@ def render_catalogue_card(
         src="{mark}"
         alt="{language_name}"
         title="{language_name}"
-        width="100"
-        height="100"
+        width="96"
+        height="96"
         data-language="{language}"
         data-added="{escape(snippet.added.isoformat(), quote=True)}"
     />"""
@@ -374,6 +411,8 @@ def render_catalogue_card(
     {summary}
 
 {pills}
+
+    {_release_footer(snippet)}
 """.strip()
 
 
@@ -421,8 +460,8 @@ def render_language_card(language: str, catalogue: Catalogue) -> str:
             class="catalogue-logo"
             src="{mark}"
             alt="{name_attr}"
-            width="128"
-            height="128"
+            width="96"
+            height="96"
         />
     </a>
 

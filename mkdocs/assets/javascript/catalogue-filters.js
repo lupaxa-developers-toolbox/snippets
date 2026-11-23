@@ -14,6 +14,7 @@
   const URL_PARAM_LANGUAGE = "language";
   const URL_PARAM_TAG = "tag";
   const URL_PARAM_SORT = "sort";
+  const URL_PARAM_SNIPPET = "snippet";
   const SORT_NEWEST = "newest";
   const SORT_ALPHA = "alpha";
   const CATALOGUE_LOCALE = "en-GB";
@@ -611,9 +612,25 @@
         params.set(URL_PARAM_SORT, SORT_NEWEST);
       }
 
-      const url = new URL(window.location.href);
+      const snippet = new URLSearchParams(window.location.search).get(
+        URL_PARAM_SNIPPET,
+      );
 
-      url.search = params.toString();
+      if (snippet && /^[a-z0-9-]+\/[a-z0-9-]+$/.test(snippet)) {
+        params.set(URL_PARAM_SNIPPET, snippet);
+      }
+
+      const url = new URL(window.location.href);
+      let search = params.toString();
+
+      if (snippet && params.get(URL_PARAM_SNIPPET) === snippet) {
+        search = search.replace(
+          `${URL_PARAM_SNIPPET}=${encodeURIComponent(snippet)}`,
+          `${URL_PARAM_SNIPPET}=${snippet}`,
+        );
+      }
+
+      url.search = search;
 
       window.history.replaceState(
         window.history.state,

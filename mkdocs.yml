@@ -59,9 +59,7 @@ validation:
 theme:
   name: material
   custom_dir: overrides
-  font:
-    text: IBM Plex Sans
-    code: IBM Plex Mono
+  font: false
   language: en
   logo: assets/images/logo.png
   favicon: assets/images/favicon.png
@@ -95,6 +93,7 @@ plugins: []
 hooks:
   - mkdocs_hooks.py
   - hooks/asset_cache_bust.py
+  - hooks/template_whitespace.py
 
 watch:
   - data
@@ -149,6 +148,7 @@ markdown_extensions:
 # =============================================================================
 
 extra_css:
+  - assets/stylesheets/00-fonts.css
   - assets/stylesheets/00-tokens.css
   - assets/stylesheets/10-base.css
   - assets/stylesheets/20-layout.css

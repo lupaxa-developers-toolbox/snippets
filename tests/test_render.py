@@ -187,14 +187,16 @@ def test_catalogue_cards_have_title_mark_description_and_pills() -> None:
     assert f'href="../shell/retry/" {card}' in md
     assert 'src="../assets/images/languages/shell.png"' in md
     assert 'src="../assets/images/languages/python.png"' in md
-    assert 'width="100"' in md
-    assert 'height="100"' in md
+    assert 'width="96"' in md
+    assert 'height="96"' in md
     assert 'data-language="shell"' in md
     assert 'title="Shell"' in md
     assert 'title="Python"' in md
     assert "A helper." in md
     assert '<button type="button" class="catalogue-category">retry</button>' in md
-    assert "catalogue-banner" not in md
+    assert 'class="catalogue-banner catalogue-banner--blue"' in md
+    assert 'aria-label="Added: 1 Jan 2026"' in md
+    assert ">1 Jan 2026</span>" in md
     assert "View on GitHub" not in md
     assert "Documentation" not in md
 
@@ -241,8 +243,8 @@ def test_languages_index_includes_catalogue_language_when_it_has_snippets() -> N
     assert 'href="../snippets/?language=rust"' in md
     assert "Rust" in md
     assert 'src="../assets/images/languages/rust.png"' in md
-    assert 'width="128"' in md
-    assert 'height="128"' in md
+    assert 'width="96"' in md
+    assert 'height="96"' in md
 
 
 def test_languages_index_includes_unknown_scanned_language() -> None:

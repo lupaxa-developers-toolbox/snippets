@@ -3,7 +3,7 @@
  * ============================================================================= */
 
 .snippet-modal {
-  --snippet-modal-gap: 1rem;
+  --snippet-modal-gap: 20px;
   --snippet-modal-title-size: 1.25rem;
   --snippet-modal-title-line: 1.25;
 
@@ -41,7 +41,7 @@
   flex: 1 1 auto;
   min-width: 0;
   color: var(--md-default-fg-color);
-  background: var(--md-default-bg-color);
+  background: linear-gradient(180deg, var(--lupaxa-card-bg-raised), var(--lupaxa-card-bg));
   border: 1px solid
     color-mix(in srgb, var(--lupaxa-light-blue) 28%, var(--md-default-fg-color--lightest));
   border-radius: var(--lupaxa-radius-card);
@@ -52,26 +52,14 @@
   position: relative;
   box-sizing: border-box;
   max-height: min(42rem, calc(100vh - 2rem));
-  /* Subtract the title's half-leading so the visual gap above the
-   * glyphs matches the hard edge below the last block. */
-  padding:
-    calc(
-      var(--snippet-modal-gap)
-      - (
-        var(--snippet-modal-title-size)
-        * (var(--snippet-modal-title-line) - 1)
-        / 2
-      )
-    )
-    1.4rem
-    var(--snippet-modal-gap);
+  padding: 20px;
   overflow: auto;
 }
 
 .snippet-modal__close {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -82,7 +70,7 @@
   color: var(--md-default-fg-color--light);
   cursor: pointer;
   background:
-    color-mix(in srgb, var(--md-default-fg-color) 7%, var(--md-default-bg-color));
+    color-mix(in srgb, var(--md-default-fg-color) 7%, var(--lupaxa-card-bg));
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 50%;
   transition:
@@ -119,7 +107,7 @@
   color: var(--md-default-fg-color);
   cursor: pointer;
   background:
-    color-mix(in srgb, var(--md-default-fg-color) 10%, var(--md-default-bg-color));
+    color-mix(in srgb, var(--md-default-fg-color) 10%, var(--lupaxa-card-bg));
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 50%;
   box-shadow: var(--lupaxa-shadow-card-hover);
@@ -144,6 +132,14 @@
   min-width: 0;
 }
 
+.snippet-modal__body > :first-child {
+  margin-top: 0;
+}
+
+.snippet-modal__body > :last-child {
+  margin-bottom: 0;
+}
+
 .snippet-modal .md-typeset h2.snippet-modal-title,
 .snippet-modal .md-typeset h2.snippet-modal-title:first-of-type {
   margin: 0 2.75rem 0.65rem 0;
@@ -154,6 +150,11 @@
   line-height: var(--snippet-modal-title-line);
   letter-spacing: -0.02em;
   border: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--lupaxa-light-blue);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+  text-decoration-skip-ink: auto;
 }
 
 .snippet-modal-meta,
@@ -215,31 +216,88 @@
 }
 
 .snippet-modal .highlight,
-.snippet-modal .md-typeset .highlight {
+.snippet-modal .md-typeset .highlight,
+.md-typeset [data-snippet-article] .highlight {
   position: relative;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  background: var(--lupaxa-dark-blue);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: var(--lupaxa-radius-button);
+  box-shadow: var(--lupaxa-shadow-panel);
 }
 
 .snippet-modal .highlight > pre,
-.snippet-modal .md-typeset .highlight > pre {
+.snippet-modal .md-typeset .highlight > pre,
+.md-typeset [data-snippet-article] .highlight > pre {
   margin: 0;
   padding: 0;
+  background: var(--lupaxa-dark-blue);
 }
 
 .snippet-modal .highlight > pre > code,
-.snippet-modal .md-typeset .highlight > pre > code {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--lupaxa-radius-sm);
-  box-shadow: var(--lupaxa-shadow-panel);
-  padding-right: 2.6em;
+.snippet-modal .md-typeset .highlight > pre > code,
+.md-typeset [data-snippet-article] .highlight > pre > code {
+  display: block;
+  padding: 0.75em 5.4em 0.75em 1.4em;
+  color: var(--md-code-fg-color);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.snippet-modal .md-clipboard {
+.snippet-modal .md-typeset code,
+.md-typeset [data-snippet-article] code {
+  background: var(--lupaxa-dark-blue);
+}
+
+.snippet-modal .snippet-code-action--print,
+.md-typeset [data-snippet-article] .snippet-code-action--print {
+  position: absolute;
+  top: 0.55rem;
+  right: calc(0.55rem + 1.5em + 0.35rem);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
+  color: var(--md-default-fg-color--lightest);
+  cursor: pointer;
+  background: var(--lupaxa-dark-blue);
+  border: 0;
+}
+
+.snippet-modal .highlight:hover > .snippet-code-action--print,
+.md-typeset [data-snippet-article] .highlight:hover > .snippet-code-action--print {
+  color: var(--md-default-fg-color--light);
+}
+
+.snippet-modal .highlight > .snippet-code-action--print:hover,
+.snippet-modal .highlight > .snippet-code-action--print:focus-visible,
+.md-typeset [data-snippet-article] .highlight > .snippet-code-action--print:hover,
+.md-typeset [data-snippet-article] .highlight > .snippet-code-action--print:focus-visible {
+  color: var(--md-accent-fg-color);
+}
+
+.snippet-modal .snippet-code-action--print svg,
+.md-typeset [data-snippet-article] .snippet-code-action--print svg {
+  display: block;
+  width: 1.15em;
+  height: 1.15em;
+  fill: currentcolor;
+}
+
+.snippet-modal .md-clipboard,
+.md-typeset [data-snippet-article] .md-clipboard {
   position: absolute;
   top: 0.55rem;
   right: 0.55rem;
   z-index: 2;
+  background: var(--lupaxa-dark-blue);
 }
 
 .snippet-modal .md-clipboard[data-copied="true"] {
@@ -251,17 +309,32 @@
   mask-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");
 }
 
-.snippet-modal .md-typeset .admonition {
+.snippet-modal .md-typeset .admonition,
+.md-typeset [data-snippet-article] .admonition {
+  overflow: hidden;
   margin: var(--snippet-modal-gap) 0 0;
-  border-radius: var(--lupaxa-radius-sm);
+  border-radius: var(--lupaxa-radius-button);
+  box-shadow: var(--lupaxa-shadow-panel);
+}
+
+.snippet-modal .md-typeset .admonition > :not(.admonition-title),
+.md-typeset [data-snippet-article] .admonition > :not(.admonition-title) {
+  margin: 0 -0.6rem;
+  padding: 0.45rem 0.8rem 0;
+  color: var(--md-default-fg-color);
+  background-color: var(--lupaxa-dark-blue);
+}
+
+.snippet-modal .md-typeset .admonition > :last-child:not(.admonition-title),
+.md-typeset [data-snippet-article] .admonition > :last-child:not(.admonition-title) {
+  margin-bottom: 0;
+  padding-bottom: 0.6rem;
 }
 
 .md-typeset [data-snippet-article] {
   margin-top: 1rem;
 }
 
-.md-typeset [data-snippet-article] .highlight > pre > code {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: var(--lupaxa-radius-sm);
-  box-shadow: var(--lupaxa-shadow-panel);
+.md-typeset [data-snippet-article] pre > code {
+  background: transparent;
 }
