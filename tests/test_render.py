@@ -50,7 +50,6 @@ def _snip(
         summary="A helper.",
         tags=tags,
         added=added or datetime(2026, 1, 1, tzinfo=UTC),
-        submitted_by="Lupraxus",
         runnable=runnable,
         caveats=caveats,
         body="print(1)\n",
@@ -76,12 +75,14 @@ def test_snippet_page_includes_body() -> None:
     assert "data-snippet-article" in md
     assert "data-snippet-language-meta" in md
     assert "data-snippet-added" in md
-    assert "data-snippet-submitted" in md
+    assert "data-snippet-submitted" not in md
     assert 'Language: <a href="/snippets/?language=shell">Shell</a>' in md
-    assert "Added on: 1<sup>st</sup> January 2026" in md
-    assert "Submitted by:" in md
-    assert 'href="https://github.com/Lupraxus"' in md
-    assert "1<sup>st</sup> January 2026" in md
+    added = (
+        'Added on: <span class="date-ordinal" data-suffix="st" translate="no">1</span> January 2026'
+    )
+    assert added in md
+    assert "Submitted by:" not in md
+    assert "<sup>" not in md
     assert '!!! info "Caveats"' in md
     assert "Runnable" not in md
 
@@ -102,9 +103,9 @@ def test_snippet_page_date_uses_ordinal_suffix() -> None:
         "twenty-third",
         added=datetime(2026, 1, 23, tzinfo=UTC),
     )
-    assert "11<sup>th</sup> January 2026" in render_snippet_page(eleventh)
-    assert "22<sup>nd</sup> January 2026" in render_snippet_page(twenty_second)
-    assert "23<sup>rd</sup> January 2026" in render_snippet_page(twenty_third)
+    assert 'data-suffix="th" translate="no">11</span>' in render_snippet_page(eleventh)
+    assert 'data-suffix="nd" translate="no">22</span>' in render_snippet_page(twenty_second)
+    assert 'data-suffix="rd" translate="no">23</span>' in render_snippet_page(twenty_third)
 
 
 def test_snippet_page_omits_caveats_block_when_empty() -> None:
@@ -195,8 +196,8 @@ def test_catalogue_cards_have_title_mark_description_and_pills() -> None:
     assert "A helper." in md
     assert '<button type="button" class="catalogue-category">retry</button>' in md
     assert 'class="catalogue-banner catalogue-banner--blue"' in md
-    assert 'aria-label="Added: 1 Jan 2026"' in md
-    assert ">1 Jan 2026</span>" in md
+    assert 'aria-label="Added on: 1st January 2026"' in md
+    assert 'data-suffix="st" translate="no">1</span> January 2026' in md
     assert "View on GitHub" not in md
     assert "Documentation" not in md
 

@@ -12,7 +12,6 @@ from snippets_mkdocs.errors import SnippetError
 from snippets_mkdocs.models import HeaderMeta
 
 _TAG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-_GITHUB_USER_RE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")
 CARD_TITLE_MAX = 28
 _PREFIXES = ("# ", "// ", "-- ", "#", "//", "--")
 _START = "snippet:"
@@ -105,7 +104,6 @@ def parse_header(text: str, *, path: str | None = None) -> tuple[HeaderMeta, str
         tags.append(item)
 
     added = _parse_added(loaded.get("added"), path=path)
-    submitted_by = _parse_submitted_by(loaded.get("submitted_by"), path=path)
 
     runnable_raw = loaded.get("runnable", False)
     if not isinstance(runnable_raw, bool):
@@ -131,7 +129,6 @@ def parse_header(text: str, *, path: str | None = None) -> tuple[HeaderMeta, str
             summary=summary,
             tags=tuple(tags),
             added=added,
-            submitted_by=submitted_by,
             runnable=runnable_raw,
             caveats=caveats,
         ),
@@ -160,21 +157,3 @@ def _parse_added(raw: Any, *, path: str | None) -> datetime:
     if parsed.tzinfo is None:
         return parsed.replace(tzinfo=UTC)
     return parsed
-
-
-def _parse_submitted_by(raw: Any, *, path: str | None) -> str:
-    """Require a GitHub userid (profile URL is https://github.com/<id>)."""
-    if not isinstance(raw, str) or not raw.strip():
-        raise SnippetError(
-            "missing or empty submitted_by",
-            path=path,
-            field="submitted_by",
-        )
-    userid = raw.strip()
-    if not _GITHUB_USER_RE.match(userid):
-        raise SnippetError(
-            "submitted_by must be a GitHub userid",
-            path=path,
-            field="submitted_by",
-        )
-    return userid

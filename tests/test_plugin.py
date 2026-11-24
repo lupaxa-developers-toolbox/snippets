@@ -26,7 +26,6 @@ HEADER = """# snippet:
 # summary: Backoff retry.
 # tags: [process, retry]
 # added: "2026-08-18T18:03:18+01:00"
-# submitted_by: Lupraxus
 # end-snippet
 
 retry() { :; }

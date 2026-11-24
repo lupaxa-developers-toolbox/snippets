@@ -4,7 +4,6 @@
 // summary: "Return how many days a month has, using 29 for February in a Gregorian leap year and 0 when the month is out of range."
 // tags: [date]
 // added: "2026-08-21T13:16:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Month is 1-12. Needs is_leap_year from the Gregorian leap year snippet."
 // end-snippet

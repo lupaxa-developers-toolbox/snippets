@@ -4,7 +4,6 @@
 # summary: "Return /N for a dotted IPv4 netmask, and reject masks whose 1-bits are not a contiguous prefix."
 # tags: [network, cidr]
 # added: "2026-09-09T16:42:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs bash. Prints /0 for 0.0.0.0 and /32 for 255.255.255.255. 255.255.255.183 is not a valid mask and is rejected."
 # end-snippet

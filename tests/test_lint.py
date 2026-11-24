@@ -10,7 +10,6 @@ RUNNABLE = """# snippet:
 # summary: S
 # tags: [demo]
 # added: "2026-01-01T00:00:00+00:00"
-# submitted_by: Lupraxus
 # runnable: true
 # end-snippet
 
@@ -23,7 +22,6 @@ FRAGMENT = """# snippet:
 # summary: S
 # tags: [demo]
 # added: "2026-01-01T00:00:00+00:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 

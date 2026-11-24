@@ -4,7 +4,6 @@
 # summary: "Re-call a function with exponential backoff until it succeeds or reaches a retry limit, sleeping longer after each failed attempt."
 # tags: [retry]
 # added: "2026-08-18T18:03:20+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: Not for functions that are not idempotent.
 # end-snippet

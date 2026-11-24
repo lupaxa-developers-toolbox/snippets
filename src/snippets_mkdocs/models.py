@@ -16,7 +16,6 @@ class HeaderMeta:
     summary: str
     tags: tuple[str, ...]
     added: datetime
-    submitted_by: str
     runnable: bool
     caveats: str | None
 
@@ -33,7 +32,6 @@ class Snippet:
     summary: str
     tags: tuple[str, ...]
     added: datetime
-    submitted_by: str
     runnable: bool
     caveats: str | None
     body: str

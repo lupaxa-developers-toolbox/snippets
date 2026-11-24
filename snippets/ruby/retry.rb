@@ -4,7 +4,6 @@
 # summary: "Re-run a block with exponential backoff until it succeeds or hits a retry limit, sleeping longer after each failed attempt."
 # tags: [retry]
 # added: "2026-08-18T18:03:19+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: Not for blocks that are not idempotent.
 # end-snippet

@@ -14,9 +14,8 @@ highlighted examples with caveats when they matter.
 
 Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
 `end-snippet` comment fence. Required fields are `title` (modal heading),
-`card_title` (catalogue card, at most 28 characters), `summary`, `tags`,
-`added` (ISO-8601), and `submitted_by` (GitHub userid). Optional fields are
-`runnable` and `caveats`.
+`card_title` (catalogue card, at most 28 characters), `summary`, `tags`, and
+`added` (ISO-8601). Optional fields are `runnable` and `caveats`.
 
 ```bash
 # snippet:
@@ -25,7 +24,6 @@ Put a file at `snippets/<language>/<slug>.<ext>` with a `snippet:` /
 # summary: Re-run a command with exponential backoff until it succeeds or hits a retry limit.
 # tags: [retry]
 # added: "2026-08-18T18:03:18+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: Not for commands that are not idempotent.
 # end-snippet

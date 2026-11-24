@@ -4,7 +4,6 @@
 // summary: "Allocate a copy of a string with each case-insensitive match of from replaced by to, or only the first match when single is set."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Caller must free the result. An empty from is left unchanged. Needs ctype.h, stdlib.h, and string.h."
 // end-snippet

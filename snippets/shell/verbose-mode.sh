@@ -4,7 +4,6 @@
 # summary: "When VERBOSE is false, send stdout and stderr to /dev/null, while still allowing a forced-output helper to print essential lines."
 # tags: [terminal]
 # added: "2026-08-18T19:55:24+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Set VERBOSE before calling set_verbose_mode. Use output msg forced for lines that must always show."
 # end-snippet

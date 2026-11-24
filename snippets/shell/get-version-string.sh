@@ -4,7 +4,6 @@
 # summary: "Pull the first run of digits and dots out of a string so a human version line becomes a comparable numeric version."
 # tags: [version, text]
 # added: "2026-08-18T19:55:13+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 get_version_string() {

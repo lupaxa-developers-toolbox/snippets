@@ -4,7 +4,6 @@
 // summary: "Return st, nd, rd, or th for an integer, treating 11, 12, and 13 as th."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Only the values 11-19 use the teen rule. 111 returns st because the check is not applied to 111."
 // end-snippet

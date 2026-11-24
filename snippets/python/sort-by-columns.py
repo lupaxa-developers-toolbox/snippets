@@ -4,7 +4,6 @@
 # summary: "Sort mappings by column names. A leading minus on a name sorts that column descending."
 # tags: [list]
 # added: "2026-10-02T17:49:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Each item must be a mapping with the named columns. Later columns break ties in earlier ones. A leading minus sorts that column descending."
 # end-snippet

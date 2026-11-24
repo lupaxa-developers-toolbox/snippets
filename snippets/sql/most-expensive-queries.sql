@@ -4,7 +4,6 @@
 -- summary: "Return the SQL Server plans that have used the most CPU, with execution count, total and average worker time, query text, and the XML plan for review."
 -- tags: [performance, sql-server]
 -- added: "2026-08-19T16:36:00+01:00"
--- submitted_by: Lupraxus
 -- runnable: false
 -- caveats: "SQL Server DMVs. Needs VIEW SERVER STATE. Change TOP (10) for N. Worker time is microseconds. DB_NAME(st.dbid) is NULL for some ad hoc batches."
 -- end-snippet

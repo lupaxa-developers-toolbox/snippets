@@ -15,7 +15,6 @@ def _snip(language: str, slug: str) -> Snippet:
         summary="s",
         tags=("retry",),
         added=datetime(2026, 1, 1, tzinfo=UTC),
-        submitted_by="Lupraxus",
         runnable=False,
         caveats=None,
         body="x\n",

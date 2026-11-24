@@ -99,9 +99,8 @@ def test_built_header_and_body_chrome() -> None:
         pause,
     )
     assert "data-snippet-added" in pause
-    assert "data-snippet-submitted" in pause
-    assert "Submitted by:" in pause
-    assert 'href="https://github.com/Lupraxus"' in pause
+    assert "data-snippet-submitted" not in pause
+    assert "Submitted by:" not in pause
     assert "admonition" in pause
     languages_pause = _header_link(pause, "Languages")
     assert languages_pause.group(1) == "../../languages/"

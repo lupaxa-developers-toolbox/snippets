@@ -66,7 +66,6 @@ def scan_snippets(root: Path) -> list[Snippet]:
                     summary=meta.summary,
                     tags=meta.tags,
                     added=meta.added,
-                    submitted_by=meta.submitted_by,
                     runnable=meta.runnable,
                     caveats=meta.caveats,
                     body=body,

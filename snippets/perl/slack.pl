@@ -4,7 +4,6 @@
 # summary: "Post a text message to a Slack incoming webhook, optionally setting the channel and username on the JSON payload."
 # tags: [slack, communication]
 # added: "2026-08-18T19:55:27+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs an incoming webhook URL. Requires LWP::UserAgent and JSON."
 # end-snippet

@@ -4,7 +4,6 @@
 # summary: "Compare two numeric version strings and return 0 if they are equal, 1 if the first is greater, or 2 if it is less."
 # tags: [version]
 # added: "2026-08-18T19:55:05+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Numeric components only. Optional third argument sets the delimiter (default is a dot)."
 # end-snippet

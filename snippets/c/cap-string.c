@@ -4,7 +4,6 @@
 // summary: "Allocate a copy with the first character uppercased and the rest lowercased, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Caller must free the result. Empty string returns an empty allocation. Needs ctype.h, stdlib.h, and string.h."
 // end-snippet

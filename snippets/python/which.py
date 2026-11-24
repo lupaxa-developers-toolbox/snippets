@@ -4,7 +4,6 @@
 # summary: "Search PATH for an executable name and return its expanded filesystem path, or a not-installed marker when nothing matches."
 # tags: [path]
 # added: "2026-08-18T19:55:39+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 import os

@@ -64,7 +64,6 @@ def render_snippet_page(snippet: Snippet, catalogue: Catalogue | None = None) ->
         '<div class="snippet-modal-meta" data-snippet-meta>',
         _format_language(snippet, catalogue),
         f'<p class="snippet-modal-date" data-snippet-added>Added on: {_format_added(snippet)}</p>',
-        _format_submitted_by(snippet),
         "</div>",
         "",
     ]
@@ -110,53 +109,34 @@ def _day_ordinal_suffix(day: int) -> str:
     return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
 
 
-_RELEASE_MONTHS = (
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-)
+def _added_phrase(snippet: Snippet) -> str:
+    """Spoken date, with the ordinal against the day (``1st January 2026``)."""
+    added = snippet.added
+    suffix = _day_ordinal_suffix(added.day)
+    return f"{added.day}{suffix} {added.strftime('%B %Y')}"
 
 
 def _format_added(snippet: Snippet) -> str:
-    """Human date for snippet metadata (day<sup>st</sup> Month year)."""
+    """Date markup. The ordinal is a CSS suffix so formatting cannot insert a space."""
     added = snippet.added
-    suffix = _day_ordinal_suffix(added.day)
-    return f"{added.day}<sup>{suffix}</sup> {added.strftime('%B %Y')}"
-
-
-def _format_release_date(snippet: Snippet) -> str:
-    """Card-footer date, matching the portal sash (``1 Jan 2026``)."""
-    added = snippet.added
-    return f"{added.day} {_RELEASE_MONTHS[added.month - 1]} {added.year}"
+    suffix = escape(_day_ordinal_suffix(added.day), quote=True)
+    month_year = escape(added.strftime("%B %Y"))
+    return (
+        f'<span class="date-ordinal" data-suffix="{suffix}" translate="no">{added.day}</span>'
+        f" {month_year}"
+    )
 
 
 def _release_footer(snippet: Snippet) -> str:
     """Centred added-date band along the bottom of a snippet card."""
-    shown = _format_release_date(snippet)
-    safe = escape(shown)
-    label = escape(f"Added: {shown}", quote=True)
+    label = escape(f"Added on: {_added_phrase(snippet)}", quote=True)
     return (
         f'<span class="catalogue-banner catalogue-banner--blue" aria-label="{label}">'
         f'<span class="catalogue-banner__band" aria-hidden="true">'
         f'<span class="catalogue-banner__text">'
-        f'<span class="catalogue-banner__date">Added: '
-        f'<span translate="no">{safe}</span></span>'
+        f'<span class="catalogue-banner__date">Added on: {_format_added(snippet)}</span>'
         f"</span></span></span>"
     )
-
-
-def github_profile_url(userid: str) -> str:
-    """Public GitHub profile for a userid."""
-    return f"https://github.com/{userid}"
 
 
 def _format_language(snippet: Snippet, catalogue: Catalogue | None) -> str:
@@ -169,17 +149,6 @@ def _format_language(snippet: Snippet, catalogue: Catalogue | None) -> str:
     return (
         f'<p class="snippet-modal-language" data-snippet-language-meta="{slug}">'
         f'Language: <a href="{href}">{label}</a>'
-        f"</p>"
-    )
-
-
-def _format_submitted_by(snippet: Snippet) -> str:
-    """Modal/page line linking the submitter to their GitHub profile."""
-    user = escape(snippet.submitted_by)
-    href = escape(github_profile_url(snippet.submitted_by), quote=True)
-    return (
-        f'<p class="snippet-modal-submitted" data-snippet-submitted>'
-        f'Submitted by: <a href="{href}" target="_blank" rel="noopener">{user}</a>'
         f"</p>"
     )
 

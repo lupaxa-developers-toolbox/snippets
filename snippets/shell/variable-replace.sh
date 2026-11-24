@@ -4,7 +4,6 @@
 # summary: "Substitute each key from a nameref associative array with its value inside a file, using in-place sed for the replacements."
 # tags: [text]
 # added: "2026-08-18T19:55:23+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "sed -i '' is the macOS in-place form. On GNU sed use sed -i. Keys are used as regexes."
 # end-snippet

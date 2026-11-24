@@ -4,7 +4,6 @@
 # summary: "List version-sorted remote tags that match a dotted triple and print the highest name, skipping peeled annotated-tag objects."
 # tags: [git]
 # added: "2026-10-07T14:35:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Replace <REPO URL> with the remote. Talks to the remote. Only matches tags of the form *.*.*."
 # end-snippet

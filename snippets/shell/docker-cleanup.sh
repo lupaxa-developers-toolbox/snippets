@@ -4,7 +4,6 @@
 # summary: "Remove exited and dead containers, containers stuck on untagged images, dangling images, and dangling volumes, or list them with -n."
 # tags: [docker]
 # added: "2026-08-21T12:50:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs docker on PATH. Call docker_cleanup or docker_cleanup -n. Does not prune unused networks or tagged images that are merely unused. Images still referenced by a container are left. Skips if docker rm is already running."
 # end-snippet

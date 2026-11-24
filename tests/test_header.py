@@ -9,7 +9,6 @@ BASH = """# snippet:
 # summary: Re-run a command with backoff.
 # tags: [process, retry]
 # added: "2026-08-18T18:03:18+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: Not for commands that are not idempotent.
 # end-snippet
@@ -23,7 +22,6 @@ SLASH = """// snippet:
 // summary: A tiny example.
 // tags: [demo]
 // added: "2026-01-01T00:00:00+00:00"
-// submitted_by: Lupraxus
 // end-snippet
 
 export const hello = 1;
@@ -35,7 +33,6 @@ DASH = """-- snippet:
 -- summary: A tiny example.
 -- tags: [demo]
 -- added: "2026-01-01T00:00:00+00:00"
--- submitted_by: Lupraxus
 -- end-snippet
 
 SELECT 1;
@@ -49,7 +46,6 @@ def test_parse_hash_header_and_strip_body() -> None:
     assert meta.summary == "Re-run a command with backoff."
     assert meta.tags == ("process", "retry")
     assert meta.added.isoformat() == "2026-08-18T18:03:18+01:00"
-    assert meta.submitted_by == "Lupraxus"
     assert meta.runnable is False
     assert meta.caveats == "Not for commands that are not idempotent."
     assert body == "retry() { :; }\n"
@@ -71,14 +67,12 @@ def test_runnable_defaults_false() -> None:
 # summary: S
 # tags: [demo]
 # added: "2026-01-01T00:00:00+00:00"
-# submitted_by: Lupraxus
 # end-snippet
 
 x
 """
     meta, _ = parse_header(text)
     assert meta.runnable is False
-    assert meta.submitted_by == "Lupraxus"
     assert meta.added.year == 2026
     assert meta.caveats is None
 
@@ -123,7 +117,6 @@ def test_card_title_too_long_raises() -> None:
 # summary: S
 # tags: [demo]
 # added: "2026-01-01T00:00:00+00:00"
-# submitted_by: Lupraxus
 # end-snippet
 
 x
@@ -176,39 +169,6 @@ x
     with pytest.raises(SnippetError) as exc:
         parse_header(text, path="f.sh")
     assert exc.value.field == "added"
-
-
-def test_missing_submitted_by_raises() -> None:
-    text = """# snippet:
-# title: T
-# card_title: T
-# summary: S
-# tags: [demo]
-# added: "2026-01-01T00:00:00+00:00"
-# end-snippet
-
-x
-"""
-    with pytest.raises(SnippetError) as exc:
-        parse_header(text, path="f.sh")
-    assert exc.value.field == "submitted_by"
-
-
-def test_bad_submitted_by_raises() -> None:
-    text = """# snippet:
-# title: T
-# card_title: T
-# summary: S
-# tags: [demo]
-# added: "2026-01-01T00:00:00+00:00"
-# submitted_by: not a user
-# end-snippet
-
-x
-"""
-    with pytest.raises(SnippetError) as exc:
-        parse_header(text, path="f.sh")
-    assert exc.value.field == "submitted_by"
 
 
 def test_empty_tags_raises() -> None:

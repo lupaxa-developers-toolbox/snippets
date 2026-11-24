@@ -4,7 +4,6 @@
 # summary: "Run Parallel::ForkManager jobs and kill any child whose runtime exceeds PATIENCE seconds so hung workers cannot stall the pool."
 # tags: [concurrency, timeout]
 # added: "2026-08-18T19:55:28+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs Parallel::ForkManager. Adjust PATIENCE, max threads, and the work function."
 # end-snippet

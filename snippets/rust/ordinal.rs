@@ -4,7 +4,6 @@
 // summary: "Return an integer with its English ordinal suffix, treating 11, 12, 13 and other teens as th, and 1, 2, 3 as st, nd, rd."
 // tags: [text]
 // added: "2026-08-21T13:27:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // end-snippet
 fn get_ordinal(n: u32) -> String {

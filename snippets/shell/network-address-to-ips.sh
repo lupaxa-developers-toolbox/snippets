@@ -4,7 +4,6 @@
 # summary: "Print every IPv4 address in a CIDR or dotted-mask network, including the network and broadcast addresses."
 # tags: [network, cidr]
 # added: "2026-09-09T16:41:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs bash. Includes network and broadcast. /0 enumerates 2^32 addresses. The address is masked to the network base first, so 10.0.0.5/24 lists 10.0.0.0-255."
 # end-snippet

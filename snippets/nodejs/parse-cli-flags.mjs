@@ -4,7 +4,6 @@
 // summary: "Turn process.argv flags of the form --key=value into an object, treating a bare --key as true."
 // tags: [cli]
 // added: "2026-08-21T13:42:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Only handles --key and --key=value. No short flags, quoting, or repeated keys (later values overwrite). Positional arguments become keys too."
 // end-snippet

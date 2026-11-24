@@ -4,7 +4,6 @@
 // summary: "Return a pointer to the byte after the terminating NUL of a C string, the one-past-end position."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Needs string.h. The result is not a valid C string. NULL input returns NULL."
 // end-snippet

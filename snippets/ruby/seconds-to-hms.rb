@@ -4,7 +4,6 @@
 # summary: "Format an integer number of seconds as a zero-padded HH:MM:SS clock string, including hours beyond 24 when the duration is long."
 # tags: [time]
 # added: "2026-08-18T19:55:33+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 def seconds_to_hms(sec)

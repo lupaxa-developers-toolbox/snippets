@@ -4,7 +4,6 @@
 # summary: "Return success if the current or given directory sits inside a git work tree, without printing the repository root."
 # tags: [git]
 # added: "2026-08-18T19:55:14+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 is_git_repo() {

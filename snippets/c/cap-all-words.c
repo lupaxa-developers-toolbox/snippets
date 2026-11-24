@@ -4,7 +4,6 @@
 // summary: "Allocate a copy that uppercases the first letter after each space and lowercases the rest, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Words are split only on space, not other whitespace. Caller must free the result. Needs ctype.h, stdlib.h, and string.h."
 // end-snippet

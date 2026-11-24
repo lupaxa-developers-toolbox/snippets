@@ -4,7 +4,6 @@
 // summary: "Register an error handler that emails the number, file, line, and message to a chosen address, then stops on anything more severe than a notice."
 // tags: [email]
 // added: "2026-10-02T17:41:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Set error_mail_to before registering the handler. error_log type 1 needs a working mail setup. Notices are emailed and the script continues. PHP 8 does not pass local variables into the handler. The last line triggers an undefined-variable notice."
 // end-snippet

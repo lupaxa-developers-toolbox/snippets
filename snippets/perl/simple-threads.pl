@@ -4,7 +4,6 @@
 # summary: "Fork a fixed-size Parallel::ForkManager worker pool, start each job in a child process, and wait until every worker has finished."
 # tags: [concurrency]
 # added: "2026-08-18T19:55:26+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs Parallel::ForkManager."
 # end-snippet

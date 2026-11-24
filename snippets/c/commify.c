@@ -4,7 +4,6 @@
 // summary: "Allocate a decimal string for an integer with commas every three digits, keeping a leading minus when the value is negative."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Caller must free the result. Uses a comma, not a locale thousands separator. Needs stdio.h and stdlib.h."
 // end-snippet

@@ -4,7 +4,6 @@
 // summary: "A jQuery plugin that starts a session timer, shows a stay-signed-in modal after inactivity, and redirects to a logout URL if the user does not respond."
 // tags: [timeout, session]
 // added: "2026-08-19T09:20:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Needs jQuery and Bootstrap 3 modal markup (data-dismiss, .modal('show')). Set logouturl or the plugin does nothing."
 // end-snippet

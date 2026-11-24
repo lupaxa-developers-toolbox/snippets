@@ -4,7 +4,6 @@
 # summary: "Walk a COMMANDS list and exit with an error as soon as any required program name is missing from PATH."
 # tags: [path]
 # added: "2026-08-18T19:55:04+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Set COMMANDS to the list of command names to require before calling check_prereqs."
 # end-snippet

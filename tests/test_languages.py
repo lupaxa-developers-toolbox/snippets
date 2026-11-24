@@ -76,7 +76,6 @@ def _snip(language: str) -> Snippet:
         summary="s",
         tags=("t",),
         added=datetime(2026, 1, 1, tzinfo=UTC),
-        submitted_by="Lupraxus",
         runnable=False,
         caveats=None,
         body="1\n",

@@ -4,7 +4,6 @@
 # summary: "Take an exclusive flock on a /tmp lock file so a cron job or script exits instead of overlapping a previous run, with a noclobber fallback when flock is missing."
 # tags: [lock, cron]
 # added: "2026-08-19T11:10:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Replace actual_script with your work. The lock file is /tmp/<script-name>.lock. Without flock, the noclobber fallback is not atomic across all filesystems."
 # end-snippet

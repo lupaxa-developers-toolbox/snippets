@@ -4,7 +4,6 @@
 # summary: "Return success if the named path exists and its mode bits match the expected octal permissions, using GNU or BSD stat."
 # tags: [config]
 # added: "2026-08-19T16:19:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Pass the variable name that stores the path, then the expected mode as octal (for example 644)."
 # end-snippet

@@ -164,10 +164,8 @@
 
 .snippet-modal-language,
 .snippet-modal-date,
-.snippet-modal-submitted,
 .snippet-modal .snippet-modal-language,
-.snippet-modal .snippet-modal-date,
-.snippet-modal .snippet-modal-submitted {
+.snippet-modal .snippet-modal-date {
   margin: 0;
   color: var(--md-default-fg-color--light);
   font-size: 0.72rem;
@@ -177,33 +175,29 @@
 }
 
 .snippet-modal-date,
-.snippet-modal-submitted,
-.snippet-modal .snippet-modal-date,
-.snippet-modal .snippet-modal-submitted {
+.snippet-modal .snippet-modal-date {
   margin-top: 0.25rem;
 }
 
 .snippet-modal-language a,
-.snippet-modal-submitted a,
-.snippet-modal .snippet-modal-language a,
-.snippet-modal .snippet-modal-submitted a {
+.snippet-modal .snippet-modal-language a {
   color: var(--lupaxa-light-blue);
   text-decoration: none;
 }
 
 .snippet-modal-language a:hover,
 .snippet-modal-language a:focus-visible,
-.snippet-modal-submitted a:hover,
-.snippet-modal-submitted a:focus-visible,
 .snippet-modal .snippet-modal-language a:hover,
-.snippet-modal .snippet-modal-language a:focus-visible,
-.snippet-modal .snippet-modal-submitted a:hover,
-.snippet-modal .snippet-modal-submitted a:focus-visible {
+.snippet-modal .snippet-modal-language a:focus-visible {
   text-decoration: underline;
 }
 
-.snippet-modal-date sup,
-.snippet-modal .snippet-modal-date sup {
+.date-ordinal {
+  letter-spacing: 0;
+}
+
+.date-ordinal::after {
+  content: attr(data-suffix);
   font-size: 0.62em;
   font-weight: 700;
   line-height: 0;

@@ -4,7 +4,6 @@
 # summary: "Parse a GitHub repository URL and return its default branch name from the GitHub API."
 # tags: [github, git]
 # added: "2026-09-30T17:33:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs the requests package. GitHub HTTPS URLs only, in owner/repo form. Unauthenticated API calls are rate-limited."
 # end-snippet

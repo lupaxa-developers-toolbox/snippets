@@ -4,7 +4,6 @@
 // summary: "Walk common proxy headers and REMOTE_ADDR, then return the first public IP that is not private or reserved, or Unknown if none validate."
 // tags: [ip]
 // added: "2026-08-19T11:16:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Forwarded headers can be spoofed. Private and reserved addresses are skipped, so local or LAN clients often return Unknown."
 // end-snippet

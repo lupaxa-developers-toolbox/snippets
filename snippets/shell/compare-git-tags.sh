@@ -4,7 +4,6 @@
 # summary: "List tags that exist only locally or only on a remote after confirming the current directory is a git work tree."
 # tags: [git]
 # added: "2026-08-21T12:52:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs bash 4+ mapfile. Call compare_git_tags or compare_git_tags origin. ls-remote talks to the remote."
 # end-snippet

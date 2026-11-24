@@ -4,7 +4,6 @@
 // summary: "Ask a question on stdin with node:readline, wait for the answer as a promise, then close the interface."
 // tags: [cli, readline]
 // added: "2026-08-21T13:42:30+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "ES module with top-level await: run as .mjs, or set type module in package.json. Needs a TTY. Empty input is an empty string, not null."
 // end-snippet

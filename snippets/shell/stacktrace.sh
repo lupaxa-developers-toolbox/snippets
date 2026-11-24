@@ -4,7 +4,6 @@
 # summary: "Walk Bash caller frames from the current function back toward main and print each frame as a compact stack trace."
 # tags: [debugging]
 # added: "2026-08-18T19:55:16+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 stacktrace() {

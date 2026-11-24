@@ -4,7 +4,6 @@
 # summary: "Run an argv list as a subprocess and return the exit status together with captured stdout and stderr as strings."
 # tags: [shell]
 # added: "2026-08-18T19:55:34+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 import os

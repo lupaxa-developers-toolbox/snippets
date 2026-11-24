@@ -4,7 +4,6 @@
 // summary: "Allocate a lowercase copy of a C string with tolower and return it, or NULL if allocation fails."
 // tags: [string]
 // added: "2026-08-21T13:24:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Caller must free the result. Needs ctype.h, stdlib.h, and string.h. NULL input returns NULL."
 // end-snippet

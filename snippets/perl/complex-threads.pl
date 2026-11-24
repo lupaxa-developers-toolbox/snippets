@@ -4,7 +4,6 @@
 # summary: "Track worker PIDs and thread IDs in a Parallel::ForkManager pool, then kill children that exceed PATIENCE so hung jobs are cleaned up."
 # tags: [concurrency, timeout]
 # added: "2026-08-18T19:55:25+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Needs Parallel::ForkManager."
 # end-snippet

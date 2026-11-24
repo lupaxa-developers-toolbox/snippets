@@ -4,7 +4,6 @@
 # summary: "Return a new list or tuple in random order, and shuffle nested lists or tuples down to a given depth."
 # tags: [list]
 # added: "2026-11-07T13:51:00+00:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Uses secrets.SystemRandom, so the order is not reproducible. Depth 1 shuffles only the outer sequence. Pass a higher depth to shuffle nested lists or tuples. Other types are left as they are."
 # end-snippet

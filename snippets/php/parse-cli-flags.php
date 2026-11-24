@@ -4,7 +4,6 @@
 // summary: "Parse help, version, aflag, and b from short or long flags, and return the values keyed by the long name."
 // tags: [cli]
 // added: "2026-10-02T17:38:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Reads the real process argv. help and version are switches. aflag is required and takes a value. b is optional and takes a value. Passing both forms of one option, or omitting aflag, prints an error and exits."
 // end-snippet

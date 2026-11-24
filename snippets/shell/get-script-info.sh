@@ -4,7 +4,6 @@
 # summary: "Record the current script's path, name, sourced-or-executed status, and arguments in variables for later logging or usage text."
 # tags: [scripting]
 # added: "2026-08-18T19:55:11+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Set READONLY_INFO=true before calling if the exported names should be readonly."
 # end-snippet

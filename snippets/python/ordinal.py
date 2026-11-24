@@ -4,7 +4,6 @@
 # summary: "Return the English ordinal form of an integer, including the special cases 11th, 12th, and 13th as well as 1st, 2nd, and 3rd."
 # tags: [text]
 # added: "2026-08-18T19:55:36+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # end-snippet
 from typing import Dict

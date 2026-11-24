@@ -4,7 +4,6 @@
 // summary: "Return the weekday as a 0-Sunday index or as a short or long English name for a day, month, and year."
 // tags: [date]
 // added: "2026-08-21T13:19:00+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // caveats: "Month is 1-12. Weekday 0 is Sunday. Out-of-range day returns ERROR. Needs days_in_a_month from the days-in-a-month snippet."
 // end-snippet

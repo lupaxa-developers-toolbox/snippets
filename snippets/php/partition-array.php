@@ -4,7 +4,6 @@
 // summary: "Split a list into p slices of roughly equal size, spreading any remainder across the first groups so lengths differ by at most one."
 // tags: [array]
 // added: "2026-08-18T19:55:30+01:00"
-// submitted_by: Lupraxus
 // runnable: false
 // end-snippet
 function partition_array($list, $p)

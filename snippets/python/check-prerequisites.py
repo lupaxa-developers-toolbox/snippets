@@ -4,7 +4,6 @@
 # summary: "Search an expanded PATH for each command name and return its full path, or raise when any name is missing."
 # tags: [path]
 # added: "2026-10-02T17:31:00+01:00"
-# submitted_by: Lupraxus
 # runnable: false
 # caveats: "Raises PrerequisiteCheckError with one message per missing command. PATH entries that start with ~ are expanded before the search."
 # end-snippet

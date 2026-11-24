@@ -435,6 +435,22 @@
   }
 
   /**
+   * Visible meta line, including an ordinal that CSS draws with ::after.
+   *
+   * @param {Element} line
+   */
+  function metaLineText(line) {
+    const clone = line.cloneNode(true);
+
+    clone.querySelectorAll(".date-ordinal").forEach((ordinal) => {
+      const suffix = ordinal.getAttribute("data-suffix") || "";
+      ordinal.textContent = `${ordinal.textContent || ""}${suffix}`;
+    });
+
+    return clone.textContent?.trim() || "";
+  }
+
+  /**
    * Print the open snippet: title, details, code, and caveats.
    *
    * @param {HTMLElement} highlight
@@ -444,7 +460,7 @@
     const title = scope.querySelector(".snippet-modal-title")?.textContent?.trim()
       || "Snippet";
     const meta = [...scope.querySelectorAll("[data-snippet-meta] p")]
-      .map((line) => line.textContent?.trim() || "")
+      .map((line) => metaLineText(line))
       .filter(Boolean);
     const code = highlight.querySelector("pre code, pre")?.textContent ?? "";
     const caveats = scope.querySelector(".admonition");
@@ -684,7 +700,6 @@
       parsed.querySelector("article h1")?.textContent?.trim() || title;
     const meta = article.querySelector("[data-snippet-meta]");
     const date = article.querySelector("[data-snippet-added]");
-    const submitted = article.querySelector("[data-snippet-submitted]");
     const highlight = article.querySelector(".highlight");
     const caveats = article.querySelector(".admonition");
 
@@ -720,15 +735,6 @@
         }
 
         body.append(dateNode);
-      }
-
-      if (submitted instanceof HTMLElement) {
-        const submittedNode = submitted.cloneNode(true);
-
-        if (submittedNode instanceof HTMLElement) {
-          stripFragmentLinks(submittedNode);
-          body.append(submittedNode);
-        }
       }
     }
 
