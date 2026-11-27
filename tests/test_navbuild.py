@@ -40,6 +40,4 @@ def test_extra_nav_snippets_then_languages() -> None:
 
 
 def test_snippet_language_prefixes_are_unique_and_sorted() -> None:
-    assert snippet_language_prefixes(
-        [_snip("shell", "retry"), _snip("python", "retry"), _snip("shell", "pause")]
-    ) == ["python", "shell"]
+    assert snippet_language_prefixes([_snip("shell", "retry"), _snip("python", "retry"), _snip("shell", "pause")]) == ["python", "shell"]

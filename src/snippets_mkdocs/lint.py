@@ -26,25 +26,13 @@ def lint_runnable(root: Path) -> int:
             continue
         tool = TOOLS.get(item.language)
         if tool is None:
-            print(
-                f"NOTICE: skipping runnable lint for {item.path} (no linter wired)",
-                flush=True,
-            )
+            print(f"NOTICE: skipping runnable lint for {item.path} (no linter wired)", flush=True)
             continue
         if shutil.which(tool[0]) is None:
-            print(
-                f"ERROR: {tool[0]} is required to lint runnable {item.language} "
-                f"snippet {item.path}",
-                file=sys.stderr,
-            )
+            print(f"ERROR: {tool[0]} is required to lint runnable {item.language} snippet {item.path}", file=sys.stderr)
             exit_code = 2
             continue
-        result = subprocess.run(
-            [*tool, str(item.path)],
-            check=False,
-            capture_output=True,
-            text=True,
-        )
+        result = subprocess.run([*tool, str(item.path)], check=False, capture_output=True, text=True)
         if result.returncode != 0:
             sys.stderr.write(result.stdout)
             sys.stderr.write(result.stderr)

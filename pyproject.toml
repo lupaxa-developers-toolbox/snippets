@@ -9,6 +9,14 @@ description = "MkDocs plugin that builds the snippets catalogue from source file
 readme = "README.md"
 requires-python = ">=3.13"
 authors = [{ name = "The Lupaxa Project" }]
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+]
+
 dependencies = [
   "mkdocs==1.6.1",
   "mkdocs-material==9.7.7",
@@ -33,7 +41,7 @@ snippets = "snippets_mkdocs.plugin:SnippetsPlugin"
 where = ["src"]
 
 [tool.ruff]
-line-length = 100
+line-length = 200
 target-version = "py313"
 src = ["src", "hooks", "tests"]
 exclude = ["snippets", "site", ".makefiles", ".venv"]

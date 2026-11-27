@@ -11,12 +11,7 @@ from mkdocs.structure.files import File, Files
 from snippets_mkdocs.languages import Catalogue, load_languages
 from snippets_mkdocs.models import Snippet
 from snippets_mkdocs.navbuild import extra_nav, snippet_language_prefixes
-from snippets_mkdocs.render import (
-    render_catalogue,
-    render_home,
-    render_languages_index,
-    render_snippet_page,
-)
+from snippets_mkdocs.render import render_catalogue, render_home, render_languages_index, render_snippet_page
 from snippets_mkdocs.scan import scan_snippets
 
 
@@ -33,10 +28,7 @@ class SnippetsPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig:
         repo = self._repo(config)
-        self._catalogue = Catalogue(
-            languages=load_languages(repo / "data" / "languages.yml"),
-            marks_dir=repo / "mkdocs" / "assets" / "images" / "languages",
-        )
+        self._catalogue = Catalogue(languages=load_languages(repo / "data" / "languages.yml"), marks_dir=repo / "mkdocs" / "assets" / "images" / "languages")
         root = repo / "snippets"
         self._snippets = scan_snippets(root) if root.is_dir() else []
         extra = extra_nav(self._snippets)
@@ -51,13 +43,7 @@ class SnippetsPlugin(BasePlugin):  # type: ignore[type-arg,no-untyped-call]
         catalogue = self._catalogue
         if catalogue is None:
             raise RuntimeError("on_config must run before on_files")
-        generated: list[tuple[str, str]] = [
-            (
-                f"{item.language}/{item.slug}.md",
-                render_snippet_page(item, catalogue),
-            )
-            for item in self._snippets
-        ]
+        generated: list[tuple[str, str]] = [(f"{item.language}/{item.slug}.md", render_snippet_page(item, catalogue)) for item in self._snippets]
         generated.append(("index.md", render_home(self._snippets, catalogue)))
         generated.append(("snippets.md", render_catalogue(self._snippets, catalogue)))
         generated.append(("languages.md", render_languages_index(self._snippets, catalogue)))

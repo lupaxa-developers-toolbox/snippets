@@ -6,12 +6,7 @@ from __future__ import annotations
 class SnippetError(Exception):
     """A snippet header or tree problem, with optional path and field."""
 
-    def __init__(
-        self,
-        message: str,
-        path: str | None = None,
-        field: str | None = None,
-    ) -> None:
+    def __init__(self, message: str, path: str | None = None, field: str | None = None) -> None:
         self.path = path
         self.field = field
         parts = [message]

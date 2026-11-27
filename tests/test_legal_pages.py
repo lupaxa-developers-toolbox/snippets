@@ -11,9 +11,7 @@ LEGAL = ROOT / "mkdocs" / "legal"
 
 
 def test_sponsor_widget_waits_for_a_click() -> None:
-    assert (
-        'data-src="https://ko-fi.com/thelupaxaproject/?hidefeed=true&widget=true&embed=true"'
-    ) in SPONSOR_MD
+    assert ('data-src="https://ko-fi.com/thelupaxaproject/?hidefeed=true&widget=true&embed=true"') in SPONSOR_MD
     assert ' src="' not in SPONSOR_MD
     assert "sponsor-widget-open" in SPONSOR_MD
     assert "Open Ko-fi Widget" in SPONSOR_MD

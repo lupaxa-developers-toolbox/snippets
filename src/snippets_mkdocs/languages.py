@@ -44,16 +44,10 @@ def load_languages(path: Path) -> tuple[Language, ...]:
     seen: set[str] = set()
     for index, item in enumerate(raw):
         if not isinstance(item, dict):
-            raise SnippetError(
-                f"language catalogue entry {index} must be a mapping",
-                path=str(path),
-            )
+            raise SnippetError(f"language catalogue entry {index} must be a mapping", path=str(path))
         unknown = set(item) - _KEYS
         if unknown:
-            raise SnippetError(
-                f"unknown key {sorted(unknown)[0]}",
-                path=str(path),
-            )
+            raise SnippetError(f"unknown key {sorted(unknown)[0]}", path=str(path))
         slug = item.get("slug")
         name = item.get("name")
         summary = item.get("summary")

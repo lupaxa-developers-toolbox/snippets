@@ -37,19 +37,12 @@ def test_fragment_not_linted(tmp_path: Path) -> None:
 
 def test_unknown_language_notice(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
     (tmp_path / "javascript").mkdir()
-    (tmp_path / "javascript" / "x.js").write_text(
-        RUNNABLE.replace("echo hi", "export default 1"),
-        encoding="utf-8",
-    )
+    (tmp_path / "javascript" / "x.js").write_text(RUNNABLE.replace("echo hi", "export default 1"), encoding="utf-8")
     assert lint_runnable(tmp_path) == 0
     assert "NOTICE" in capsys.readouterr().out
 
 
-def test_missing_shellcheck_fails(
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-    capsys: pytest.CaptureFixture[str],
-) -> None:
+def test_missing_shellcheck_fails(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
     (tmp_path / "shell").mkdir()
     (tmp_path / "shell" / "x.sh").write_text(RUNNABLE, encoding="utf-8")
 

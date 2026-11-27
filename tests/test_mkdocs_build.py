@@ -6,13 +6,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 def test_mkdocs_build_strict() -> None:
-    result = subprocess.run(
-        ["python", "-m", "mkdocs", "build", "--strict"],
-        cwd=REPO,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
+    result = subprocess.run(["python", "-m", "mkdocs", "build", "--strict"], cwd=REPO, check=False, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr + result.stdout
 
 
@@ -86,28 +80,19 @@ def test_built_header_and_body_chrome() -> None:
     assert "title=" in home
     languages_home = _header_link(home, "Languages")
     assert languages_home.group(1) == "languages/"
-    assert not re.search(
-        r'class="lupaxa-header__nav-link"[^>]*>\s*Tags\s*<',
-        home,
-    )
+    assert not re.search(r'class="lupaxa-header__nav-link"[^>]*>\s*Tags\s*<', home)
     snippets_pause = _header_link(pause, "Snippets")
     assert snippets_pause.group(1) == "../../snippets/"
     assert "data-snippet-article" in pause
     assert "data-snippet-language-meta" in pause
-    assert re.search(
-        r'Language:\s*<a href="/snippets/\?language=shell">Shell</a>',
-        pause,
-    )
+    assert re.search(r'Language:\s*<a href="/snippets/\?language=shell">Shell</a>', pause)
     assert "data-snippet-added" in pause
     assert "data-snippet-submitted" not in pause
     assert "Submitted by:" not in pause
     assert "admonition" in pause
     languages_pause = _header_link(pause, "Languages")
     assert languages_pause.group(1) == "../../languages/"
-    assert re.search(
-        r"lupaxa-header__nav-item--active[\s\S]*?>\s*(?:<span[^>]*>\s*)?Snippets\s*(?:</span>)?\s*<",
-        pause,
-    )
+    assert re.search(r"lupaxa-header__nav-item--active[\s\S]*?>\s*(?:<span[^>]*>\s*)?Snippets\s*(?:</span>)?\s*<", pause)
     languages_page = (REPO / "site" / "languages" / "index.html").read_text(encoding="utf-8")
     assert 'href="../snippets/?language=shell"' in languages_page
     assert 'href="../snippets/?language=php"' in languages_page
@@ -120,10 +105,7 @@ def test_built_header_and_body_chrome() -> None:
     assert 'src="../assets/images/languages/php.png"' in languages_page
     assert 'title="Shell"' not in languages_page
     assert 'title="PHP"' not in languages_page
-    assert re.search(
-        r"lupaxa-header__nav-item--active[\s\S]*?>\s*Languages\s*<",
-        languages_page,
-    )
+    assert re.search(r"lupaxa-header__nav-item--active[\s\S]*?>\s*Languages\s*<", languages_page)
     assert "?language=kotlin" not in languages_page
     assert "?language=swift" not in languages_page
     assert "?language=bash" not in languages_page

@@ -9,8 +9,8 @@ on:
       - "mkdocs/**"
       - "mkdocs.yml"
       - "overrides/**"
-      - "pyproject.toml"
       - "requirements.txt"
+      - "pyproject.toml"
       - "snippets/**"
       - "src/snippets_mkdocs/**"
 
@@ -33,7 +33,6 @@ jobs:
     uses: the-lupaxa-project/workflows/.github/workflows/reusable-mkdocs-site-publisher.yml@master
     secrets: inherit
     with:
-      python-version: "3.13"
       cleanup: true
 
   generate-workflow-summary:

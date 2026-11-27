@@ -28,31 +28,19 @@ def scan_snippets(root: Path) -> list[Snippet]:
         if child.name.startswith("."):
             continue
         if child.is_file():
-            raise SnippetError(
-                "files must live at snippets/<language>/<file>",
-                path=str(child),
-            )
+            raise SnippetError("files must live at snippets/<language>/<file>", path=str(child))
         language = child.name.lower()
         if language in RESERVED_LANGUAGES:
-            raise SnippetError(
-                "language folder name 'tags' is reserved",
-                path=str(child),
-            )
+            raise SnippetError("language folder name 'tags' is reserved", path=str(child))
         for entry in sorted(child.iterdir()):
             if entry.name.startswith(".") or entry.name in SKIP_NAMES:
                 continue
             if entry.is_dir():
-                raise SnippetError(
-                    "files must live at snippets/<language>/<file>",
-                    path=str(entry),
-                )
+                raise SnippetError("files must live at snippets/<language>/<file>", path=str(entry))
             slug = entry.stem
             key = (language, slug)
             if key in seen:
-                raise SnippetError(
-                    f"duplicate language + slug: {language}/{slug}",
-                    path=str(entry),
-                )
+                raise SnippetError(f"duplicate language + slug: {language}/{slug}", path=str(entry))
             seen.add(key)
             text = entry.read_text(encoding="utf-8")
             meta, body = parse_header(text, path=str(entry))

@@ -5,13 +5,7 @@ from __future__ import annotations
 import json
 from html import escape
 
-from snippets_mkdocs.languages import (
-    Catalogue,
-    language_labels,
-    language_mark_slug,
-    language_profile,
-    listed_slugs,
-)
+from snippets_mkdocs.languages import Catalogue, language_labels, language_mark_slug, language_profile, listed_slugs
 from snippets_mkdocs.models import Snippet
 
 _FENCE_ALIASES = {
@@ -121,10 +115,7 @@ def _format_added(snippet: Snippet) -> str:
     added = snippet.added
     suffix = escape(_day_ordinal_suffix(added.day), quote=True)
     month_year = escape(added.strftime("%B %Y"))
-    return (
-        f'<span class="date-ordinal" data-suffix="{suffix}" translate="no">{added.day}</span>'
-        f" {month_year}"
-    )
+    return f'<span class="date-ordinal" data-suffix="{suffix}" translate="no">{added.day}</span> {month_year}'
 
 
 def _release_footer(snippet: Snippet) -> str:
@@ -146,24 +137,12 @@ def _format_language(snippet: Snippet, catalogue: Catalogue | None) -> str:
     slug = escape(snippet.language, quote=True)
     label = escape(name)
     href = escape(f"/snippets/?language={snippet.language}", quote=True)
-    return (
-        f'<p class="snippet-modal-language" data-snippet-language-meta="{slug}">'
-        f'Language: <a href="{href}">{label}</a>'
-        f"</p>"
-    )
+    return f'<p class="snippet-modal-language" data-snippet-language-meta="{slug}">Language: <a href="{href}">{label}</a></p>'
 
 
 def latest_snippets(snippets: list[Snippet], *, limit: int = HOME_LATEST_LIMIT) -> list[Snippet]:
     """Newest snippets first, then title / language / slug."""
-    return sorted(
-        snippets,
-        key=lambda item: (
-            -item.added.timestamp(),
-            item.card_title.casefold(),
-            item.language,
-            item.slug,
-        ),
-    )[:limit]
+    return sorted(snippets, key=lambda item: (-item.added.timestamp(), item.card_title.casefold(), item.language, item.slug))[:limit]
 
 
 def render_home(snippets: list[Snippet], catalogue: Catalogue) -> str:
@@ -174,15 +153,7 @@ def render_home(snippets: list[Snippet], catalogue: Catalogue) -> str:
         lines.append("")
         return "\n".join(lines)
 
-    cards = "\n\n".join(
-        render_catalogue_card(
-            item,
-            catalogue,
-            mark_src=language_mark_src(item.language, catalogue, root=True),
-            root=True,
-        )
-        for item in latest_snippets(snippets)
-    )
+    cards = "\n\n".join(render_catalogue_card(item, catalogue, mark_src=language_mark_src(item.language, catalogue, root=True), root=True) for item in latest_snippets(snippets))
     lines.extend(
         [
             "## Latest Snippets",
@@ -237,9 +208,7 @@ def _language_select_options(catalogue: Catalogue, snippets: list[Snippet]) -> s
     lines = ['            <option value="">All Languages</option>']
     for slug in listed_slugs(catalogue, snippets):
         name = labels.get(slug) or language_profile(catalogue, slug)[0]
-        lines.append(
-            f'            <option value="{escape(slug, quote=True)}">{escape(name)}</option>'
-        )
+        lines.append(f'            <option value="{escape(slug, quote=True)}">{escape(name)}</option>')
     return "\n".join(lines)
 
 
@@ -339,22 +308,13 @@ Try changing the search text or selecting different filters.
 """.strip()
 
 
-def render_catalogue_card(
-    snippet: Snippet,
-    catalogue: Catalogue,
-    *,
-    mark_src: str | None = None,
-    root: bool = False,
-) -> str:
+def render_catalogue_card(snippet: Snippet, catalogue: Catalogue, *, mark_src: str | None = None, root: bool = False) -> str:
     """One Material catalogue card for a snippet."""
     summary = escape(snippet.summary)
     language = escape(snippet.language)
     language_name = escape(language_profile(catalogue, snippet.language)[0], quote=True)
     mark = mark_src if mark_src is not None else language_mark_src(snippet.language, catalogue)
-    pills = "\n".join(
-        f'    <button type="button" class="catalogue-category">{escape(tag)}</button>'
-        for tag in snippet.tags
-    )
+    pills = "\n".join(f'    <button type="button" class="catalogue-category">{escape(tag)}</button>' for tag in snippet.tags)
     href = snippet_page_href(snippet, root=root)
     card_html = escape(snippet.card_title)
     full_title = escape(snippet.title, quote=True)
@@ -390,12 +350,7 @@ def render_catalogue(snippets: list[Snippet], catalogue: Catalogue) -> str:
     if not snippets:
         return "No snippets yet.\n"
 
-    cards = "\n\n".join(
-        render_catalogue_card(item, catalogue)
-        for item in sorted(
-            snippets, key=lambda snip: (snip.card_title.casefold(), snip.language, snip.slug)
-        )
-    )
+    cards = "\n\n".join(render_catalogue_card(item, catalogue) for item in sorted(snippets, key=lambda snip: (snip.card_title.casefold(), snip.language, snip.slug)))
     return "\n".join(
         [
             render_filter_panel(catalogue, snippets),

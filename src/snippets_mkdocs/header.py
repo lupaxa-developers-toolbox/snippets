@@ -84,11 +84,7 @@ def parse_header(text: str, *, path: str | None = None) -> tuple[HeaderMeta, str
     title = _require_str("title")
     card_title = _require_str("card_title")
     if len(card_title) > CARD_TITLE_MAX:
-        raise SnippetError(
-            f"card_title must be at most {CARD_TITLE_MAX} characters",
-            path=path,
-            field="card_title",
-        )
+        raise SnippetError(f"card_title must be at most {CARD_TITLE_MAX} characters", path=path, field="card_title")
     summary = _require_str("summary")
     tags_raw = loaded.get("tags")
     if not isinstance(tags_raw, list) or not tags_raw:
@@ -96,11 +92,7 @@ def parse_header(text: str, *, path: str | None = None) -> tuple[HeaderMeta, str
     tags: list[str] = []
     for item in tags_raw:
         if not isinstance(item, str) or not _TAG_RE.match(item):
-            raise SnippetError(
-                "each tag must match ^[a-z0-9]+(-[a-z0-9]+)*$",
-                path=path,
-                field="tags",
-            )
+            raise SnippetError("each tag must match ^[a-z0-9]+(-[a-z0-9]+)*$", path=path, field="tags")
         tags.append(item)
 
     added = _parse_added(loaded.get("added"), path=path)
@@ -122,18 +114,7 @@ def parse_header(text: str, *, path: str | None = None) -> tuple[HeaderMeta, str
     if body.startswith("\n"):
         body = body[1:]
 
-    return (
-        HeaderMeta(
-            title=title,
-            card_title=card_title,
-            summary=summary,
-            tags=tuple(tags),
-            added=added,
-            runnable=runnable_raw,
-            caveats=caveats,
-        ),
-        body,
-    )
+    return (HeaderMeta(title=title, card_title=card_title, summary=summary, tags=tuple(tags), added=added, runnable=runnable_raw, caveats=caveats), body)
 
 
 def _parse_added(raw: Any, *, path: str | None) -> datetime:
@@ -149,11 +130,7 @@ def _parse_added(raw: Any, *, path: str | None) -> datetime:
         except ValueError:
             parsed = None
     if parsed is None:
-        raise SnippetError(
-            "added must be an ISO-8601 date or date-time",
-            path=path,
-            field="added",
-        )
+        raise SnippetError("added must be an ISO-8601 date or date-time", path=path, field="added")
     if parsed.tzinfo is None:
         return parsed.replace(tzinfo=UTC)
     return parsed

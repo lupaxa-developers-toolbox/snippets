@@ -20,7 +20,7 @@ def get_default_branch(repo_url: str) -> str:
 
     response = requests.get(
         f"https://api.github.com/repos/{owner}/{repo}",
-        timeout=10,
+        timeout=10
     )
     response.raise_for_status()
 

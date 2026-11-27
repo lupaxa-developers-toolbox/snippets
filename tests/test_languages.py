@@ -4,15 +4,7 @@ from pathlib import Path
 import pytest
 
 from snippets_mkdocs.errors import SnippetError
-from snippets_mkdocs.languages import (
-    Catalogue,
-    Language,
-    language_labels,
-    language_mark_slug,
-    language_profile,
-    listed_slugs,
-    load_languages,
-)
+from snippets_mkdocs.languages import Catalogue, Language, language_labels, language_mark_slug, language_profile, listed_slugs, load_languages
 from snippets_mkdocs.models import Snippet
 
 
@@ -22,11 +14,7 @@ def _write(path: Path, text: str) -> Path:
 
 
 def test_load_languages_reads_rows(tmp_path: Path) -> None:
-    path = _write(
-        tmp_path / "languages.yml",
-        "- slug: shell\n  name: Shell\n  summary: POSIX shells.\n"
-        "- slug: rust\n  name: Rust\n  summary: Systems.\n",
-    )
+    path = _write(tmp_path / "languages.yml", "- slug: shell\n  name: Shell\n  summary: POSIX shells.\n- slug: rust\n  name: Rust\n  summary: Systems.\n")
     rows = load_languages(path)
     assert [row.slug for row in rows] == ["shell", "rust"]
     assert rows[0].name == "Shell"
@@ -46,17 +34,10 @@ def test_load_languages_missing_file(tmp_path: Path) -> None:
         ("", "must be a non-empty list"),
         ("slug: shell\n", "must be a non-empty list"),
         ("[]\n", "must be a non-empty list"),
-        (
-            "- slug: shell\n  name: Shell\n  summary: x\n  extra: 1\n",
-            "unknown key",
-        ),
+        ("- slug: shell\n  name: Shell\n  summary: x\n  extra: 1\n", "unknown key"),
         ("- slug: Shell\n  name: Shell\n  summary: x\n", "invalid slug"),
         ("- slug: code\n  name: Code\n  summary: x\n", "reserved slug"),
-        (
-            "- slug: shell\n  name: Shell\n  summary: x\n"
-            "- slug: shell\n  name: Other\n  summary: y\n",
-            "duplicate slug",
-        ),
+        ("- slug: shell\n  name: Shell\n  summary: x\n- slug: shell\n  name: Other\n  summary: y\n", "duplicate slug"),
         ("- slug: shell\n  name: Shell\n  summary: x\n  visible: true\n", "unknown key"),
     ],
 )
@@ -118,10 +99,7 @@ def test_listed_slugs_includes_unknown_scanned_language() -> None:
 
 
 def test_language_profile_unknown_capitalises() -> None:
-    assert language_profile(_cat(SHELL), "elixir") == (
-        "Elixir",
-        "Copy-paste helpers written in Elixir.",
-    )
+    assert language_profile(_cat(SHELL), "elixir") == ("Elixir", "Copy-paste helpers written in Elixir.")
 
 
 def test_language_mark_slug_unknown_is_code() -> None:

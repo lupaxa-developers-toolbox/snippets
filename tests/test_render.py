@@ -32,15 +32,7 @@ def _catalogue(*extra: Language) -> Catalogue:
     return Catalogue(languages=rows)
 
 
-def _snip(
-    language: str,
-    slug: str,
-    *,
-    tags: tuple[str, ...] = ("retry",),
-    caveats: str | None = None,
-    runnable: bool = False,
-    added: datetime | None = None,
-) -> Snippet:
+def _snip(language: str, slug: str, *, tags: tuple[str, ...] = ("retry",), caveats: str | None = None, runnable: bool = False, added: datetime | None = None) -> Snippet:
     return Snippet(
         language=language,
         slug=slug,
@@ -77,9 +69,7 @@ def test_snippet_page_includes_body() -> None:
     assert "data-snippet-added" in md
     assert "data-snippet-submitted" not in md
     assert 'Language: <a href="/snippets/?language=shell">Shell</a>' in md
-    added = (
-        'Added on: <span class="date-ordinal" data-suffix="st" translate="no">1</span> January 2026'
-    )
+    added = 'Added on: <span class="date-ordinal" data-suffix="st" translate="no">1</span> January 2026'
     assert added in md
     assert "Submitted by:" not in md
     assert "<sup>" not in md
@@ -88,21 +78,9 @@ def test_snippet_page_includes_body() -> None:
 
 
 def test_snippet_page_date_uses_ordinal_suffix() -> None:
-    eleventh = _snip(
-        "shell",
-        "eleventh",
-        added=datetime(2026, 1, 11, tzinfo=UTC),
-    )
-    twenty_second = _snip(
-        "shell",
-        "twenty-second",
-        added=datetime(2026, 1, 22, tzinfo=UTC),
-    )
-    twenty_third = _snip(
-        "shell",
-        "twenty-third",
-        added=datetime(2026, 1, 23, tzinfo=UTC),
-    )
+    eleventh = _snip("shell", "eleventh", added=datetime(2026, 1, 11, tzinfo=UTC))
+    twenty_second = _snip("shell", "twenty-second", added=datetime(2026, 1, 22, tzinfo=UTC))
+    twenty_third = _snip("shell", "twenty-third", added=datetime(2026, 1, 23, tzinfo=UTC))
     assert 'data-suffix="th" translate="no">11</span>' in render_snippet_page(eleventh)
     assert 'data-suffix="nd" translate="no">22</span>' in render_snippet_page(twenty_second)
     assert 'data-suffix="rd" translate="no">23</span>' in render_snippet_page(twenty_third)
@@ -203,14 +181,7 @@ def test_catalogue_cards_have_title_mark_description_and_pills() -> None:
 
 
 def test_languages_index_is_alphabetical_by_name_not_yaml_order() -> None:
-    catalogue = Catalogue(
-        languages=(
-            Language("python", "Python", "Scripts."),
-            Language("rust", "Rust", "Systems."),
-            Language("c", "C", "Systems."),
-            Language("shell", "Shell", "POSIX."),
-        )
-    )
+    catalogue = Catalogue(languages=(Language("python", "Python", "Scripts."), Language("rust", "Rust", "Systems."), Language("c", "C", "Systems."), Language("shell", "Shell", "POSIX.")))
     snippets = [
         _snip("python", "a"),
         _snip("rust", "b"),
@@ -257,11 +228,7 @@ def test_languages_index_includes_unknown_scanned_language() -> None:
 
 def test_filter_panel_embeds_language_labels() -> None:
     md = render_catalogue([_snip("python", "retry")], _catalogue())
-    match = re.search(
-        r'<template id="language-labels">(.*?)</template>',
-        md,
-        re.S,
-    )
+    match = re.search(r'<template id="language-labels">(.*?)</template>', md, re.S)
     assert match is not None
     labels = json.loads(match.group(1))
     assert labels["shell"] == "Shell"
@@ -271,11 +238,7 @@ def test_filter_panel_embeds_language_labels() -> None:
 
 def test_filter_panel_lists_only_languages_with_snippets() -> None:
     md = render_catalogue([_snip("python", "retry")], _catalogue())
-    match = re.search(
-        r'<template id="listed-languages">(.*?)</template>',
-        md,
-        re.S,
-    )
+    match = re.search(r'<template id="listed-languages">(.*?)</template>', md, re.S)
     assert match is not None
     listed = json.loads(match.group(1))
     assert listed == ["python"]
@@ -286,10 +249,7 @@ def test_filter_panel_lists_only_languages_with_snippets() -> None:
 
 
 def test_filter_panel_select_lists_only_used_languages() -> None:
-    md = render_catalogue(
-        [_snip("python", "retry"), _snip("rust", "flow")],
-        _catalogue(),
-    )
+    md = render_catalogue([_snip("python", "retry"), _snip("rust", "flow")], _catalogue())
     assert 'value="python">Python</option>' in md
     assert 'value="rust">Rust</option>' in md
     assert 'value="go">' not in md
@@ -312,25 +272,15 @@ def test_home_empty_catalogue() -> None:
 
 
 def test_home_latest_cards_are_newest_first() -> None:
-    older = _snip(
-        "shell",
-        "old",
-        added=datetime(2026, 1, 1, tzinfo=UTC),
-    )
-    newer = _snip(
-        "python",
-        "new",
-        added=datetime(2026, 8, 18, tzinfo=UTC),
-    )
+    older = _snip("shell", "old", added=datetime(2026, 1, 1, tzinfo=UTC))
+    newer = _snip("python", "new", added=datetime(2026, 8, 18, tzinfo=UTC))
     md = render_home([older, newer], _catalogue())
     assert md.index("new in python") < md.index("old in shell")
 
 
 def test_latest_snippets_are_newest_nine() -> None:
     start = datetime(2026, 1, 1, tzinfo=UTC)
-    items = [
-        _snip("shell", f"s{index:02d}", added=start + timedelta(days=index)) for index in range(12)
-    ]
+    items = [_snip("shell", f"s{index:02d}", added=start + timedelta(days=index)) for index in range(12)]
     latest = latest_snippets(items)
     assert [item.slug for item in latest] == [
         "s11",
