@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-python -m pytest tests
+if [[ -x .venv/bin/python ]]; then
+  exec .venv/bin/python -m pytest tests
+fi
+exec python -m pytest tests
