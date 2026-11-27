@@ -1,12 +1,13 @@
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 
 
 def test_mkdocs_build_strict() -> None:
-    result = subprocess.run(["python", "-m", "mkdocs", "build", "--strict"], cwd=REPO, check=False, capture_output=True, text=True)
+    result = subprocess.run([sys.executable, "-m", "mkdocs", "build", "--strict"], cwd=REPO, check=False, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr + result.stdout
 
 
